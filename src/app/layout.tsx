@@ -154,6 +154,10 @@ export default function RootLayout({
                   jobTitle: "Co-Founder & CEO",
                   alumniOf: { "@type": "CollegeOrUniversity", name: "Jawaharlal Nehru University" },
                   knowsAbout: ["AI Systems", "Full-Stack Architecture", "Web Development", "Machine Learning"],
+                  sameAs: [
+                    "https://www.linkedin.com/in/abhisheksingh22141",
+                    "https://www.instagram.com/abhishek.tvg",
+                  ],
                 },
                 {
                   "@type": "Person",
@@ -161,6 +165,10 @@ export default function RootLayout({
                   jobTitle: "Co-Founder & Lead Engineer",
                   alumniOf: { "@type": "CollegeOrUniversity", name: "Indian Institute of Technology Delhi" },
                   knowsAbout: ["Machine Learning", "Cloud Infrastructure", "EdTech", "Neuro-Symbolic AI"],
+                  sameAs: [
+                    "https://www.linkedin.com/in/avadhak",
+                    "https://www.instagram.com/avadh_ak_",
+                  ],
                 },
                 {
                   "@type": "Person",
@@ -168,6 +176,10 @@ export default function RootLayout({
                   jobTitle: "Co-Founder & Tech Lead",
                   alumniOf: { "@type": "CollegeOrUniversity", name: "Jawaharlal Nehru University" },
                   knowsAbout: ["Enterprise Systems", "Data Engineering", "Backend Architecture"],
+                  sameAs: [
+                    "https://www.linkedin.com/in/chirag-beniwal-08691a1b4",
+                    "https://www.instagram.com/chxbeni",
+                  ],
                 },
               ],
               knowsAbout: [
@@ -190,7 +202,10 @@ export default function RootLayout({
               numberOfEmployees: { "@type": "QuantitativeValue", minValue: 3 },
               foundingDate: "2024",
               sameAs: [
-                "https://linkedin.com/company/atma-consultancy",
+                "https://www.instagram.com/atma.tvg",
+                "https://www.linkedin.com/in/abhisheksingh22141",
+                "https://www.linkedin.com/in/avadhak",
+                "https://www.linkedin.com/in/chirag-beniwal-08691a1b4",
               ],
             }),
           }}
