@@ -182,6 +182,13 @@ export default function RootLayout({
                     "https://www.instagram.com/chxbeni",
                   ],
                 },
+                {
+                  "@type": "Person",
+                  name: "Kumar Pratyay",
+                  jobTitle: "Full-Stack Developer",
+                  alumniOf: { "@type": "CollegeOrUniversity", name: "Jawaharlal Nehru University" },
+                  knowsAbout: ["Full-Stack Development", "Management", "Computer Science"],
+                },
               ],
               knowsAbout: [
                 "Artificial Intelligence",
