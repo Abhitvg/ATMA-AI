@@ -86,6 +86,13 @@ const founders = [
     specialty: "Enterprise Systems & Data Engineering",
     image: "/founders/chirag.webp",
   },
+  {
+    name: "Kumar Pratyay",
+    role: "Co-Founder & Full-Stack Developer",
+    institution: "BTech & MBA, JNU",
+    specialty: "Full-Stack Development",
+    image: "/logos/atma-logo.svg",
+  },
 ];
 
 const portfolio = [
@@ -228,7 +235,7 @@ function FoundersSection() {
           </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {founders.map((founder, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
               <div className="group relative glass-card rounded-2xl p-8 text-center hover:border-accent/20 transition-all duration-500 hover:-translate-y-1">
@@ -239,7 +246,7 @@ function FoundersSection() {
                     alt={founder.name}
                     fill
                     sizes="96px"
-                    className="object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                    className={`group-hover:scale-110 transition-transform duration-500 ${founder.name === 'Kumar Pratyay' ? 'object-contain p-3 opacity-60' : 'object-cover object-top'}`}
                   />
                 </div>
                 <h3 className="text-xl font-bold font-heading text-primary-light mb-1">{founder.name}</h3>

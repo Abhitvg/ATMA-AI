@@ -185,7 +185,7 @@ export default function RootLayout({
                 {
                   "@type": "Person",
                   name: "Kumar Pratyay",
-                  jobTitle: "Full-Stack Developer",
+                  jobTitle: "Co-Founder & Full-Stack Developer",
                   alumniOf: { "@type": "CollegeOrUniversity", name: "Jawaharlal Nehru University" },
                   knowsAbout: ["Full-Stack Development", "Management", "Computer Science"],
                 },

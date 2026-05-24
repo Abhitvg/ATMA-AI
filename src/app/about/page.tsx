@@ -39,11 +39,11 @@ const founders = [
   },
   {
     name: "Kumar Pratyay",
-    role: "Full-Stack Developer",
+    role: "Co-Founder & Full-Stack Developer",
     institution: "BTech & Master's in Management, JNU",
     specialty: "Full-Stack Development",
     bio: "Kumar Pratyay is a full-stack developer bridging engineering with management. With a BTech in Computer Science and a Master's in Management from JNU, he brings a unique blend of technical execution and product strategy to the team, delivering scalable and maintainable solutions.",
-    image: "/founders/pratyay.webp",
+    image: "/logos/atma-logo.svg",
     instagram: "",
     linkedin: "",
   },
@@ -155,7 +155,7 @@ export default function About() {
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         priority={i === 0}
-                        className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        className={`group-hover:scale-105 transition-transform duration-700 ${founder.name === 'Kumar Pratyay' ? 'object-contain p-12 opacity-40' : 'object-cover object-top'}`}
                         onError={(e) => { e.currentTarget.src = "/logos/atma-logo.svg"; e.currentTarget.className = "object-contain p-8 group-hover:scale-105 transition-transform duration-700 opacity-50"; }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent" />
