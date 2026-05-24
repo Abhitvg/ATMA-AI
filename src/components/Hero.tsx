@@ -7,7 +7,7 @@ export default function Hero() {
   const stats = [
     { value: "50+", label: "Projects Delivered" },
     { value: "99.9%", label: "Uptime SLA" },
-    { value: "3", label: "IIT/JNU Founders" },
+    { value: "4", label: "IIT/JNU Founders" },
   ];
 
   return (
