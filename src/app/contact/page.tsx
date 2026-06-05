@@ -17,25 +17,27 @@ export default function Contact() {
     setIsError(false);
 
     const formData = new FormData(e.currentTarget);
-    formData.append("access_key", "1e9ff201-4e43-4cc5-9659-d0633180c55a");
-    formData.append("subject", "New Inquiry — ATMA Consultancy Website");
-    formData.append("from_name", "ATMA Website Contact Form");
+    const leadData = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      service: formData.get("service"),
+      message: formData.get("message"),
+      createdAt: new Date().toISOString(),
+      source: "website_contact_form",
+    };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      // Lazy load Firebase to prevent bundle size bloat on initial render
+      const { collection, addDoc } = await import("firebase/firestore");
+      const { db } = await import("@/lib/firebase");
+      
+      await addDoc(collection(db, "leads"), leadData);
 
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitted(true);
-        setIsError(false);
-      } else {
-        setIsError(true);
-      }
-    } catch {
+      setSubmitted(true);
+      setIsError(false);
+    } catch (error) {
+      console.error("Error submitting form:", error);
       setIsError(true);
     } finally {
       setIsSubmitting(false);
