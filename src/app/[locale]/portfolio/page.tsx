@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Link } from "@/i18n/routing";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -297,13 +298,13 @@ export default function Portfolio() {
               <p className="text-muted text-lg mb-10 max-w-2xl mx-auto">
                 Let&apos;s discuss how ATMA can engineer the perfect solution for your business.
               </p>
-              <a
+              <Link
                 href="/contact"
                 className="group inline-flex items-center gap-2 bg-accent text-primary-dark px-10 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-[1.03]"
               >
                 Start a Conversation
                 <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </a>
+              </Link>
             </AnimatedSection>
           </div>
         </section>

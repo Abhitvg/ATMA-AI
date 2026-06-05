@@ -4,6 +4,14 @@ import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+function generatePositions(count: number) {
+  const pos = new Float32Array(count * 3);
+  for (let i = 0; i < count * 3; i++) {
+    pos[i] = (Math.random() - 0.5) * 15;
+  }
+  return pos;
+}
+
 function NeuralParticles() {
   const pointsRef = useRef<THREE.Points>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
@@ -12,13 +20,7 @@ function NeuralParticles() {
   const maxDistance = 3.5;
 
   // Generate random positions
-  const positions = useMemo(() => {
-    const pos = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount * 3; i++) {
-      pos[i] = (Math.random() - 0.5) * 15;
-    }
-    return pos;
-  }, [particleCount]);
+  const positions = useMemo(() => generatePositions(particleCount), [particleCount]);
 
   // Animation logic
   useFrame((state) => {
