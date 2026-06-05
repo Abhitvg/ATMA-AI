@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Zap, Shield } from "lucide-react";
+import { NetworkBackground } from "@/components/NetworkBackground";
 
 function StatCounter({ target, suffix = "", isFloat = false }: { target: number, suffix?: string, isFloat?: boolean }) {
   const [count, setCount] = useState(0);
@@ -35,6 +36,9 @@ export default function Hero() {
 
   return (
     <div className="relative overflow-hidden bg-primary-dark min-h-screen flex items-center bg-noise shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]">
+      {/* 3D Network Background */}
+      <NetworkBackground />
+
       {/* CSS-only floating orbs (no JS animation) */}
       <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] rounded-full bg-accent/8 blur-[160px] animate-float" />
       <div className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[180px] animate-float" style={{ animationDelay: "2s" }} />
