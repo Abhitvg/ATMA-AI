@@ -115,9 +115,9 @@ export default function Footer() {
           </button>
           <p className="text-xs text-muted/60">&copy; {new Date().getFullYear()} ATMA Consultancy Services. All rights reserved.</p>
           <div className="flex gap-6 text-xs text-muted/60">
-            <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">Cookies</Link>
+            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link href="/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
           </div>
         </div>
       </div>
