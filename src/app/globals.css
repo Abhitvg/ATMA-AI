@@ -2,33 +2,56 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-background: #F8FAFC;
-  --color-foreground: #334155;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   
-  --color-primary-dark: #0B192C;
-  --color-primary-deeper: #060F1C;
-  --color-primary-light: #F8FAFC;
-  --color-accent: #00E5FF;
-  --color-accent-glow: #00E5FF33;
-  --color-accent-soft: #00B8D4;
-  --color-muted: #94A3B8;
-  --color-surface: #0F2540;
-  --color-surface-light: #142D4C;
-  --color-border: rgba(248, 250, 252, 0.08);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-deeper: var(--primary-deeper);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-soft: var(--accent-soft);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-light);
+  --color-border: var(--border);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Force dark mode as default for the 'Premium Tech' aesthetic */
 :root {
   --background: #F8FAFC;
-  --foreground: #334155;
+  --foreground: #0F172A;
+  --primary-dark: #F1F5F9;
+  --primary-deeper: #E2E8F0;
+  --primary-light: #0B192C;
+  --accent: #0284C7;
+  --accent-glow: rgba(2, 132, 199, 0.2);
+  --accent-soft: #0369A1;
+  --muted: #64748B;
+  --surface: #FFFFFF;
+  --surface-light: #F8FAFC;
+  --border: rgba(15, 23, 42, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-light: rgba(255, 255, 255, 0.5);
 }
 
 .dark {
   --background: #0B192C;
   --foreground: #F8FAFC;
+  --primary-dark: #0B192C;
+  --primary-deeper: #060F1C;
+  --primary-light: #F8FAFC;
+  --accent: #00E5FF;
+  --accent-glow: rgba(0, 229, 255, 0.2);
+  --accent-soft: #00B8D4;
+  --muted: #94A3B8;
+  --surface: #0F2540;
+  --surface-light: #142D4C;
+  --border: rgba(248, 250, 252, 0.08);
+  --glass-bg: rgba(15, 37, 64, 0.6);
+  --glass-bg-light: rgba(15, 37, 64, 0.3);
 }
 
 /* Smooth scrolling */
@@ -134,17 +157,17 @@ h1, h2, h3, h4, h5, h6 {
 /* ======= GLASSMORPHISM CARD ======= */
 
 .glass-card {
-  background: rgba(15, 37, 64, 0.6);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(248, 250, 252, 0.08);
+  border: 1px solid var(--border);
 }
 
 .glass-card-light {
-  background: rgba(15, 37, 64, 0.3);
+  background: var(--glass-bg-light);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(248, 250, 252, 0.05);
+  border: 1px solid var(--border);
 }
 
 /* ======= GLOW EFFECTS ======= */
@@ -177,23 +200,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B192C;
+  background: var(--primary-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E3A5F;
+  background: var(--muted);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00E5FF;
+  background: var(--accent);
 }
 
 /* ======= SELECTION ======= */
 
 ::selection {
-  background: rgba(0, 229, 255, 0.3);
-  color: #F8FAFC;
+  background: var(--accent-glow);
+  color: var(--foreground);
 }
 
 /* ======= CSS SCROLL REVEAL (replaces Framer Motion) ======= */
