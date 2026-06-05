@@ -196,13 +196,13 @@ function ServicesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
-            <AnimatedSection key={i} delay={i * 0.08}>
-              <div className="group relative glass-card rounded-2xl p-8 hover:border-accent/20 transition-all duration-500 h-full cursor-pointer overflow-hidden">
+            <AnimatedSection key={i} delay={i * 0.08} variant="slide-up">
+              <div className="group relative glass-card rounded-2xl p-8 tilt-card gradient-border-hover hover:-translate-y-2 h-full cursor-pointer overflow-hidden">
                 {/* Gradient accent on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                 
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-6`}>
-                  <service.icon className="h-6 w-6 text-white" />
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-6 shadow-lg group-hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all duration-300`}>
+                  <service.icon className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-xl font-bold font-heading text-primary-light mb-3 group-hover:text-accent transition-colors duration-300">
                   {service.title}
@@ -238,9 +238,9 @@ function FoundersSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {founders.map((founder, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="group relative glass-card rounded-2xl p-8 text-center hover:border-accent/20 transition-all duration-500 hover:-translate-y-1">
+              <div className="group relative glass-card rounded-2xl p-8 text-center transition-all duration-500 tilt-card gradient-border-hover hover:-translate-y-2">
                 {/* Photo */}
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-2 border-accent/30 group-hover:border-accent/50 transition-all duration-300 relative">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-2 border-accent/30 group-hover:border-accent/80 group-hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all duration-500 relative">
                   <Image
                     src={founder.image}
                     alt={founder.name}
@@ -249,8 +249,11 @@ function FoundersSection() {
                     className={`group-hover:scale-110 transition-transform duration-500 ${founder.name === 'Kumar Pratyay' ? 'object-contain p-3 opacity-60' : 'object-cover object-top'}`}
                   />
                 </div>
-                <h3 className="text-xl font-bold font-heading text-primary-light mb-1">{founder.name}</h3>
-                <p className="text-accent text-sm font-medium mb-3">{founder.role}</p>
+                <h3 className="text-xl font-bold font-heading text-primary-light mb-1 relative inline-block">
+                  {founder.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-500" />
+                </h3>
+                <p className="text-accent text-sm font-medium mt-2 mb-3">{founder.role}</p>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium mb-4">
                   <GraduationCap className="h-3 w-3" />
                   {founder.institution}
@@ -281,12 +284,12 @@ function PortfolioSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {portfolio.map((item, i) => (
-            <AnimatedSection key={i} delay={i * 0.05}>
+            <AnimatedSection key={i} delay={i * 0.05} variant="scale-in">
               <a
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block glass-card rounded-2xl overflow-hidden hover:border-accent/20 transition-all duration-500 hover:-translate-y-1"
+                className="group block glass-card rounded-2xl overflow-hidden tilt-card gradient-border-hover hover:-translate-y-2"
               >
                 {/* Color bar */}
                 <div className="h-1 w-full bg-gradient-to-r from-accent to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -334,13 +337,16 @@ function ValuesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {values.map((value, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="text-center">
-                <div className="inline-flex p-4 rounded-2xl bg-accent/10 border border-accent/20 mb-5">
-                  <value.icon className="h-7 w-7 text-accent" />
+            <AnimatedSection key={i} delay={i * 0.1} variant="slide-up">
+              <div className="text-center group relative p-6 rounded-2xl transition-all duration-300 hover:bg-surface/30 gradient-border-hover">
+                <div className="absolute top-4 right-6 text-5xl font-heading font-black text-white/[0.03] group-hover:text-accent/10 transition-colors duration-500 pointer-events-none">
+                  0{i + 1}
+                </div>
+                <div className="inline-flex p-4 rounded-2xl bg-accent/10 border border-accent/20 mb-5 group-hover:bg-accent/20 transition-colors duration-300 shadow-[0_0_0_rgba(0,229,255,0)] group-hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                  <value.icon className="h-7 w-7 text-accent group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-lg font-bold font-heading text-primary-light mb-2">{value.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{value.description}</p>
+                <p className="text-muted text-sm leading-relaxed relative z-10">{value.description}</p>
               </div>
             </AnimatedSection>
           ))}
@@ -352,10 +358,10 @@ function ValuesSection() {
 
 function CTASection() {
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className="py-28 relative overflow-hidden bg-noise">
       {/* Background glow */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-[600px] h-[600px] rounded-full bg-accent/10 blur-[200px]" />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[600px] h-[600px] rounded-full bg-accent/10 blur-[200px] animate-pulse-glow" />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -402,22 +408,29 @@ const clientLogos = [
 ];
 
 function TrustedBySection() {
+  const marqueeLogos = [...clientLogos, ...clientLogos, ...clientLogos];
   return (
-    <section className="py-20 bg-primary-deeper relative overflow-hidden">
+    <section className="py-20 bg-primary-deeper relative overflow-hidden bg-noise">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center mb-12">
           <p className="text-muted text-sm font-semibold uppercase tracking-widest">
             Trusted by Organizations Across Sectors
           </p>
         </AnimatedSection>
+      </div>
 
-        <AnimatedSection>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {clientLogos.map((logo, i) => (
+      <AnimatedSection>
+        <div className="relative w-full overflow-hidden flex items-center group">
+          {/* Gradient masks for smooth fade at edges */}
+          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-primary-deeper to-transparent z-10" />
+          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-primary-deeper to-transparent z-10" />
+          
+          <div className="animate-marquee flex gap-8 md:gap-12 pl-8">
+            {marqueeLogos.map((logo, i) => (
               <div
                 key={i}
-                className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white/90 flex items-center justify-center p-3 hover:scale-110 hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 cursor-default"
+                className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white/90 flex items-center justify-center p-3 hover:scale-110 hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all duration-300 cursor-default shrink-0 tilt-card"
               >
                 <Image
                   src={logo.src}
@@ -429,8 +442,9 @@ function TrustedBySection() {
               </div>
             ))}
           </div>
-        </AnimatedSection>
-      </div>
+        </div>
+      </AnimatedSection>
+
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
     </section>
   );

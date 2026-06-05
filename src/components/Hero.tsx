@@ -1,17 +1,40 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Zap, Shield } from "lucide-react";
 
+function StatCounter({ target, suffix = "", isFloat = false }: { target: number, suffix?: string, isFloat?: boolean }) {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    let startTime: number;
+    const duration = 2000;
+    
+    const animate = (time: number) => {
+      if (!startTime) startTime = time;
+      const progress = Math.min((time - startTime) / duration, 1);
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(target * ease);
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    
+    requestAnimationFrame(animate);
+  }, [target]);
+  
+  const displayValue = isFloat ? count.toFixed(1) : Math.floor(count);
+  return <>{displayValue}{suffix}</>;
+}
+
 export default function Hero() {
   const stats = [
-    { value: "50+", label: "Projects Delivered" },
-    { value: "99.9%", label: "Uptime SLA" },
-    { value: "4", label: "IIT/JNU Founders" },
+    { target: 50, suffix: "+", isFloat: false, label: "Projects Delivered" },
+    { target: 99.9, suffix: "%", isFloat: true, label: "Uptime SLA" },
+    { target: 4, suffix: "", isFloat: false, label: "IIT/JNU Founders" },
   ];
 
   return (
-    <div className="relative overflow-hidden bg-primary-dark min-h-screen flex items-center">
+    <div className="relative overflow-hidden bg-primary-dark min-h-screen flex items-center bg-noise shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]">
       {/* CSS-only floating orbs (no JS animation) */}
       <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] rounded-full bg-accent/8 blur-[160px] animate-float" />
       <div className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[180px] animate-float" style={{ animationDelay: "2s" }} />
@@ -66,7 +89,9 @@ export default function Hero() {
             <div className="flex gap-8 md:gap-12">
               {stats.map((stat, i) => (
                 <div key={i} className="relative">
-                  <p className="text-3xl md:text-4xl font-bold font-heading text-accent text-glow">{stat.value}</p>
+                  <p className="text-3xl md:text-4xl font-bold font-heading text-accent text-glow">
+                    <StatCounter target={stat.target} suffix={stat.suffix} isFloat={stat.isFloat} />
+                  </p>
                   <p className="text-xs md:text-sm text-muted mt-1 tracking-wide">{stat.label}</p>
                 </div>
               ))}
@@ -75,7 +100,7 @@ export default function Hero() {
 
           {/* Right — Terminal mockup (CSS only, no framer-motion) */}
           <div className="hidden lg:block relative hero-terminal">
-            <div className="relative h-[480px] w-full rounded-2xl glass-card overflow-hidden glow-accent">
+            <div className="relative h-[480px] w-full rounded-2xl glass-card overflow-hidden glow-accent gradient-border-hover">
               <TerminalCode />
             </div>
             
@@ -109,12 +134,12 @@ export default function Hero() {
 /* Lightweight terminal — CSS animation only, no framer-motion */
 function TerminalCode() {
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full bg-[#060F1C]/80 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,229,255,0.02)_2px,rgba(0,229,255,0.02)_4px)]">
       {/* Terminal Chrome */}
-      <div className="absolute top-0 left-0 w-full h-12 bg-surface/80 border-b border-border flex items-center px-4 gap-2 rounded-t-2xl">
-        <div className="w-3 h-3 rounded-full bg-red-400/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
-        <div className="w-3 h-3 rounded-full bg-green-400/80" />
+      <div className="absolute top-0 left-0 w-full h-12 bg-surface/90 border-b border-border flex items-center px-4 gap-2 rounded-t-2xl z-10">
+        <div className="w-3 h-3 rounded-full bg-red-400/80 shadow-[0_0_5px_rgba(248,113,113,0.5)]" />
+        <div className="w-3 h-3 rounded-full bg-yellow-400/80 shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
+        <div className="w-3 h-3 rounded-full bg-green-400/80 shadow-[0_0_5px_rgba(74,222,128,0.5)]" />
         <span className="ml-4 text-xs font-mono text-muted/60">atma_deploy.ts</span>
       </div>
 

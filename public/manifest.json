@@ -1,0 +1,17 @@
+{
+  "name": "ATMA Consultancy & Research",
+  "short_name": "ATMA",
+  "description": "Elite AI and IT consultancy founded by IIT Delhi & JNU alumni.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/logos/atma-logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

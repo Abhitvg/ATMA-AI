@@ -4,7 +4,7 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Mail, MapPin, Phone, Send, ArrowRight, CheckCircle2, Loader2, AlertTriangle } from "lucide-react";
+import { Mail, MapPin, Phone, Send, CheckCircle2, Loader2, AlertTriangle } from "lucide-react";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -47,9 +47,9 @@ export default function Contact() {
       <Navbar />
       <main className="flex-grow">
         {/* Page Header */}
-        <section className="pt-32 pb-20 relative bg-primary-dark">
+        <section className="pt-32 pb-20 relative bg-primary-dark bg-noise shadow-[inset_0_0_120px_rgba(0,0,0,0.8)]">
           <div className="absolute inset-0 bg-grid opacity-30" />
-          <div className="absolute top-[30%] right-[5%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px]" />
+          <div className="absolute top-[30%] right-[5%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <AnimatedSection>
@@ -169,7 +169,7 @@ export default function Contact() {
                             type="text"
                             name="name"
                             required
-                            className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all text-sm"
+                            className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus-ring transition-all text-sm"
                             placeholder="Your name"
                           />
                         </div>
@@ -179,7 +179,7 @@ export default function Contact() {
                             type="email"
                             name="email"
                             required
-                            className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all text-sm"
+                            className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus-ring transition-all text-sm"
                             placeholder="you@company.com"
                           />
                         </div>
@@ -190,7 +190,7 @@ export default function Contact() {
                         <input
                           type="text"
                           name="company"
-                          className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all text-sm"
+                          className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus-ring transition-all text-sm"
                           placeholder="Your company name"
                         />
                       </div>
@@ -199,7 +199,7 @@ export default function Contact() {
                         <label className="block text-sm font-medium text-primary-light mb-2">Service Interest</label>
                         <select
                           name="service"
-                          className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all text-sm"
+                          className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground focus-ring transition-all text-sm"
                         >
                           <option value="">Select a service...</option>
                           <option value="AI & GenAI Solutions">AI & GenAI Solutions</option>
@@ -218,7 +218,7 @@ export default function Contact() {
                           name="message"
                           required
                           rows={5}
-                          className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all text-sm resize-none"
+                          className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-foreground placeholder:text-muted/50 focus-ring transition-all text-sm resize-none"
                           placeholder="Tell us about your project, timeline, and any specific requirements..."
                         />
                       </div>

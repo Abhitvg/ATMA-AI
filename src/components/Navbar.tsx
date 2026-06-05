@@ -65,21 +65,24 @@ export default function Navbar() {
               <Link 
                 key={link.name} 
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg ${
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg group ${
                   isActive(link.href)
                     ? "text-accent"
                     : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                 }`}
               >
                 {link.name}
-                {isActive(link.href) && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-accent rounded-full" />
-                )}
+                {/* Active/Hover Indicator */}
+                <span 
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300 ${
+                    isActive(link.href) ? "w-[20px] bg-accent" : "w-0 bg-foreground/30 group-hover:w-[20px]"
+                  }`} 
+                />
               </Link>
             ))}
             <Link 
               href="/contact"
-              className="ml-4 relative overflow-hidden bg-accent text-primary-dark px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-accent/25 hover:scale-105 active:scale-95"
+              className="ml-4 relative overflow-hidden bg-accent text-primary-dark px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:scale-105 active:scale-95 animate-shimmer"
             >
               Get in Touch
             </Link>
@@ -96,22 +99,31 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu Backdrop */}
+      <div 
+        className={`md:hidden fixed inset-0 bg-primary-dark/60 backdrop-blur-sm z-[-1] transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        onClick={() => setIsOpen(false)}
+      />
+
       {/* Mobile Menu — CSS transition, no framer-motion */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-        } bg-primary-dark/95 backdrop-blur-xl border-t border-border`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-out absolute w-full top-20 ${
+          isOpen ? "max-h-[500px] opacity-100 shadow-[0_20px_40px_rgba(0,0,0,0.5)]" : "max-h-0 opacity-0"
+        } bg-primary-dark/95 backdrop-blur-2xl border-b border-border`}
       >
-        <div className="px-4 py-6 space-y-1">
-          {navLinks.map((link) => (
+        <div className="px-4 py-6 space-y-2">
+          {navLinks.map((link, i) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+              style={{ transitionDelay: isOpen ? `${i * 50}ms` : '0ms' }}
+              className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
+                isOpen ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
+              } ${
                 isActive(link.href)
-                  ? "text-accent bg-accent/10"
-                  : "text-foreground/80 hover:text-accent hover:bg-foreground/5"
+                  ? "text-accent bg-accent/10 border border-accent/20"
+                  : "text-foreground/80 hover:text-accent hover:bg-foreground/5 border border-transparent"
               }`}
             >
               {link.name}
@@ -120,7 +132,10 @@ export default function Navbar() {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="block mt-4 px-4 py-3 text-base font-semibold text-primary-dark bg-accent rounded-lg text-center"
+            style={{ transitionDelay: isOpen ? `${navLinks.length * 50}ms` : '0ms' }}
+            className={`block mt-6 px-4 py-3 text-base font-semibold text-primary-dark bg-accent rounded-lg text-center transition-all duration-300 transform ${
+              isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            }`}
           >
             Get in Touch
           </Link>

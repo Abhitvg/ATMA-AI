@@ -6,9 +6,15 @@ interface AnimatedSectionProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  variant?: "slide-up" | "slide-left" | "slide-right" | "scale-in";
 }
 
-export default function AnimatedSection({ children, className = "", delay = 0 }: AnimatedSectionProps) {
+export default function AnimatedSection({ 
+  children, 
+  className = "", 
+  delay = 0,
+  variant = "slide-up"
+}: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,7 +38,7 @@ export default function AnimatedSection({ children, className = "", delay = 0 }:
   return (
     <div
       ref={ref}
-      className={`animated-section ${isVisible ? "is-visible" : ""} ${className}`}
+      className={`animated-section ${variant} ${isVisible ? "is-visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}s` }}
     >
       {children}

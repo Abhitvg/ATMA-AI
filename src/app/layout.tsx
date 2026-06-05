@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -15,6 +15,13 @@ const outfit = Outfit({
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800"],
 });
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -100,6 +107,7 @@ export const metadata: Metadata = {
     canonical: "https://atma-ai.co.in",
   },
   category: "technology",
+  manifest: "/manifest.json",
   metadataBase: new URL("https://atma-ai.co.in"),
 };
 

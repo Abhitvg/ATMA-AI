@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight, ArrowUp } from "lucide-react";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
-    <footer className="relative bg-primary-deeper border-t border-border">
+    <footer className="relative bg-primary-deeper border-t border-border mt-auto">
       {/* Gradient accent line at top */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50 animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -93,7 +96,7 @@ export default function Footer() {
             {/* CTA in footer */}
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-lg bg-accent/10 border border-accent/20 text-accent text-sm font-medium hover:bg-accent/20 transition-all duration-300"
+              className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-lg bg-accent/10 border border-accent/20 text-accent text-sm font-medium hover:bg-accent/20 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]"
             >
               Schedule a Call
               <ArrowUpRight className="h-4 w-4" />
@@ -102,7 +105,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 relative">
+          <button 
+            onClick={scrollToTop}
+            className="md:absolute md:left-1/2 md:-translate-x-1/2 -top-4 bg-surface border border-border text-muted hover:text-accent p-2 rounded-full transition-colors duration-300 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)] z-10"
+            aria-label="Back to top"
+          >
+            <ArrowUp className="h-4 w-4" />
+          </button>
           <p className="text-xs text-muted/60">&copy; {new Date().getFullYear()} ATMA Consultancy Services. All rights reserved.</p>
           <div className="flex gap-6 text-xs text-muted/60">
             <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
