@@ -1,9 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
+import { getResearchPosts } from "@/lib/mdx";
 import {
   Brain,
   Cpu,
@@ -141,7 +140,9 @@ const coreCapabilities = [
 
 /* ── PAGE ── */
 
-export default function Research() {
+export default async function Research() {
+  const posts = await getResearchPosts();
+
   return (
     <>
       <Navbar />
@@ -374,6 +375,38 @@ export default function Research() {
                 </span>
               </div>
             </AnimatedSection>
+          </div>
+        </section>
+
+        {/* ── RECENT RESEARCH (MDX CMS) ── */}
+        <section className="py-28 relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection className="mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary-light mb-4">
+                Recent Publications
+              </h2>
+              <div className="h-1 w-16 bg-gradient-to-r from-[#CCFF00] to-accent rounded-full" />
+            </AnimatedSection>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post, i) => (
+                <AnimatedSection key={post.slug} delay={i * 0.1}>
+                  <Link href={`/research/${post.slug}`} className="block group glass-card rounded-2xl p-8 hover:border-[#CCFF00]/30 transition-all duration-500 h-full relative overflow-hidden">
+                    <div className="font-mono text-xs text-[#CCFF00] mb-4">{post.date}</div>
+                    <h3 className="text-xl font-bold font-heading text-primary-light mb-3 group-hover:text-[#CCFF00] transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-muted text-sm line-clamp-3 mb-6">
+                      {post.summary}
+                    </p>
+                    <div className="flex items-center text-accent text-sm font-medium group-hover:text-accent-soft">
+                      Read Paper
+                      <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
         </section>
 

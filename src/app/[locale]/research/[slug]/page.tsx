@@ -1,0 +1,43 @@
+import { getResearchPostBySlug } from "@/lib/mdx";
+import { notFound } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+export default async function ResearchArticle({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getResearchPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <>
+      <Navbar />
+      <main className="flex-grow pt-32 pb-24 relative bg-primary-dark">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold font-heading text-primary-light mb-4">
+              {post.meta.title}
+            </h1>
+            <div className="flex gap-4 text-muted text-sm font-mono">
+              <span>{post.meta.date}</span>
+              <span>•</span>
+              <span>{post.meta.author}</span>
+            </div>
+          </div>
+          
+          <article className="prose prose-invert prose-lg max-w-none prose-headings:font-heading prose-a:text-accent hover:prose-a:text-accent-soft prose-img:rounded-xl">
+            <MDXRemote source={post.content} />
+          </article>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}

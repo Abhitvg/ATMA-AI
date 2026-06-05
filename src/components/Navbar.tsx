@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/routing";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,12 +23,14 @@ export default function Navbar() {
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
+  const t = useTranslations("Navigation");
+
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Research", href: "/research" },
-    { name: "Portfolio", href: "/portfolio" },
+    { name: t("home"), href: "/" },
+    { name: t("about"), href: "/about" },
+    { name: t("services"), href: "/services" },
+    { name: t("research"), href: "/research" },
+    { name: t("portfolio"), href: "/portfolio" },
   ];
 
   const isActive = (href: string) => pathname === href;
@@ -81,17 +84,19 @@ export default function Navbar() {
                 />
               </Link>
             ))}
+            <LanguageSwitcher />
             <ThemeToggle />
             <Link 
               href="/contact"
               className="ml-4 relative overflow-hidden bg-accent text-primary-dark px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:scale-105 active:scale-95 animate-shimmer"
             >
-              Get in Touch
+              {t("contact")}
             </Link>
           </div>
 
           {/* Mobile Toggle & Theme */}
           <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -142,7 +147,7 @@ export default function Navbar() {
               isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            Get in Touch
+            {t("contact")}
           </Link>
         </div>
       </div>
