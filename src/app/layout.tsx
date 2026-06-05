@@ -109,6 +109,12 @@ export const metadata: Metadata = {
   category: "technology",
   manifest: "/manifest.json",
   metadataBase: new URL("https://atma-ai.co.in"),
+  other: {
+    "geo.region": "IN-DL",
+    "geo.placename": "New Delhi",
+    "geo.position": "28.5245;77.2108",
+    ICBM: "28.5245, 77.2108",
+  },
 };
 
 export default function RootLayout({
@@ -219,7 +225,7 @@ export default function RootLayout({
               foundingDate: "2024",
               sameAs: [
                 "https://www.instagram.com/atma.tvg",
-                "https://www.linkedin.com/in/abhisheksingh22141",
+                "https://www.linkedin.com/company/atma-research-consultancy",
                 "https://www.linkedin.com/in/avadhak",
                 "https://www.linkedin.com/in/chirag-beniwal-08691a1b4",
               ],

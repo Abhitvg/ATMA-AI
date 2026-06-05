@@ -121,6 +121,41 @@ function ServiceCard({ service, index }: { service: typeof aiServices[0]; index:
 export default function Services() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What AI services does ATMA Consultancy provide?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We provide custom LLM deployment, autonomous AI agents, NLP & document intelligence, and predictive analytics. Our solutions are secure, private, and fine-tuned on enterprise data.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What IT consulting services does ATMA Consultancy offer?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We offer enterprise web architecture, headless e-commerce solutions, cloud & DevOps migrations, and zero-trust cybersecurity & compliance implementations.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How does ATMA Consultancy deploy Custom LLMs?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We handle the entire pipeline — from data preparation and RAG architecture to inference optimization and secure, private model hosting.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
       <Navbar />
       <main className="flex-grow">
         {/* Page Header */}

@@ -77,6 +77,41 @@ const philosophy = [
 export default function About() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Who founded ATMA Consultancy Services?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "ATMA Consultancy Services was founded by Abhishek Singh (CEO), Avadhesh Kumar (Lead Engineer), Chirag Beniwal (Tech Lead), and Kumar Pratyay. The founders are alumni of Jawaharlal Nehru University (JNU) and Indian Institute of Technology (IIT) Delhi.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What is the philosophy behind ATMA Consultancy?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Our philosophy is grounded in academic rigor, first-principles thinking, and results-driven execution. We bridge the gap between cutting-edge AI/IT research and enterprise-grade deployment.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What kind of experience does the ATMA team have?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The ATMA team has over 15 years of combined experience, having delivered 50+ enterprise projects and written over 500K lines of production code with a 98% client retention rate.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
       <Navbar />
       <main className="flex-grow">
         {/* Page Header */}
