@@ -84,6 +84,17 @@ export default function Navbar() {
                 />
               </Link>
             ))}
+            <div className="w-px h-5 bg-border mx-2" />
+            <Link 
+              href="/portal"
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg group ${
+                isActive("/portal")
+                  ? "text-accent"
+                  : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
+              }`}
+            >
+              Client Portal
+            </Link>
             <LanguageSwitcher />
             <ThemeToggle />
             <Link 
@@ -139,6 +150,21 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+          <div className="h-px w-full bg-border my-2" />
+          <Link
+            href="/portal"
+            onClick={() => setIsOpen(false)}
+            style={{ transitionDelay: isOpen ? `${navLinks.length * 50}ms` : '0ms' }}
+            className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
+              isOpen ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
+            } ${
+              isActive("/portal")
+                ? "text-accent bg-accent/10 border border-accent/20"
+                : "text-foreground/80 hover:text-accent hover:bg-foreground/5 border border-transparent"
+            }`}
+          >
+            Client Portal
+          </Link>
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}

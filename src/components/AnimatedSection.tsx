@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -9,39 +9,41 @@ interface AnimatedSectionProps {
   variant?: "slide-up" | "slide-left" | "slide-right" | "scale-in";
 }
 
+const variantsMap = {
+  "slide-up": {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  },
+  "slide-left": {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  },
+  "slide-right": {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  },
+  "scale-in": {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  },
+};
+
 export default function AnimatedSection({ 
   children, 
   className = "", 
   delay = 0,
   variant = "slide-up"
 }: AnimatedSectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div
-      ref={ref}
-      className={`animated-section ${variant} ${isVisible ? "is-visible" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}s` }}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "0px 0px -40px 0px" }}
+      transition={{ duration: 0.6, delay: delay, type: "spring", bounce: 0.2 }}
+      variants={variantsMap[variant]}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

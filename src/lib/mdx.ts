@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import readingTime from "reading-time";
 
 const contentDir = path.join(process.cwd(), "src/content/research");
 
@@ -15,13 +16,14 @@ export async function getResearchPosts() {
     .map((file) => {
       const filePath = path.join(contentDir, file);
       const fileContent = fs.readFileSync(filePath, "utf-8");
-      const { data } = matter(fileContent);
+      const { data, content } = matter(fileContent);
       return {
         slug: file.replace(".mdx", ""),
         title: data.title,
         date: data.date,
         author: data.author,
         summary: data.summary,
+        readingTime: readingTime(content).text,
       };
     });
 
@@ -38,13 +40,22 @@ export async function getResearchPostBySlug(slug: string) {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
 
+  // Extract headings for Table of Contents (h2 and h3)
+  const headings = Array.from(content.matchAll(/^(##|###)\s+(.*)$/gm)).map((match) => ({
+    level: match[1] === "##" ? 2 : 3,
+    text: match[2],
+    id: match[2].toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+  }));
+
   return {
     meta: {
       title: data.title,
       date: data.date,
       author: data.author,
       summary: data.summary,
+      readingTime: readingTime(content).text,
     },
     content,
+    headings,
   };
 }

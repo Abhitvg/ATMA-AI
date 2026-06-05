@@ -5,8 +5,9 @@ import { Link } from "@/i18n/routing";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
+import Portfolio3D from "@/components/Portfolio3D";
 import Image from "next/image";
-import { ExternalLink, Globe, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Globe, ArrowUpRight, Grid3x3, Box } from "lucide-react";
 
 const projects = [
   {
@@ -117,6 +118,7 @@ const filters = [
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [viewMode, setViewMode] = useState<"grid" | "3d">("grid");
 
   const filteredProjects = activeFilter === "all"
     ? projects
@@ -147,7 +149,7 @@ export default function Portfolio() {
             </AnimatedSection>
 
             {/* Filter Tabs */}
-            <AnimatedSection delay={0.15} className="mt-10">
+            <AnimatedSection delay={0.15} className="mt-10 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
               <div className="flex flex-wrap gap-2">
                 {filters.map((filter) => (
                   <button
@@ -163,11 +165,41 @@ export default function Portfolio() {
                   </button>
                 ))}
               </div>
+              <div className="flex bg-surface border border-border p-1 rounded-full ml-auto">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`p-2 rounded-full transition-colors ${viewMode === "grid" ? "bg-accent text-primary-dark" : "text-muted hover:text-foreground"}`}
+                  title="Grid View"
+                >
+                  <Grid3x3 className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setViewMode("3d")}
+                  className={`p-2 rounded-full transition-colors ${viewMode === "3d" ? "bg-accent text-primary-dark" : "text-muted hover:text-foreground"}`}
+                  title="3D View"
+                >
+                  <Box className="w-5 h-5" />
+                </button>
+              </div>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* Featured Projects */}
+        {viewMode === "3d" ? (
+          <section className="py-24 relative bg-primary-deeper">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <AnimatedSection className="mb-14 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold font-heading text-primary-light">
+                  Interactive Showcase
+                </h2>
+                <p className="text-muted mt-2">Drag to rotate the carousel</p>
+              </AnimatedSection>
+              <Portfolio3D projects={filteredProjects} />
+            </div>
+          </section>
+        ) : (
+          <>
+            {/* Featured Projects */}
         {featured.length > 0 && (
           <section className="py-24 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -283,6 +315,8 @@ export default function Portfolio() {
               </div>
             </div>
           </section>
+        )}
+        </>
         )}
 
         {/* CTA */}

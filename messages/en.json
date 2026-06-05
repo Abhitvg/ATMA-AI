@@ -6,5 +6,17 @@
     "research": "Research",
     "portfolio": "Portfolio",
     "contact": "Get in Touch"
+  },
+  "Hero": {
+    "badge": "Premium AI & Engineering",
+    "title": "Architecting the Future of",
+    "titleGradient": "Enterprise AI",
+    "subtitle": "Elite consultancy delivering neuro-symbolic algorithms, enterprise architecture, and robust digital platforms from New Delhi.",
+    "primaryCTA": "Explore Our Work",
+    "secondaryCTA": "Read Our Research",
+    "terminal": "System Initialization...",
+    "terminalModule1": "Loading Neuro-Symbolic Core [OK]",
+    "terminalModule2": "Establishing Secure Protocols [OK]",
+    "terminalReady": "System Ready. Awaiting Input."
   }
 }

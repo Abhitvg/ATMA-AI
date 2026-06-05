@@ -5,6 +5,8 @@ import { Inter, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import AIAssistant from "@/components/AIAssistant";
+import CustomCursor from "@/components/CustomCursor";
 import "../globals.css";
 
 const inter = Inter({
@@ -267,7 +269,9 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <CustomCursor />
             {children}
+            <AIAssistant />
             <Analytics />
           </ThemeProvider>
         </NextIntlClientProvider>
