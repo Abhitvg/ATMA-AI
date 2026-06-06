@@ -48,13 +48,23 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative w-9 h-9">
+              {/* Dark mode logo */}
               <Image
                 src="/logos/atma-logo.svg"
                 alt="ATMA"
                 width={36}
                 height={36}
                 priority
-                className="object-contain transition-transform duration-300 group-hover:scale-110"
+                className="hidden dark:block object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+              {/* Light mode logo */}
+              <Image
+                src="/logos/atma-logo-light.webp"
+                alt="ATMA"
+                width={36}
+                height={36}
+                priority
+                className="block dark:hidden object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
             <div className="flex flex-col">
