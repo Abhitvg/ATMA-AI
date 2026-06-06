@@ -45,7 +45,7 @@ export default function AIAssistant() {
     if (response.error) {
       setMessages(prev => [...prev, { role: "model", parts: [{ text: response.error! }] }]);
     } else if (response.text) {
-      setMessages(prev => [...prev, { role: "model", parts: [{ text: response.text }] }]);
+      setMessages(prev => [...prev, { role: "model", parts: [{ text: response.text || "Sorry, I couldn't generate a response." }] }]);
     }
   };
 
