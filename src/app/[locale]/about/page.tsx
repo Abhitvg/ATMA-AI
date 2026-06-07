@@ -9,9 +9,9 @@ import { GraduationCap, Code2, Lightbulb, Target, BookOpen, Trophy } from "lucid
 const founders = [
   {
     name: "Abhishek Singh",
-    role: "Director & Team",
+    role: "Chief Executive Officer (CEO)",
     institution: "MTech, JNU",
-    specialty: "Full-Stack Architecture & AI Systems",
+    specialty: "Visionary Leadership & Technical Architecture",
     bio: "Abhishek leads the technical vision at ATMA. With a Master's in Technology from Jawaharlal Nehru University, he brings deep expertise in full-stack web architecture, AI/ML systems integration, and modern DevOps practices. He has architected platforms serving institutions, e-commerce businesses, and international research organizations.",
     image: "/founders/abhishek.webp",
     instagram: "https://www.instagram.com/abhishek.tvg",
@@ -19,9 +19,9 @@ const founders = [
   },
   {
     name: "Avadhesh Kumar",
-    role: "Director & Team",
+    role: "Head of Research",
     institution: "MTech, IIT Delhi",
-    specialty: "Machine Learning & Cloud Infrastructure",
+    specialty: "AI Innovation & Core Infrastructure",
     bio: "An IITian with a relentless passion for scalable engineering, Avadhesh specializes in machine learning pipelines, cloud-native architectures, and education technology. His work on the NCERT digital platform demonstrates his ability to deliver fully engineered products that serve millions of users.",
     image: "/founders/avadhesh.webp",
     instagram: "https://www.instagram.com/avadh_ak_",
@@ -29,9 +29,9 @@ const founders = [
   },
   {
     name: "Chirag Beniwal",
-    role: "Director & Team",
+    role: "Chief Marketing Officer (CMO)",
     institution: "MTech, JNU",
-    specialty: "Enterprise Systems & Data Engineering",
+    specialty: "Brand Strategy & Enterprise Growth",
     bio: "Chirag brings precision engineering to every project. A JNU alumnus specializing in enterprise data systems, he leads the design and implementation of robust, high-throughput architectures. His methodical approach ensures that every system we deliver is production-ready and battle-tested.",
     image: "/founders/chirag.webp",
     instagram: "https://www.instagram.com/chxbeni",
@@ -39,9 +39,9 @@ const founders = [
   },
   {
     name: "Kumar Pratyay",
-    role: "Director & Team",
+    role: "Chief Financial Officer (CFO)",
     institution: "BTech & Master's in Management, JNU",
-    specialty: "Full-Stack Development",
+    specialty: "Financial Strategy & Operations",
     bio: "Kumar Pratyay is a full-stack developer bridging engineering with management. With a BTech in Computer Science and a Master's in Management from JNU, he brings a unique blend of technical execution and product strategy to the team, delivering scalable and maintainable solutions.",
     image: "/logos/atma-logo.svg",
     instagram: "",
