@@ -9,7 +9,7 @@ import { GraduationCap, Code2, Lightbulb, Target, BookOpen, Trophy } from "lucid
 const founders = [
   {
     name: "Abhishek Singh",
-    role: "Co-Founder & CEO",
+    role: "Director & Team",
     institution: "MTech, JNU",
     specialty: "Full-Stack Architecture & AI Systems",
     bio: "Abhishek leads the technical vision at ATMA. With a Master's in Technology from Jawaharlal Nehru University, he brings deep expertise in full-stack web architecture, AI/ML systems integration, and modern DevOps practices. He has architected platforms serving institutions, e-commerce businesses, and international research organizations.",
@@ -19,7 +19,7 @@ const founders = [
   },
   {
     name: "Avadhesh Kumar",
-    role: "Co-Founder & Lead Engineer",
+    role: "Director & Team",
     institution: "MTech, IIT Delhi",
     specialty: "Machine Learning & Cloud Infrastructure",
     bio: "An IITian with a relentless passion for scalable engineering, Avadhesh specializes in machine learning pipelines, cloud-native architectures, and education technology. His work on the NCERT digital platform demonstrates his ability to deliver fully engineered products that serve millions of users.",
@@ -29,7 +29,7 @@ const founders = [
   },
   {
     name: "Chirag Beniwal",
-    role: "Co-Founder & Tech Lead",
+    role: "Director & Team",
     institution: "MTech, JNU",
     specialty: "Enterprise Systems & Data Engineering",
     bio: "Chirag brings precision engineering to every project. A JNU alumnus specializing in enterprise data systems, he leads the design and implementation of robust, high-throughput architectures. His methodical approach ensures that every system we deliver is production-ready and battle-tested.",
@@ -39,7 +39,7 @@ const founders = [
   },
   {
     name: "Kumar Pratyay",
-    role: "Co-Founder & Full-Stack Developer",
+    role: "Director & Team",
     institution: "BTech & Master's in Management, JNU",
     specialty: "Full-Stack Development",
     bio: "Kumar Pratyay is a full-stack developer bridging engineering with management. With a BTech in Computer Science and a Master's in Management from JNU, he brings a unique blend of technical execution and product strategy to the team, delivering scalable and maintainable solutions.",
@@ -172,9 +172,9 @@ export default function About() {
         <section className="py-24 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-              <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Leadership</p>
+              <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Leadership & Core</p>
               <h2 className="text-4xl md:text-5xl font-bold font-heading text-primary-light mb-5">
-                Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Founders</span>
+                Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Directors & Team</span>
               </h2>
             </AnimatedSection>
 
