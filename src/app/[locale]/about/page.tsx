@@ -19,7 +19,7 @@ const founders = [
   },
   {
     name: "Avadhesh Kumar",
-    role: "Head of Research",
+    role: "Chief Research Officer (CRO)",
     institution: "MTech, IIT Delhi",
     specialty: "AI Innovation & Core Infrastructure",
     bio: "An IITian with a relentless passion for scalable engineering, Avadhesh specializes in machine learning pipelines, cloud-native architectures, and education technology. His work on the NCERT digital platform demonstrates his ability to deliver fully engineered products that serve millions of users.",
