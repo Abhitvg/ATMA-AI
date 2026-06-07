@@ -64,6 +64,7 @@ export default function Navbar() {
                 width={36}
                 height={36}
                 priority
+                unoptimized={true}
                 className="block dark:hidden object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
