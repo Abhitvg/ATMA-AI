@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Sparkles, Zap, Shield } from "lucide-react";
-import { NetworkBackground } from "@/components/NetworkBackground";
+import dynamic from "next/dynamic";
+
+const NetworkBackground = dynamic(() => import("@/components/NetworkBackground").then(mod => mod.NetworkBackground), {
+  ssr: false,
+});
 
 function StatCounter({ target, suffix = "", isFloat = false }: { target: number, suffix?: string, isFloat?: boolean }) {
   const [count, setCount] = useState(0);

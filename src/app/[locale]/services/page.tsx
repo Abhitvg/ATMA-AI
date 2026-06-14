@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
+import ROICalculatorWidget from "@/components/ROICalculatorWidget";
 import {
   Brain,
   Server,
@@ -256,6 +257,24 @@ export default function Services() {
                 </AnimatedSection>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ROI Calculator Section */}
+        <section className="py-24 relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
+              <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">ROI Calculator</p>
+              <h2 className="text-4xl md:text-5xl font-bold font-heading text-primary-light mb-5">
+                Calculate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">AI Savings</span>
+              </h2>
+            </AnimatedSection>
+            
+            <AnimatedSection delay={0.2}>
+              <div className="flex justify-center">
+                <ROICalculatorWidget />
+              </div>
+            </AnimatedSection>
           </div>
         </section>
 

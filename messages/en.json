@@ -18,5 +18,9 @@
     "terminalModule1": "Loading Neuro-Symbolic Core [OK]",
     "terminalModule2": "Establishing Secure Protocols [OK]",
     "terminalReady": "System Ready. Awaiting Input."
+  },
+  "SEO": {
+    "title": "ATMA Consultancy Services | AI & IT Consultancy — Abhishek Singh, Avadhesh Kumar, Chirag Beniwal",
+    "description": "ATMA Consultancy Services is an elite AI and IT consultancy founded by Abhishek Singh, Avadhesh Kumar, and Chirag Beniwal. We deliver custom LLM deployment, enterprise architecture, and neuro-symbolic robotics from New Delhi."
   }
 }

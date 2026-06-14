@@ -50,16 +50,17 @@ export default function Navbar() {
             <div className="relative w-9 h-9">
               {/* Dark mode logo */}
               <Image
-                src="/logos/atma-logo.svg"
+                src="/logos/atma-logo.png"
                 alt="ATMA"
                 width={36}
                 height={36}
                 priority
+                unoptimized={true}
                 className="hidden dark:block object-contain transition-transform duration-300 group-hover:scale-110"
               />
               {/* Light mode logo */}
               <Image
-                src="/logos/atma-logo-light.webp"
+                src="/logos/atma-logo-light.png"
                 alt="ATMA"
                 width={36}
                 height={36}

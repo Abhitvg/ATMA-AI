@@ -1,12 +1,10 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import AIAssistant from "@/components/AIAssistant";
-import CustomCursor from "@/components/CustomCursor";
 import "../globals.css";
 
 const inter = Inter({
@@ -29,99 +27,87 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export const metadata: Metadata = {
-  title: {
-    default: "ATMA Consultancy Services | AI & IT Consultancy — Abhishek Singh, Avadhesh Kumar, Chirag Beniwal | New Delhi",
-    template: "%s | ATMA Consultancy & Research",
-  },
-  description:
-    "ATMA Consultancy Services is an elite AI and IT consultancy founded by Abhishek Singh (MTech, JNU), Avadhesh Kumar (MTech, IIT Delhi), and Chirag Beniwal (MTech, JNU). We deliver custom LLM deployment, enterprise architecture, edge AI research, neuro-symbolic robotics, e-commerce solutions, and full-stack web development from New Delhi, India.",
-  keywords: [
-    "ATMA Consultancy",
-    "ATMA Consultancy Services",
-    "ATMA AI",
-    "ATMA Research",
-    "ATMA Consultancy & Research",
-    "AI consultancy India",
-    "AI consultancy New Delhi",
-    "IT consultancy New Delhi",
-    "Abhishek Singh consultant",
-    "Abhishek Singh JNU",
-    "Abhishek Singh MTech",
-    "Avadhesh Kumar IIT Delhi",
-    "Avadhesh Kumar consultant",
-    "Chirag Beniwal JNU",
-    "Chirag Beniwal consultant",
-    "LLM deployment India",
-    "enterprise architecture India",
-    "edge AI India",
-    "neuro-symbolic AI",
-    "AI research India",
-    "full stack development New Delhi",
-    "e-commerce development India",
-    "web development New Delhi",
-    "IIT alumni consultancy",
-    "JNU alumni consultancy",
-    "cloud infrastructure India",
-    "cybersecurity consulting India",
-    "data science consultancy",
-    "AI solutions Saket New Delhi",
-    "atma-ai.co.in",
-  ],
-  authors: [
-    { name: "Abhishek Singh", url: "https://atma-ai.co.in/about" },
-    { name: "Avadhesh Kumar", url: "https://atma-ai.co.in/about" },
-    { name: "Chirag Beniwal", url: "https://atma-ai.co.in/about" },
-  ],
-  creator: "ATMA Consultancy Services",
-  publisher: "ATMA Consultancy Services",
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: "https://atma-ai.co.in",
-    siteName: "ATMA Consultancy & Research",
-    title: "ATMA Consultancy Services | AI & IT Solutions — New Delhi, India",
-    description:
-      "Founded by IIT Delhi & JNU alumni — Abhishek Singh, Avadhesh Kumar, Chirag Beniwal. Enterprise AI, LLM deployment, edge robotics research, and full-stack development. 50+ projects delivered.",
-    images: [
-      {
-        url: "/logos/atma-logo.svg",
-        width: 512,
-        height: 512,
-        alt: "ATMA Consultancy & Research Logo",
-      },
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'SEO' });
+
+  return {
+    title: {
+      default: t('title'),
+      template: "%s | ATMA Consultancy & Research",
+    },
+    description: t('description'),
+    keywords: [
+      "ATMA Consultancy",
+      "ATMA AI",
+      "AI consultancy India",
+      "Abhishek Singh consultant",
+      "Avadhesh Kumar IIT Delhi",
+      "Chirag Beniwal JNU",
+      "LLM deployment India",
+      "enterprise architecture India",
+      "edge AI India",
+      "neuro-symbolic AI",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ATMA Consultancy & Research | AI & IT Solutions — New Delhi",
-    description:
-      "IIT & JNU alumni-founded AI consultancy. Custom LLMs, edge AI research, enterprise architecture. 50+ projects delivered from New Delhi, India.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [
+      { name: "Abhishek Singh", url: "https://atma-ai.co.in/about" },
+      { name: "Avadhesh Kumar", url: "https://atma-ai.co.in/about" },
+      { name: "Chirag Beniwal", url: "https://atma-ai.co.in/about" },
+    ],
+    creator: "ATMA Consultancy Services",
+    publisher: "ATMA Consultancy Services",
+    openGraph: {
+      type: "website",
+      locale: locale === 'hi' ? 'hi_IN' : 'en_IN',
+      url: "https://atma-ai.co.in",
+      siteName: "ATMA Consultancy & Research",
+      title: t('title'),
+      description: t('description'),
+      images: [
+        {
+          url: "/logos/atma-logo.svg",
+          width: 512,
+          height: 512,
+          alt: "ATMA Consultancy & Research Logo",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t('title'),
+      description: t('description'),
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
     },
-  },
-  alternates: {
-    canonical: "https://atma-ai.co.in",
-  },
-  category: "technology",
-  manifest: "/manifest.json",
-  metadataBase: new URL("https://atma-ai.co.in"),
-  other: {
-    "geo.region": "IN-DL",
-    "geo.placename": "New Delhi",
-    "geo.position": "28.5245;77.2108",
-    ICBM: "28.5245, 77.2108",
-  },
-};
+    alternates: {
+      canonical: locale === 'en' ? 'https://atma-ai.co.in' : `https://atma-ai.co.in/${locale}`,
+      languages: {
+        'en': 'https://atma-ai.co.in',
+        'hi': 'https://atma-ai.co.in/hi',
+      },
+    },
+    category: "technology",
+    manifest: "/manifest.json",
+    metadataBase: new URL("https://atma-ai.co.in"),
+    other: {
+      "geo.region": "IN-DL",
+      "geo.placename": "New Delhi",
+      "geo.position": "28.5245;77.2108",
+      ICBM: "28.5245, 77.2108",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -183,35 +169,32 @@ export default async function RootLayout({
                   knowsAbout: ["AI Systems", "Full-Stack Architecture", "Web Development", "Machine Learning"],
                   sameAs: [
                     "https://www.linkedin.com/in/abhisheksingh22141",
-                    "https://www.instagram.com/abhishek.tvg",
                   ],
                 },
                 {
                   "@type": "Person",
                   name: "Avadhesh Kumar",
-                  jobTitle: "Co-Founder & Lead Engineer",
+                  jobTitle: "Co-Founder & CTO",
                   alumniOf: { "@type": "CollegeOrUniversity", name: "Indian Institute of Technology Delhi" },
                   knowsAbout: ["Machine Learning", "Cloud Infrastructure", "EdTech", "Neuro-Symbolic AI"],
                   sameAs: [
                     "https://www.linkedin.com/in/avadhak",
-                    "https://www.instagram.com/avadh_ak_",
                   ],
                 },
                 {
                   "@type": "Person",
                   name: "Chirag Beniwal",
-                  jobTitle: "Co-Founder & Tech Lead",
+                  jobTitle: "Co-Founder & CMO",
                   alumniOf: { "@type": "CollegeOrUniversity", name: "Jawaharlal Nehru University" },
                   knowsAbout: ["Enterprise Systems", "Data Engineering", "Backend Architecture"],
                   sameAs: [
                     "https://www.linkedin.com/in/chirag-beniwal-08691a1b4",
-                    "https://www.instagram.com/chxbeni",
                   ],
                 },
                 {
                   "@type": "Person",
                   name: "Kumar Pratyay",
-                  jobTitle: "Co-Founder & Full-Stack Developer",
+                  jobTitle: "Co-Founder & CFO",
                   alumniOf: { "@type": "CollegeOrUniversity", name: "Jawaharlal Nehru University" },
                   knowsAbout: ["Full-Stack Development", "Management", "Computer Science"],
                 },
@@ -269,13 +252,11 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <CustomCursor />
             {children}
-            <AIAssistant />
             <Analytics />
+            <SpeedInsights />
           </ThemeProvider>
         </NextIntlClientProvider>
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
       </body>
     </html>
   );

@@ -1,42 +1,30 @@
 import { MetadataRoute } from 'next';
 
+const locales = ['en', 'hi'];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: 'https://atma-ai.co.in',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: 'https://atma-ai.co.in/about',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://atma-ai.co.in/services',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: 'https://atma-ai.co.in/portfolio',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://atma-ai.co.in/research',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: 'https://atma-ai.co.in/contact',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
+  const routes = [
+    { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
+    { path: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/services', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/portfolio', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/research', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/contact', priority: 0.6, changeFrequency: 'yearly' as const },
   ];
+
+  return routes.flatMap(({ path, priority, changeFrequency }) => {
+    // Generate alternates for each locale
+    const alternates: { languages: Record<string, string> } = { languages: {} };
+    locales.forEach((lang) => {
+      alternates.languages[lang] = `https://atma-ai.co.in/${lang}${path}`;
+    });
+
+    return locales.map((locale) => ({
+      url: `https://atma-ai.co.in/${locale}${path}`,
+      lastModified: new Date(),
+      changeFrequency,
+      priority,
+      alternates,
+    }));
+  });
 }

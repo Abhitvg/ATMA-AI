@@ -19,7 +19,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <Image src="/logos/atma-logo.svg" alt="ATMA" width={28} height={28} className="object-contain" />
+              <Image src="/logos/atma-logo.png" alt="ATMA" width={28} height={28} className="object-contain rounded-md" />
               <div className="flex flex-col">
                 <span className="font-heading font-bold text-lg leading-none">ATMA</span>
                 <span className="text-[9px] tracking-[0.2em] text-muted uppercase leading-none mt-0.5">Consultancy & Research</span>

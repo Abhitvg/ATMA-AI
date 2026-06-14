@@ -18,6 +18,21 @@ export default async function ResearchArticle({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.meta.title,
+            author: {
+              "@type": "Person",
+              name: post.meta.author
+            },
+            datePublished: post.meta.date,
+          })
+        }}
+      />
       <Navbar />
       <main className="flex-grow pt-32 pb-24 relative bg-primary-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row gap-12">

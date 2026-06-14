@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
+import dynamic from "next/dynamic";
+
+const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 import {
   Brain,
   Server,
@@ -68,30 +71,30 @@ const founders = [
   {
     name: "Abhishek Singh",
     role: "Co-Founder & CEO",
-    institution: "MTech, JNU",
-    specialty: "Full-Stack Architecture & AI Systems",
+    institution: "Master's, JNU",
+    specialty: "Full-Stack AI Architecture",
     image: "/founders/abhishek.webp",
   },
   {
     name: "Avadhesh Kumar",
-    role: "Co-Founder & Lead Engineer",
-    institution: "MTech, IIT Delhi",
-    specialty: "Machine Learning & Cloud Infrastructure",
+    role: "Co-Founder & CTO",
+    institution: "Master's, IIT Delhi",
+    specialty: "Edge AI & Neuro-Symbolic Systems",
     image: "/founders/avadhesh.webp",
   },
   {
     name: "Chirag Beniwal",
-    role: "Co-Founder & Tech Lead",
-    institution: "MTech, JNU",
-    specialty: "Enterprise Systems & Data Engineering",
+    role: "Co-Founder & CMO",
+    institution: "Master's, JNU",
+    specialty: "Data Engineering & Systems",
     image: "/founders/chirag.webp",
   },
   {
     name: "Kumar Pratyay",
-    role: "Co-Founder & Full-Stack Developer",
-    institution: "BTech & MBA, JNU",
-    specialty: "Full-Stack Development",
-    image: "/logos/atma-logo.svg",
+    role: "Co-Founder & CFO",
+    institution: "BTech & Management, JNU",
+    specialty: "Business Strategy & Development",
+    image: "/founders/pratyay.jpeg",
   },
 ];
 
@@ -455,6 +458,7 @@ function TrustedBySection() {
 export default function Home() {
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <main className="flex-grow">
         <Hero />

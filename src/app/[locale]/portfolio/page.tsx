@@ -8,6 +8,9 @@ import AnimatedSection from "@/components/AnimatedSection";
 import Portfolio3D from "@/components/Portfolio3D";
 import Image from "next/image";
 import { ExternalLink, Globe, ArrowUpRight, Grid3x3, Box } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 
 const projects = [
   {
@@ -129,6 +132,7 @@ export default function Portfolio() {
 
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <main className="flex-grow">
         {/* Page Header */}

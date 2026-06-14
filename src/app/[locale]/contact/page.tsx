@@ -17,6 +17,14 @@ export default function Contact() {
     setIsError(false);
 
     const formData = new FormData(e.currentTarget);
+    
+    // Honeypot check for spam bots
+    if (formData.get("botcheck")) {
+      setSubmitted(true);
+      setIsSubmitting(false);
+      return;
+    }
+
     const leadData = {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -163,6 +171,9 @@ export default function Contact() {
                           <p>Something went wrong. Please try again or email us directly at ceo@atma-ai.co.in</p>
                         </div>
                       )}
+
+                      {/* Honeypot field - hidden from users but visible to bots */}
+                      <input type="checkbox" name="botcheck" className="absolute -left-[9999px] opacity-0" aria-hidden="true" tabIndex={-1} autoComplete="off" />
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>

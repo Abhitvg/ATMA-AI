@@ -1,0 +1,29 @@
+# ATMA Consultancy Services
+
+ATMA Consultancy Services is an elite AI and IT consultancy founded by alumni of the Indian Institute of Technology (IIT) Delhi and Jawaharlal Nehru University (JNU). Based in New Delhi, India, we specialize in delivering high-performance, secure, and scalable solutions for enterprise clients.
+
+## Core Services
+- **Custom LLM Deployment**: End-to-end integration and fine-tuning of Large Language Models (LLMs) with enterprise-grade security and RAG architectures.
+- **Enterprise Architecture**: Designing and building scalable, cloud-native architectures for complex applications.
+- **Edge AI & Research**: Deploying low-latency AI models on edge devices and pioneering research in neuro-symbolic robotics.
+- **Full-Stack Development**: Building high-performance web applications and e-commerce platforms using modern stacks (Next.js, React, Node.js).
+- **Data Science & Analytics**: Transforming raw data into actionable insights through advanced predictive modeling.
+
+## Founding Team
+- **Abhishek Singh**: Co-Founder & CEO (Alumnus of JNU)
+- **Avadhesh Kumar**: Co-Founder & CTO (Alumnus of IIT Delhi)
+- **Chirag Beniwal**: Co-Founder & CMO (Alumnus of JNU)
+- **Kumar Pratyay**: Co-Founder & CFO (Alumnus of JNU)
+
+## Key Stats
+- 50+ Enterprise Projects Delivered
+- 99.99% Uptime SLA for Hosted AI Models
+- 98% Client Retention Rate
+
+## Links
+- Website: https://atma-ai.co.in
+- Services: https://atma-ai.co.in/services
+- Portfolio: https://atma-ai.co.in/portfolio
+- AI Research & Blog: https://atma-ai.co.in/research
+- Contact & Discovery Call: https://atma-ai.co.in/contact
+- Client Portal: https://atma-ai.co.in/portal
