@@ -46,6 +46,24 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
+      {
+        source: "/sitemap.xml",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=43200" },
+        ],
+      },
+      {
+        source: "/robots.txt",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=43200" },
+        ],
+      },
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "Link", value: "<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, <https://firebasestorage.googleapis.com>; rel=preconnect, <https://www.google-analytics.com>; rel=preconnect" },
+        ],
+      },
     ];
   },
 };

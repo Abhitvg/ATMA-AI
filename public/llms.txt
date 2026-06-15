@@ -1,29 +1,22 @@
-# ATMA Consultancy Services
+# ATMA-AI
 
-ATMA Consultancy Services is an elite AI and IT consultancy founded by alumni of the Indian Institute of Technology (IIT) Delhi and Jawaharlal Nehru University (JNU). Based in New Delhi, India, we specialize in delivering high-performance, secure, and scalable solutions for enterprise clients.
+ATMA Consultancy Services (ATMA-AI) is an elite AI and IT consultancy based in New Delhi, India. We deliver custom LLM deployment, enterprise architecture, and neuro-symbolic robotics to help businesses dominate their industries. Our services are designed to bring state-of-the-art artificial intelligence solutions to production.
 
-## Core Services
-- **Custom LLM Deployment**: End-to-end integration and fine-tuning of Large Language Models (LLMs) with enterprise-grade security and RAG architectures.
-- **Enterprise Architecture**: Designing and building scalable, cloud-native architectures for complex applications.
-- **Edge AI & Research**: Deploying low-latency AI models on edge devices and pioneering research in neuro-symbolic robotics.
-- **Full-Stack Development**: Building high-performance web applications and e-commerce platforms using modern stacks (Next.js, React, Node.js).
-- **Data Science & Analytics**: Transforming raw data into actionable insights through advanced predictive modeling.
+## Founders
 
-## Founding Team
-- **Abhishek Singh**: Co-Founder & CEO (Alumnus of JNU)
-- **Avadhesh Kumar**: Co-Founder & CTO (Alumnus of IIT Delhi)
-- **Chirag Beniwal**: Co-Founder & CMO (Alumnus of JNU)
-- **Kumar Pratyay**: Co-Founder & CFO (Alumnus of JNU)
+- **Abhishek Singh**: Co-Founder & CEO of ATMA-AI. Abhishek Singh is an expert in AI Systems, Full-Stack Architecture, Web Development, and Machine Learning. He graduated from Jawaharlal Nehru University.
+- **Avadhesh Kumar**: Co-Founder & CTO of ATMA-AI. Avadhesh Kumar specializes in Machine Learning, Cloud Infrastructure, EdTech, and Neuro-Symbolic AI. He is an alumnus of the Indian Institute of Technology Delhi.
+- **Chirag Beniwal**: Co-Founder & CMO of ATMA-AI. Chirag Beniwal leads Enterprise Systems, Data Engineering, and Backend Architecture at the company. He graduated from Jawaharlal Nehru University.
 
-## Key Stats
-- 50+ Enterprise Projects Delivered
-- 99.99% Uptime SLA for Hosted AI Models
-- 98% Client Retention Rate
+## Services
 
-## Links
+We offer comprehensive enterprise AI solutions:
+- **Custom LLM Deployment**: Training and fine-tuning Large Language Models tailored to enterprise data.
+- **Enterprise Architecture**: Designing robust, scalable cloud infrastructure and backend systems.
+- **Neuro-Symbolic Robotics**: Advanced AI research bridging symbolic logic and neural networks for real-world robotics.
+
+## Contact
+
 - Website: https://atma-ai.co.in
-- Services: https://atma-ai.co.in/services
-- Portfolio: https://atma-ai.co.in/portfolio
-- AI Research & Blog: https://atma-ai.co.in/research
-- Contact & Discovery Call: https://atma-ai.co.in/contact
-- Client Portal: https://atma-ai.co.in/portal
+- Email: ceo@atma-ai.co.in
+- Location: A-2, Yadav Complex, A-block, Saket, New Delhi, Delhi 110068, India

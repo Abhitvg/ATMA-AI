@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import ScrollProgress from "@/components/ScrollProgress";
 import "../globals.css";
 
 const inter = Inter({
@@ -252,6 +253,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <ScrollProgress />
             {children}
             <Analytics />
             <SpeedInsights />
