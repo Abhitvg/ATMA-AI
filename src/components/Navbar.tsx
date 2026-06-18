@@ -71,7 +71,7 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="font-heading font-bold text-lg tracking-tight leading-none">ATMA</span>
-              <span className="text-[9px] tracking-[0.2em] text-muted uppercase leading-none mt-0.5">Consultancy & Research</span>
+              <span className="hidden sm:block text-[9px] tracking-[0.2em] text-muted uppercase leading-none mt-0.5">Consultancy & Research</span>
             </div>
           </Link>
           

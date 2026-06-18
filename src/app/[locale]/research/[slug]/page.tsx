@@ -64,7 +64,7 @@ export default async function ResearchArticle({
                   Table of Contents
                 </h3>
                 <nav className="flex flex-col gap-2.5">
-                  {post.headings.map((heading: any, idx: number) => (
+                  {post.headings.map((heading: { id: string; text: string; level: number }, idx: number) => (
                     <a
                       key={idx}
                       href={`#${heading.id}`}

@@ -25,6 +25,17 @@ export default function Portal() {
   const [documents, setDocuments] = useState<any[]>([]);
 
   useEffect(() => {
+    const fetchUserDocuments = async (uid: string) => {
+      try {
+        const q = query(collection(db, "client_documents"), where("uid", "==", uid));
+        const querySnapshot = await getDocs(q);
+        const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setDocuments(docs);
+      } catch (err) {
+        console.error("Error fetching docs", err);
+      }
+    };
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
@@ -35,23 +46,12 @@ export default function Portal() {
     return () => unsubscribe();
   }, []);
 
-  const fetchUserDocuments = async (uid: string) => {
-    try {
-      const q = query(collection(db, "client_documents"), where("uid", "==", uid));
-      const querySnapshot = await getDocs(q);
-      const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setDocuments(docs);
-    } catch (err) {
-      console.error("Error fetching docs", err);
-    }
-  };
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (err: any) {
+    } catch (err) {
       setError("Invalid email or password.");
     }
   };
@@ -61,7 +61,7 @@ export default function Portal() {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-    } catch (err: any) {
+    } catch (err) {
       setError("Failed to sign in with Google.");
     }
   };

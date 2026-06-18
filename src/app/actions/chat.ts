@@ -30,7 +30,7 @@ export async function generateChatResponse(messages: { role: "user" | "model", p
     });
 
     return { text: response.text };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Gemini API Error:", error);
     return { error: "Failed to generate a response. Please try again." };
   }

@@ -104,6 +104,7 @@ function NeuralParticles({ isDark }: { isDark: boolean }) {
 export function NetworkBackground() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   const isDark = !mounted || resolvedTheme !== "light"; // Default to dark

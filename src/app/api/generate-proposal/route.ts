@@ -59,32 +59,25 @@ Let's schedule an executive briefing.
       `;
     }
 
-    // 2. (Optional) Enhance with OpenAI if API key is present
-    if (process.env.OPENAI_API_KEY) {
+    // 2. Enhance with Gemini if API key is present
+    if (process.env.GEMINI_API_KEY) {
       try {
-        const aiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o',
-            messages: [
-              { role: 'system', content: 'You are a top-tier AI consultant writing a proposal.' },
-              { role: 'user', content: `Refine this proposal to be more persuasive and concise:\n\n${proposalMd}` }
-            ]
-          })
+        const { GoogleGenAI } = await import('@google/genai');
+        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        
+        const response = await ai.models.generateContent({
+          model: 'gemini-2.5-flash',
+          contents: `Refine this proposal to be more persuasive and concise:\n\n${proposalMd}`,
+          config: {
+            systemInstruction: 'You are a top-tier AI consultant writing a proposal.'
+          }
         });
-
-        if (aiResponse.ok) {
-          const aiData = await aiResponse.json();
-          proposalMd = aiData.choices[0].message.content;
-        } else {
-          console.error("OpenAI API error:", await aiResponse.text());
+        
+        if (response.text) {
+          proposalMd = response.text;
         }
       } catch (err) {
-        console.error("Failed to enhance proposal with AI:", err);
+        console.error("Failed to enhance proposal with Gemini:", err);
       }
     }
 
@@ -96,6 +89,8 @@ Let's schedule an executive briefing.
         metrics,
         proposal: proposalMd,
         level: isEnterprise ? 3 : 1,
+        source: 'inbound',
+        status: 'New',
         createdAt: new Date().toISOString()
       });
       console.log(`Saved lead to Firestore: ${email}`);

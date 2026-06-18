@@ -33,7 +33,7 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
     }
 
-    const updates: any = {};
+    const updates: Record<string, unknown> = {};
     if (status !== undefined) updates.status = status;
     if (notes !== undefined) updates.notes = notes;
 

@@ -27,13 +27,21 @@ async function scrapeWebsite(url: string) {
     const textContent = $('body').text().replace(/\\s+/g, ' ').trim().substring(0, 5000);
 
     return { url: formattedUrl, title, description, textContent, status: 'success' };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(`Error scraping ${url}:`, error);
-    return { url, status: 'error', error: error.message };
+    const msg = error instanceof Error ? error.message : "Unknown error";
+    return { url, status: 'error', error: msg };
   }
 }
 
-async function generateDemo(leadData: any) {
+interface LeadData {
+  url?: string;
+  title?: string;
+  description?: string;
+  textContent?: string;
+}
+
+async function generateDemo(leadData: LeadData) {
   const companyName = (leadData.title || 'Your Company').split('|')[0].trim();
   const url = leadData.url || '#';
   
@@ -44,27 +52,20 @@ async function generateDemo(leadData: any) {
     "Custom Workflow Automation"
   ];
 
-  if (process.env.OPENAI_API_KEY) {
+  if (process.env.GEMINI_API_KEY) {
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            { role: 'system', content: 'You are a marketing AI. Given a company\'s website description, write a 1-sentence hook for an AI product tailored to them, and 3 specific AI features they would benefit from. Output JSON: {"hook": "...", "features": ["...", "...", "..."]}' },
-            { role: 'user', content: `Company Name: ${companyName}\nDescription: ${leadData.description}\nContent: ${leadData.textContent.substring(0, 1000)}` }
-          ],
-          response_format: { type: 'json_object' }
-        })
+      const { GoogleGenAI } = await import('@google/genai');
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: `Company Name: ${companyName}\nDescription: ${leadData.description}\nContent: ${leadData.textContent?.substring(0, 1000) || ""}`,
+        config: {
+          systemInstruction: 'You are a marketing AI. Given a company\'s website description, write a 1-sentence hook for an AI product tailored to them, and 3 specific AI features they would benefit from. Output JSON: {"hook": "...", "features": ["...", "...", "..."]}',
+          responseMimeType: 'application/json'
+        }
       });
-
-      if (response.ok) {
-        const aiData = await response.json();
-        const parsed = JSON.parse(aiData.choices[0].message.content);
+      if (response.text) {
+        const parsed = JSON.parse(response.text);
         hook = parsed.hook || hook;
         features = parsed.features || features;
       }
@@ -78,30 +79,22 @@ async function generateDemo(leadData: any) {
   return { companyName, url, hook, features, demoLink };
 }
 
-async function generateOutreach(leadData: any, demoLink: string, companyName: string) {
+async function generateOutreach(leadData: LeadData, demoLink: string, companyName: string) {
   const url = leadData.url || '#';
   let email1 = `Hi {{first_name}},\n\nI noticed ${companyName} could benefit from Enterprise AI automation.\n\nMy team at Atma AI built a quick prototype specifically trained on your website (${url}):\n${demoLink}\n\nLet me know if you'd like to chat about how this could save your team hundreds of hours.\n\nBest,\nAbhishek`;
-  let email2 = `Hi {{first_name}},\n\nJust floating this to the top of your inbox. Did you get a chance to check out the AI prototype we built for ${companyName}? (${demoLink})\n\nHappy to schedule a quick 10-min technical briefing if it looks interesting.\n\nBest,\nAbhishek`;
+  const email2 = `Hi {{first_name}},\n\nJust floating this to the top of your inbox. Did you get a chance to check out the AI prototype we built for ${companyName}? (${demoLink})\n\nHappy to schedule a quick 10-min technical briefing if it looks interesting.\n\nBest,\nAbhishek`;
 
-  if (process.env.OPENAI_API_KEY) {
+  if (process.env.GEMINI_API_KEY) {
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [
-            { role: 'user', content: `Write a cold email to the decision maker at ${companyName}.\nWebsite context: ${(leadData.description || '').substring(0, 500)}\nGoal: Get them to click this custom AI prototype demo link: ${demoLink}\nTone: Professional, direct, technical, short (under 100 words).\nSign off as Abhishek Singh, CEO at Atma AI.` }
-          ]
-        })
+      const { GoogleGenAI } = await import('@google/genai');
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: `Write a cold email to the decision maker at ${companyName}.\nWebsite context: ${(leadData.description || '').substring(0, 500)}\nGoal: Get them to click this custom AI prototype demo link: ${demoLink}\nTone: Professional, direct, technical, short (under 100 words).\nSign off as Abhishek Singh, CEO at Atma AI.`
       });
 
-      if (response.ok) {
-        const aiData = await response.json();
-        email1 = aiData.choices[0].message.content;
+      if (response.text) {
+        email1 = response.text;
       }
     } catch (e) {
       console.error("AI Email Generation failed:", e);
@@ -131,16 +124,27 @@ export async function POST(request: Request) {
         // 3. Outreach Gen
         const emails = await generateOutreach(scraped, demo.demoLink, demo.companyName);
 
-        campaignData.push({
+        const data = {
           Company: demo.companyName,
           Website: scraped.url,
           Demo_Link: demo.demoLink,
           Email_1: emails.email1,
           Email_2: emails.email2,
-          // We can also return the generated demo HTML or features to show in the UI
           demoFeatures: demo.features,
-          demoHook: demo.hook
-        });
+          demoHook: demo.hook,
+          source: 'outbound',
+          status: 'New',
+          createdAt: new Date().toISOString()
+        };
+        campaignData.push(data);
+
+        // Save to Firestore
+        try {
+          const { db } = await import('@/lib/firebaseAdmin');
+          await db.collection('leads').add(data);
+        } catch (dbError) {
+          console.error("Failed to save outbound lead to Firestore:", dbError);
+        }
       } else {
         campaignData.push({
           Company: url,

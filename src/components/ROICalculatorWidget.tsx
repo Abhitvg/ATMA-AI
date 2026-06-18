@@ -42,7 +42,7 @@ const ROICalculatorWidget = () => {
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
         </div>
         <h3 className="text-2xl font-bold text-primary-light mb-2">Proposal Generated!</h3>
-        <p className="text-muted">We've sent a customized implementation plan and ROI breakdown to <strong>{email}</strong>.</p>
+        <p className="text-muted">We&apos;ve sent a customized implementation plan and ROI breakdown to <strong>{email}</strong>.</p>
       </div>
     );
   }

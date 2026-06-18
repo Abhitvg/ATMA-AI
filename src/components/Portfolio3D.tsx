@@ -1,11 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import { PresentationControls, Html } from "@react-three/drei";
-import * as THREE from "three";
 
-export default function Portfolio3D({ projects }: { projects: any[] }) {
+interface Project {
+  title: string;
+  category: string;
+  description: string;
+  url: string;
+}
+
+export default function Portfolio3D({ projects }: { projects: Project[] }) {
   return (
     <div className="w-full h-[600px] cursor-grab active:cursor-grabbing">
       <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
@@ -26,7 +32,7 @@ export default function Portfolio3D({ projects }: { projects: any[] }) {
   );
 }
 
-function Carousel({ projects }: { projects: any[] }) {
+function Carousel({ projects }: { projects: Project[] }) {
   const radius = 5;
   const count = projects.length;
 
@@ -50,7 +56,7 @@ function Carousel({ projects }: { projects: any[] }) {
   );
 }
 
-function Card({ project, position, rotation }: any) {
+function Card({ project, position, rotation }: { project: Project; position: [number, number, number]; rotation: [number, number, number] }) {
   const [hovered, hover] = useState(false);
 
   return (
