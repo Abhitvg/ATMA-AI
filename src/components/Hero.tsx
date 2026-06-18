@@ -58,7 +58,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left content — CSS animation only */}
-            <div className="hero-content">
+            <div>
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
                 <Sparkles className="h-3.5 w-3.5" />
