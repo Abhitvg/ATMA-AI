@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    optimizePackageImports: ["lucide-react", "framer-motion", "three", "@react-three/fiber", "@react-three/drei"],
   },
 
   // Security and performance headers
