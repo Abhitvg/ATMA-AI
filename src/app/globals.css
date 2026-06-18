@@ -112,9 +112,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes gradient-shift {
-  0% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(20deg); }
-  100% { filter: hue-rotate(0deg); }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes typing-cursor {
@@ -280,6 +280,12 @@ h1, h2, h3, h4, h5, h6 {
   mix-blend-mode: overlay;
   pointer-events: none;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .bg-noise::before {
+    display: none;
+  }
 }
 
 /* Shimmer Animation */
