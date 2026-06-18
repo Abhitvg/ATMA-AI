@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import { ArrowRight, Download, Play, Users, Link as LinkIcon, CheckCircle2, Sparkles, X, Search, Filter, TrendingUp, BarChart, Activity } from 'lucide-react';
+import { ArrowRight, Download, Play, Users, Link as LinkIcon, CheckCircle2, Sparkles, X, Search, Filter, TrendingUp, BarChart, Activity, CheckSquare, Trash2, Plus } from 'lucide-react';
 
 interface Lead {
   id: string;
@@ -32,13 +32,62 @@ interface AgentResponse {
   savedId?: string;
 }
 
+interface AdminTask {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: number;
+}
+
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   
   // Tabs
-  const [activeTab, setActiveTab] = useState<'inbound' | 'outbound' | 'agency'>('inbound');
+  const [activeTab, setActiveTab] = useState<'inbound' | 'outbound' | 'agency' | 'tasks'>('inbound');
   
+  // Pending Tasks State
+  const [tasks, setTasks] = useState<AdminTask[]>([]);
+  const [newTaskTitle, setNewTaskTitle] = useState('');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('admin_tasks');
+    if (saved) {
+      try {
+        setTasks(JSON.parse(saved));
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      setTasks([
+        { id: '1', title: 'Create G2 and Capterra profiles', completed: false, createdAt: Date.now() },
+        { id: '2', title: 'Publish article on Medium/LinkedIn', completed: false, createdAt: Date.now() },
+        { id: '3', title: 'Engage in Reddit communities (r/artificial, r/MachineLearning)', completed: false, createdAt: Date.now() },
+        { id: '4', title: 'Reach out to tech blogs for backlinks', completed: false, createdAt: Date.now() }
+      ]);
+    }
+  }, []);
+
+  const saveTasks = (newTasks: AdminTask[]) => {
+    setTasks(newTasks);
+    localStorage.setItem('admin_tasks', JSON.stringify(newTasks));
+  };
+
+  const addTask = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTaskTitle.trim()) return;
+    saveTasks([...tasks, { id: Date.now().toString(), title: newTaskTitle, completed: false, createdAt: Date.now() }]);
+    setNewTaskTitle('');
+  };
+
+  const toggleTask = (id: string) => {
+    saveTasks(tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+  };
+
+  const deleteTask = (id: string) => {
+    saveTasks(tasks.filter(t => t.id !== id));
+  };
+
   // Global Data
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loadingLeads, setLoadingLeads] = useState(false);
@@ -306,6 +355,12 @@ export default function AdminDashboard() {
             className={`pb-4 px-2 text-sm font-bold uppercase tracking-wider transition whitespace-nowrap flex items-center gap-2 ${activeTab === 'agency' ? 'text-purple-400 border-b-2 border-purple-400' : 'text-muted hover:text-white'}`}
           >
             <Sparkles size={16} /> Operations Manager Agent
+          </button>
+          <button 
+            onClick={() => setActiveTab('tasks')}
+            className={`pb-4 px-2 text-sm font-bold uppercase tracking-wider transition whitespace-nowrap flex items-center gap-2 ${activeTab === 'tasks' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-muted hover:text-white'}`}
+          >
+            <CheckSquare size={16} /> Pending Works
           </button>
         </div>
 
@@ -605,6 +660,61 @@ export default function AdminDashboard() {
                   </button>
                 </form>
               </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tasks View */}
+        {activeTab === 'tasks' && (
+          <div className="glass-card rounded-2xl overflow-hidden p-6 max-w-4xl mx-auto">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold font-heading text-primary-light mb-2">Pending Works</h2>
+              <p className="text-muted">Track manual SEO tasks and external marketing activities.</p>
+            </div>
+
+            <form onSubmit={addTask} className="flex gap-4 mb-8">
+              <input 
+                type="text" 
+                placeholder="Add a new task..." 
+                value={newTaskTitle}
+                onChange={(e) => setNewTaskTitle(e.target.value)}
+                className="flex-1 bg-black/40 border border-white/5 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors"
+              />
+              <button 
+                type="submit"
+                disabled={!newTaskTitle.trim()}
+                className="bg-accent text-primary-dark px-6 py-3 rounded-lg font-bold hover:bg-accent/90 transition flex items-center gap-2 disabled:opacity-50"
+              >
+                <Plus size={20} /> Add
+              </button>
+            </form>
+
+            <div className="space-y-3">
+              {tasks.length === 0 ? (
+                <div className="text-center py-12 text-muted">No pending tasks! 🎉</div>
+              ) : (
+                tasks.map(task => (
+                  <div key={task.id} className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${task.completed ? 'bg-white/5 border-white/5 opacity-50' : 'bg-primary-deeper border-white/10'}`}>
+                    <button 
+                      onClick={() => toggleTask(task.id)}
+                      className={`w-6 h-6 rounded flex items-center justify-center border transition-colors ${task.completed ? 'bg-accent border-accent text-primary-dark' : 'border-muted hover:border-accent'}`}
+                    >
+                      {task.completed && <CheckSquare size={14} />}
+                    </button>
+                    <span className={`flex-1 text-lg ${task.completed ? 'line-through text-muted' : 'text-white'}`}>
+                      {task.title}
+                    </span>
+                    <button 
+                      onClick={() => deleteTask(task.id)}
+                      className="text-muted hover:text-red-400 p-2 transition-colors"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         )}

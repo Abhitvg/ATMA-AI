@@ -24,6 +24,7 @@ const aiServices = [
     title: "Custom LLM Deployment",
     description: "Secure, private implementation of Large Language Models fine-tuned on your enterprise data. We handle the entire pipeline — from data preparation to inference optimization.",
     features: ["Private model hosting", "Fine-tuning pipelines", "RAG architecture", "Inference optimization"],
+    href: "enterprise-llm-deployment",
   },
   {
     icon: Bot,
@@ -106,7 +107,7 @@ function ServiceCard({ service, index }: { service: typeof aiServices[0]; index:
           {service.title}
         </h3>
         <p className="text-muted text-sm leading-relaxed mb-6">{service.description}</p>
-        <ul className="space-y-2.5">
+        <ul className="space-y-2.5 mb-6">
           {service.features.map((feature, i) => (
             <li key={i} className="flex items-center gap-2.5 text-sm text-muted/80">
               <CheckCircle2 className="h-4 w-4 text-accent/60 shrink-0" />
@@ -114,6 +115,13 @@ function ServiceCard({ service, index }: { service: typeof aiServices[0]; index:
             </li>
           ))}
         </ul>
+        {service.href && (
+          <div className="mt-auto pt-4 border-t border-border/50">
+            <Link href={`/en/services/${service.href}`} className="inline-flex items-center gap-2 text-primary-light hover:text-primary transition-colors text-sm font-semibold group/link">
+              Explore Enterprise LLM Services <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        )}
       </div>
     </AnimatedSection>
   );
@@ -127,8 +135,38 @@ export default function Services() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
+            "@graph": [
+              {
+                "@type": "Service",
+                "name": "Enterprise AI & IT Consultancy",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "ATMA AI Consultancy"
+                },
+                "hasOfferCatalog": {
+                  "@type": "OfferCatalog",
+                  "name": "Consulting Services",
+                  "itemListElement": [
+                    {
+                      "@type": "OfferCatalog",
+                      "name": "Artificial Intelligence",
+                      "itemListElement": [
+                        {
+                          "@type": "Offer",
+                          "itemOffered": {
+                            "@type": "Service",
+                            "name": "Custom LLM Deployment",
+                            "url": "https://atma-ai.co.in/en/services/enterprise-llm-deployment"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "@type": "FAQPage",
+                "mainEntity": [
               {
                 "@type": "Question",
                 name: "What AI services does ATMA Consultancy provide?",
