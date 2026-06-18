@@ -59,12 +59,6 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=43200" },
         ],
       },
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "Link", value: "<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin, <https://firebasestorage.googleapis.com>; rel=preconnect, <https://www.google-analytics.com>; rel=preconnect" },
-        ],
-      },
     ];
   },
 };
