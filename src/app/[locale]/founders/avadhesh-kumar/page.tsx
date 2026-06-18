@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FounderSchema, { FOUNDERS } from '@/components/seo/FounderSchema';
+import Image from 'next/image';
 
 export default function AvadheshKumarPage() {
   const founder = FOUNDERS.avadhesh;
@@ -15,10 +16,13 @@ export default function AvadheshKumarPage() {
         <div className="glass-card rounded-3xl p-8 md:p-12 border border-white/10">
           <div className="flex flex-col md:flex-row gap-12 items-start">
             <div className="w-full md:w-1/3 aspect-square relative rounded-2xl overflow-hidden bg-primary-deeper">
-              <img 
+              <Image 
                 src={founder.image} 
                 alt={founder.name} 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover grayscale hover:grayscale-0 transition duration-500"
               />
             </div>
             

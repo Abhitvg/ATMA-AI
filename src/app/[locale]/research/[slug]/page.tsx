@@ -1,8 +1,32 @@
 import { getResearchPostBySlug } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getResearchPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
+  return {
+    title: `${post.meta.title} | ATMA AI Research`,
+    description: post.meta.summary,
+    openGraph: {
+      title: post.meta.title,
+      description: post.meta.summary,
+      type: "article",
+      publishedTime: post.meta.date,
+      authors: [post.meta.author],
+    },
+  };
+}
 
 export default async function ResearchArticle({
   params,

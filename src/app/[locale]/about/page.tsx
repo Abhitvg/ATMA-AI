@@ -7,10 +7,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: "About ATMA-AI | AI Consultancy in New Delhi, India",
-    description: "Learn about ATMA Consultancy Services. Founded by Abhishek Singh, Avadhesh Kumar, and Chirag Beniwal from JNU and IIT Delhi, we deliver elite AI solutions from New Delhi, India.",
+    description: "Learn about ATMA Consultancy Services. We are a long-term AI technology partner specializing in custom LLM deployment, cloud-native infrastructure, and zero-trust cybersecurity implementation.",
     openGraph: {
       title: "About ATMA-AI | AI Consultancy in New Delhi, India",
-      description: "Learn about ATMA Consultancy Services. Founded by Abhishek Singh, Avadhesh Kumar, and Chirag Beniwal from JNU and IIT Delhi, we deliver elite AI solutions.",
+      description: "Learn about ATMA Consultancy Services. We are a long-term AI technology partner specializing in custom LLM deployment, cloud-native infrastructure, and zero-trust cybersecurity implementation.",
     },
   };
 }

@@ -60,7 +60,7 @@ export default function Portal() {
     setError("");
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (err) {
+    } catch {
       setError("Invalid email or password.");
     }
   };
@@ -70,7 +70,7 @@ export default function Portal() {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-    } catch (err) {
+    } catch {
       setError("Failed to sign in with Google.");
     }
   };

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Navbar from '@/components/Navbar';
 import { ArrowRight, Download, Play, Users, Link as LinkIcon, CheckCircle2, Sparkles, X, Search, Filter, TrendingUp, BarChart, Activity, CheckSquare, Trash2, Plus } from 'lucide-react';
+import { db } from '@/lib/firebase';
+import { collection, onSnapshot, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 
 interface Lead {
   id: string;
@@ -51,41 +52,62 @@ export default function AdminDashboard() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   useEffect(() => {
-    const saved = localStorage.getItem('admin_tasks');
-    if (saved) {
-      try {
-        setTasks(JSON.parse(saved));
-      } catch (e) {
-        console.error(e);
+    const q = collection(db, 'admin_tasks');
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      if (snapshot.empty && !snapshot.metadata.hasPendingWrites) {
+        // Pre-populate if empty
+        const defaultTasks = [
+          { title: 'Create G2 and Capterra profiles', completed: false, createdAt: Date.now() },
+          { title: 'Publish article on Medium/LinkedIn', completed: false, createdAt: Date.now() + 1 },
+          { title: 'Engage in Reddit communities (r/artificial, r/MachineLearning)', completed: false, createdAt: Date.now() + 2 },
+          { title: 'Reach out to tech blogs for backlinks', completed: false, createdAt: Date.now() + 3 }
+        ];
+        defaultTasks.forEach(task => addDoc(collection(db, 'admin_tasks'), task).catch(console.error));
+      } else {
+        const fetchedTasks = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })) as AdminTask[];
+        setTasks(fetchedTasks.sort((a, b) => a.createdAt - b.createdAt));
       }
-    } else {
-      setTasks([
-        { id: '1', title: 'Create G2 and Capterra profiles', completed: false, createdAt: Date.now() },
-        { id: '2', title: 'Publish article on Medium/LinkedIn', completed: false, createdAt: Date.now() },
-        { id: '3', title: 'Engage in Reddit communities (r/artificial, r/MachineLearning)', completed: false, createdAt: Date.now() },
-        { id: '4', title: 'Reach out to tech blogs for backlinks', completed: false, createdAt: Date.now() }
-      ]);
-    }
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const saveTasks = (newTasks: AdminTask[]) => {
-    setTasks(newTasks);
-    localStorage.setItem('admin_tasks', JSON.stringify(newTasks));
-  };
-
-  const addTask = (e: React.FormEvent) => {
+  const addTask = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTaskTitle.trim()) return;
-    saveTasks([...tasks, { id: Date.now().toString(), title: newTaskTitle, completed: false, createdAt: Date.now() }]);
-    setNewTaskTitle('');
+    try {
+      await addDoc(collection(db, 'admin_tasks'), {
+        title: newTaskTitle,
+        completed: false,
+        createdAt: Date.now()
+      });
+      setNewTaskTitle('');
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
   };
 
-  const toggleTask = (id: string) => {
-    saveTasks(tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+  const toggleTask = async (id: string) => {
+    const taskToToggle = tasks.find(t => t.id === id);
+    if (!taskToToggle) return;
+    try {
+      await updateDoc(doc(db, 'admin_tasks', id), {
+        completed: !taskToToggle.completed
+      });
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
   };
 
-  const deleteTask = (id: string) => {
-    saveTasks(tasks.filter(t => t.id !== id));
+  const deleteTask = async (id: string) => {
+    try {
+      await deleteDoc(doc(db, 'admin_tasks', id));
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
   };
 
   // Global Data
@@ -660,8 +682,6 @@ export default function AdminDashboard() {
                   </button>
                 </form>
               </div>
-            </div>
-          </div>
             </div>
           </div>
         )}

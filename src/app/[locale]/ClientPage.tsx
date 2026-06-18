@@ -35,12 +35,14 @@ const services = [
     title: "AI & GenAI Solutions",
     description: "Custom LLM deployment, RAG pipelines, and autonomous agents built for your enterprise data.",
     color: "from-cyan-400 to-blue-500",
+    href: "services",
   },
   {
     icon: BarChart3,
     title: "Data Science & Analytics",
     description: "Transform raw data into strategic foresight with predictive models and real-time dashboards.",
     color: "from-purple-400 to-pink-500",
+    href: "services/predictive-analytics",
   },
   {
     icon: Server,
@@ -191,16 +193,16 @@ function ServicesSection() {
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">What We Do</p>
           <h2 className="text-fluid-h2 font-bold font-heading mb-5 text-primary-light">
-            Solutions Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Scale</span>
+            ATMA-AI: Your Partner in <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">AI Consulting</span>
           </h2>
           <p className="text-fluid-p text-muted leading-relaxed">
-            From AI research to production deployment — our services cover the full spectrum of enterprise technology.
+            ATMA-AI is an elite AI consulting firm delivering end-to-end solutions. From custom LLM deployment and predictive analytics to enterprise architecture — our services cover the full spectrum of enterprise technology.
           </p>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <AnimatedSection key={i} delay={i * 0.08} variant="slide-up">
+          {services.map((service, i) => {
+            const cardContent = (
               <div className="group relative glass-card rounded-2xl p-8 tilt-card gradient-border-hover hover:-translate-y-2 h-full cursor-pointer overflow-hidden">
                 {/* Gradient accent on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -213,8 +215,20 @@ function ServicesSection() {
                 </h3>
                 <p className="text-muted text-sm leading-relaxed">{service.description}</p>
               </div>
-            </AnimatedSection>
-          ))}
+            );
+
+            return (
+              <AnimatedSection key={i} delay={i * 0.08} variant="slide-up">
+                {service.href ? (
+                  <Link href={`/en/${service.href}`} className="block h-full">
+                    {cardContent}
+                  </Link>
+                ) : (
+                  <div className="h-full">{cardContent}</div>
+                )}
+              </AnimatedSection>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -319,12 +333,19 @@ function PortfolioSection() {
           ))}
         </div>
 
-        <AnimatedSection className="text-center mt-12">
+        <AnimatedSection className="text-center mt-12 flex items-center justify-center gap-6">
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:gap-3 transition-all duration-300"
           >
             View All Case Studies
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            href="/reviews"
+            className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:gap-3 transition-all duration-300"
+          >
+            Read Client Reviews
             <ArrowRight className="h-4 w-4" />
           </Link>
         </AnimatedSection>

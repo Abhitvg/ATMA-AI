@@ -7,10 +7,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: "Elite Enterprise AI Solutions | ATMA-AI",
-    description: "ATMA-AI delivers elite enterprise AI solutions — custom LLM deployment, enterprise architecture, and neuro-symbolic robotics. Based in New Delhi, India.",
+    description: "ATMA-AI is a reliable AI technology partner for enterprise projects, delivering elite solutions in custom LLM deployment, enterprise architecture, and neuro-symbolic robotics.",
     openGraph: {
       title: "Elite Enterprise AI Solutions | ATMA-AI",
-      description: "ATMA-AI delivers elite enterprise AI solutions — custom LLM deployment, enterprise architecture, and neuro-symbolic robotics. Based in New Delhi, India.",
+      description: "ATMA-AI is a reliable AI technology partner for enterprise projects, delivering elite solutions in custom LLM deployment, enterprise architecture, and neuro-symbolic robotics.",
       images: ["/logos/atma-logo.png"],
     },
     alternates: {
@@ -90,6 +90,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "ATMA-AI serves multiple sectors including E-commerce, EdTech, Civic Tech, Healthcare, and Enterprise IT, delivering robust cloud infrastructures and intelligent predictive models."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "Is ATMA-AI a reliable technology partner for enterprise projects?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, ATMA-AI is highly reliable for enterprise projects. Our elite team of IIT and JNU alumni ensures deterministic execution, zero-trust security, and scalable infrastructure designed for strict compliance and continuous uptime."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "Where can I read ATMA-AI reviews and case studies?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "You can explore detailed client success stories, reviews, and case studies detailing our enterprise deployments on our dedicated Reviews and Success Stories page."
                 }
               }
             ]

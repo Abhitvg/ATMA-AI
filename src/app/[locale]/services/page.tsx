@@ -16,9 +16,17 @@ import {
   ShoppingCart,
   ArrowRight,
   CheckCircle2,
+  LucideIcon
 } from "lucide-react";
 
 const aiServices = [
+  {
+    icon: Brain,
+    title: "Enterprise AI Solutions",
+    description: "Comprehensive enterprise AI architectures encompassing custom LLMs, RAG pipelines, and neuro-symbolic predictive analytics for production environments.",
+    features: ["End-to-end consulting", "Zero-trust deployment", "Predictive modeling", "Autonomous agents"],
+    href: "enterprise-ai-solutions",
+  },
   {
     icon: Brain,
     title: "Custom LLM Deployment",
@@ -31,22 +39,39 @@ const aiServices = [
     title: "Autonomous AI Agents",
     description: "Self-directed AI agents that automate complex multi-step workflows. From customer support to document processing, our agents handle the heavy lifting.",
     features: ["Multi-step reasoning", "Tool integration", "Human-in-the-loop", "Real-time monitoring"],
+    href: "autonomous-ai-agents",
   },
   {
     icon: FileSearch,
     title: "NLP & Document Intelligence",
     description: "Intelligent document parsing, entity extraction, sentiment analysis, and automated communication pipelines that transform unstructured data into actionable insights.",
     features: ["Entity extraction", "Sentiment analysis", "Document classification", "OCR pipelines"],
+    href: "nlp-document-intelligence",
   },
   {
     icon: BarChart3,
     title: "Predictive Analytics",
     description: "Transforming raw enterprise data into strategic foresight. Our models predict trends, identify anomalies, and surface opportunities hidden in your data.",
     features: ["Time-series forecasting", "Anomaly detection", "Customer segmentation", "Revenue modeling"],
+    href: "predictive-analytics",
+  },
+  {
+    icon: FileSearch,
+    title: "RAG Pipeline Development",
+    description: "Engineering production-ready Retrieval-Augmented Generation architectures. Eliminate hallucinations and securely query your enterprise data with our neuro-symbolic infrastructure.",
+    features: ["Hybrid Vector Search", "Deterministic Guardrails", "Semantic Chunking", "On-Premise Deployment"],
+    href: "rag-pipeline-development",
   },
 ];
 
 const itServices = [
+  {
+    icon: Shield,
+    title: "AI Technology Partnerships",
+    description: "Long-term strategic collaboration focusing on custom AI deployment, scalable cloud-native infrastructure, and uncompromising zero-trust cybersecurity.",
+    features: ["Cloud-native scale", "Zero-trust security", "Custom AI integration", "Dedicated engineering"],
+    href: "ai-technology-partnerships",
+  },
   {
     icon: Server,
     title: "Enterprise Web Architecture",
@@ -96,7 +121,15 @@ const process = [
   },
 ];
 
-function ServiceCard({ service, index }: { service: typeof aiServices[0]; index: number }) {
+type ServiceItem = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  features: string[];
+  href?: string;
+};
+
+function ServiceCard({ service, index }: { service: ServiceItem; index: number }) {
   return (
     <AnimatedSection delay={index * 0.1}>
       <div className="group glass-card rounded-2xl p-8 hover:border-accent/20 transition-all duration-500 h-full">
@@ -191,8 +224,10 @@ export default function Services() {
                   text: "We handle the entire pipeline — from data preparation and RAG architecture to inference optimization and secure, private model hosting.",
                 },
               },
-            ],
-          }),
+            ]
+          }
+        ]
+      }),
         }}
       />
       <Navbar />
