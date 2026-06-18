@@ -22,7 +22,7 @@ export default function Portal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [documents, setDocuments] = useState<any[]>([]);
+  const [documents, setDocuments] = useState<Record<string, unknown>[]>([]);
 
   useEffect(() => {
     const fetchUserDocuments = async (uid: string) => {

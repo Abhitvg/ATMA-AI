@@ -502,7 +502,7 @@ export default function AdminDashboard() {
                       
                       <div className="mb-3">
                         <span className="text-[10px] font-bold text-muted uppercase tracking-wider">AI Hook</span>
-                        <p className="text-sm text-cyan-300 italic">"{res.demoHook}"</p>
+                        <p className="text-sm text-cyan-300 italic">&quot;{res.demoHook}&quot;</p>
                       </div>
                       <div>
                         <span className="text-[10px] font-bold text-muted uppercase tracking-wider">Cold Email 1 Preview</span>
@@ -653,7 +653,7 @@ export default function AdminDashboard() {
                         <CheckCircle2 size={20} />
                       </div>
                       <h3 className="text-white font-bold mb-2">{feat}</h3>
-                      <p className="text-xs text-muted">Auto-generated capability specifically tailored to {previewLead.Company}'s tech stack.</p>
+                      <p className="text-xs text-muted">Auto-generated capability specifically tailored to {previewLead.Company}&apos;s tech stack.</p>
                     </div>
                   ))}
                 </div>
