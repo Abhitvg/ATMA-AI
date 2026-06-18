@@ -22,10 +22,10 @@ export default function Footer() {
               <Image src="/logos/atma-logo.png" alt="ATMA" width={28} height={28} className="object-contain rounded-md" />
               <div className="flex flex-col">
                 <span className="font-heading font-bold text-lg leading-none">ATMA</span>
-                <span className="text-[9px] tracking-[0.2em] text-muted uppercase leading-none mt-0.5">Consultancy & Research</span>
+                <span className="text-[9px] tracking-[0.2em] text-foreground/80 uppercase leading-none mt-0.5">Consultancy & Research</span>
               </div>
             </div>
-            <p className="text-sm text-muted leading-relaxed mb-6 max-w-xs">
+            <p className="text-sm text-foreground/80 leading-relaxed mb-6 max-w-xs">
               Engineering the Future of Enterprise. Built on academic excellence and real-world execution.
             </p>
             <div className="flex gap-3">
@@ -113,8 +113,8 @@ export default function Footer() {
           >
             <ArrowUp className="h-4 w-4" />
           </button>
-          <p className="text-xs text-muted/60">&copy; {new Date().getFullYear()} ATMA Consultancy Services. All rights reserved.</p>
-          <div className="flex gap-6 text-xs text-muted/60">
+          <p className="text-xs text-muted">&copy; {new Date().getFullYear()} ATMA Consultancy Services. All rights reserved.</p>
+          <div className="flex gap-6 text-xs text-muted">
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
             <Link href="/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
