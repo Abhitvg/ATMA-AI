@@ -303,9 +303,9 @@ export default function Portfolio() {
                           <ExternalLink className="h-4 w-4 text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                         <p className="text-xs uppercase tracking-wider text-accent/60 font-medium mb-1">{project.category}</p>
-                        <h4 className="font-heading font-bold text-primary-light mb-2 group-hover:text-accent transition-colors duration-300">
+                        <p className="font-heading font-bold text-primary-light mb-2 group-hover:text-accent transition-colors duration-300">
                           {project.title}
-                        </h4>
+                        </p>
                         <p className="text-xs text-muted leading-relaxed mb-4">{project.description}</p>
                         <div className="flex flex-wrap gap-1.5">
                           {project.tags.map((tag, j) => (

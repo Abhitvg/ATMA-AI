@@ -309,9 +309,9 @@ function PortfolioSection() {
                     </div>
                     <ExternalLink className="h-4 w-4 text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <h4 className="font-heading font-bold text-primary-light text-sm mb-1 group-hover:text-accent transition-colors duration-300">
+                  <p className="font-heading font-bold text-primary-light text-sm mb-1 group-hover:text-accent transition-colors duration-300">
                     {item.title}
-                  </h4>
+                  </p>
                   <p className="text-xs text-muted">{item.category}</p>
                 </div>
               </a>

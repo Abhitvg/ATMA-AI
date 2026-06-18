@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Services</h4>
+            <p className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Services</p>
             <ul className="space-y-3">
               {[
                 { name: "AI Consulting & GenAI", href: "/services" },
@@ -61,7 +61,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Company</h4>
+            <p className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Company</p>
             <ul className="space-y-3">
               {[
                 { name: "About Us", href: "/about" },
@@ -81,7 +81,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Get in Touch</h4>
+            <p className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Get in Touch</p>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-accent shrink-0 mt-0.5" />
