@@ -7,10 +7,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: "Elite Enterprise AI Solutions | ATMA-AI",
-    description: "ATMA Consultancy Services (ATMA-AI), founded by Abhishek Singh, Avadhesh Kumar, and Chirag Beniwal, provides elite custom LLM deployment, enterprise architecture, and neuro-symbolic robotics for the modern enterprise.",
+    description: "ATMA-AI delivers elite enterprise AI solutions — custom LLM deployment, enterprise architecture, and neuro-symbolic robotics. Based in New Delhi, India.",
     openGraph: {
       title: "Elite Enterprise AI Solutions | ATMA-AI",
-      description: "ATMA Consultancy Services (ATMA-AI), founded by Abhishek Singh, Avadhesh Kumar, and Chirag Beniwal, provides elite custom LLM deployment, enterprise architecture, and neuro-symbolic robotics.",
+      description: "ATMA-AI delivers elite enterprise AI solutions — custom LLM deployment, enterprise architecture, and neuro-symbolic robotics. Based in New Delhi, India.",
+      images: ["/logos/atma-logo.png"],
+    },
+    alternates: {
+      canonical: locale === 'en' ? 'https://atma-ai.co.in/' : `https://atma-ai.co.in/${locale}/`,
     },
   };
 }

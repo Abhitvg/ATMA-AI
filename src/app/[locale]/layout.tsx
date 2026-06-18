@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t('description'),
       images: [
         {
-          url: "/logos/atma-logo.svg",
+          url: "/logos/atma-logo.png",
           width: 512,
           height: 512,
           alt: "ATMA Consultancy & Research Logo",
@@ -79,6 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: "summary_large_image",
       title: t('title'),
       description: t('description'),
+      images: ["/logos/atma-logo.png"],
     },
     robots: {
       index: true,
@@ -92,7 +93,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       },
     },
     alternates: {
-      canonical: locale === 'en' ? 'https://atma-ai.co.in' : `https://atma-ai.co.in/${locale}`,
       languages: {
         'en': 'https://atma-ai.co.in',
         'hi': 'https://atma-ai.co.in/hi',
@@ -245,7 +245,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
+      <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
