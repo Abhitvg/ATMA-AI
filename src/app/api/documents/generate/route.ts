@@ -100,7 +100,7 @@ function wrapHTML(title: string, subtitle: string, bodyContent: string, isLightH
 </html>`;
 }
 
-const templates: Record<string, (org: string, proj: string, date: string, amount: string) => string> = {
+const templates: Record<string, (org: string, proj: string, date: string, amount: string, currency: string) => string> = {
   'client-contract': (org, proj, date, amount) => wrapHTML(
     'CLIENT CONTRACT',
     'This Agreement is made between the Client and ATMA SOLUTIONS ("Agency") and sets forth the terms and conditions under which services will be provided.',
