@@ -16,13 +16,22 @@ import Footer from "@/components/Footer";
 import { Lock, LogOut, FileText, Activity } from "lucide-react";
 import Image from "next/image";
 
+interface ClientDocument {
+  id: string;
+  title: string;
+  date: string;
+  type: string;
+  status: string;
+  downloadUrl: string;
+}
+
 export default function Portal() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [documents, setDocuments] = useState<Record<string, unknown>[]>([]);
+  const [documents, setDocuments] = useState<ClientDocument[]>([]);
 
   useEffect(() => {
     const fetchUserDocuments = async (uid: string) => {
@@ -30,7 +39,7 @@ export default function Portal() {
         const q = query(collection(db, "client_documents"), where("uid", "==", uid));
         const querySnapshot = await getDocs(q);
         const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setDocuments(docs);
+        setDocuments(docs as ClientDocument[]);
       } catch (err) {
         console.error("Error fetching docs", err);
       }
