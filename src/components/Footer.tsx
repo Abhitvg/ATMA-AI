@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50 animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -68,6 +68,25 @@ export default function Footer() {
                 { name: "Research Labs", href: "/research" },
                 { name: "Case Studies", href: "/portfolio" },
                 { name: "Contact", href: "/contact" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">
+                    {item.name}
+                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Knowledge Hub */}
+          <div>
+            <p className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Knowledge Hub</p>
+            <ul className="space-y-3">
+              {[
+                { name: "Blog", href: "/blog" },
+                { name: "Articles", href: "/articles" },
+                { name: "Whitepapers", href: "/whitepapers" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">

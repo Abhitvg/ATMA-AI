@@ -1,16 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, PenLine, FileText, BookOpen } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [insightsOpen, setInsightsOpen] = useState(false);
+  const insightsRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -32,6 +34,14 @@ export default function Navbar() {
     { name: t("research"), href: "/research" },
     { name: t("portfolio"), href: "/portfolio" },
   ];
+
+  const insightsLinks = [
+    { name: "Blog", href: "/blog", icon: PenLine, color: "text-accent" },
+    { name: "Articles", href: "/articles", icon: FileText, color: "text-[#F59E0B]" },
+    { name: "Whitepapers", href: "/whitepapers", icon: BookOpen, color: "text-[#10B981]" },
+  ];
+
+  const isInsightsActive = ["/blog", "/articles", "/whitepapers"].some(p => pathname.startsWith(p));
 
   const isActive = (href: string) => pathname === href;
 
@@ -94,6 +104,46 @@ export default function Navbar() {
                 />
               </Link>
             ))}
+            {/* Insights Dropdown */}
+            <div className="relative" ref={insightsRef} onMouseEnter={() => setInsightsOpen(true)} onMouseLeave={() => setInsightsOpen(false)}>
+              <button
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg group flex items-center gap-1 ${
+                  isInsightsActive
+                    ? "text-accent"
+                    : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
+                }`}
+              >
+                Insights
+                <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${insightsOpen ? "rotate-180" : ""}`} />
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300 ${
+                    isInsightsActive ? "w-[20px] bg-accent" : "w-0 bg-foreground/30 group-hover:w-[20px]"
+                  }`}
+                />
+              </button>
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 ${
+                  insightsOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                }`}
+              >
+                <div className="bg-primary-dark/95 backdrop-blur-xl rounded-xl border border-border shadow-xl shadow-black/20 p-2 min-w-[200px]">
+                  {insightsLinks.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                        pathname.startsWith(item.href)
+                          ? `${item.color} bg-foreground/5`
+                          : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
+                      }`}
+                    >
+                      <item.icon className={`h-4 w-4 ${item.color}`} />
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="w-px h-5 bg-border mx-2" />
             <Link 
               href="/portal"
@@ -158,6 +208,27 @@ export default function Navbar() {
               }`}
             >
               {link.name}
+            </Link>
+          ))}
+          {/* Mobile Insights Section */}
+          <div className="h-px w-full bg-border my-2" />
+          <p className="px-4 pt-2 pb-1 text-[10px] tracking-[0.2em] text-muted uppercase font-mono">Insights</p>
+          {insightsLinks.map((item, i) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              style={{ transitionDelay: isOpen ? `${(navLinks.length + i) * 50}ms` : '0ms' }}
+              className={`flex items-center gap-3 px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
+                isOpen ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
+              } ${
+                pathname.startsWith(item.href)
+                  ? `${item.color} bg-foreground/5 border border-foreground/10`
+                  : "text-foreground/80 hover:text-foreground hover:bg-foreground/5 border border-transparent"
+              }`}
+            >
+              <item.icon className={`h-4 w-4 ${item.color}`} />
+              {item.name}
             </Link>
           ))}
           <div className="h-px w-full bg-border my-2" />

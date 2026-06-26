@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: ['GPTBot', 'ClaudeBot', 'PerplexityBot', 'Googlebot', 'Bingbot'],
-        allow: '/',
+        allow: ['/', '/blog', '/articles', '/whitepapers', '/research'],
       }
     ],
     sitemap: 'https://atma-ai.co.in/sitemap.xml',

@@ -3,9 +3,17 @@ import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 
-const contentDir = path.join(process.cwd(), "src/content/research");
+// ── Generic content helpers ──
 
-export async function getResearchPosts() {
+type ContentSection = "research" | "blog" | "articles" | "whitepapers";
+
+function getContentDir(section: ContentSection) {
+  return path.join(process.cwd(), `src/content/${section}`);
+}
+
+export async function getContentPosts(section: ContentSection) {
+  const contentDir = getContentDir(section);
+
   if (!fs.existsSync(contentDir)) {
     return [];
   }
@@ -24,13 +32,15 @@ export async function getResearchPosts() {
         author: data.author,
         summary: data.summary,
         readingTime: readingTime(content).text,
+        tags: data.tags || [],
       };
     });
 
   return posts.sort((a, b) => (new Date(b.date).getTime() - new Date(a.date).getTime()));
 }
 
-export async function getResearchPostBySlug(slug: string) {
+export async function getContentPostBySlug(section: ContentSection, slug: string) {
+  const contentDir = getContentDir(section);
   const filePath = path.join(contentDir, `${slug}.mdx`);
   
   if (!fs.existsSync(filePath)) {
@@ -54,8 +64,49 @@ export async function getResearchPostBySlug(slug: string) {
       author: data.author,
       summary: data.summary,
       readingTime: readingTime(content).text,
+      tags: data.tags || [],
     },
     content,
     headings,
   };
+}
+
+// ── Backward-compatible wrappers for Research ──
+
+export async function getResearchPosts() {
+  return getContentPosts("research");
+}
+
+export async function getResearchPostBySlug(slug: string) {
+  return getContentPostBySlug("research", slug);
+}
+
+// ── Blog ──
+
+export async function getBlogPosts() {
+  return getContentPosts("blog");
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  return getContentPostBySlug("blog", slug);
+}
+
+// ── Articles ──
+
+export async function getArticlePosts() {
+  return getContentPosts("articles");
+}
+
+export async function getArticlePostBySlug(slug: string) {
+  return getContentPostBySlug("articles", slug);
+}
+
+// ── Whitepapers ──
+
+export async function getWhitepaperPosts() {
+  return getContentPosts("whitepapers");
+}
+
+export async function getWhitepaperPostBySlug(slug: string) {
+  return getContentPostBySlug("whitepapers", slug);
 }
