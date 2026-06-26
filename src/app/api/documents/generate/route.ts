@@ -101,7 +101,7 @@ function wrapHTML(title: string, subtitle: string, bodyContent: string, isLightH
 }
 
 const templates: Record<string, (org: string, proj: string, date: string, amount: string, currency: string) => string> = {
-  'client-contract': (org, proj, date, amount) => wrapHTML(
+  'client-contract': (org, proj, date, _amount) => wrapHTML(
     'CLIENT CONTRACT',
     'This Agreement is made between the Client and ATMA SOLUTIONS ("Agency") and sets forth the terms and conditions under which services will be provided.',
     `<div class="grid-2">
@@ -134,7 +134,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     </div>`
   ),
 
-  'welcome-msg': (org, proj, date, amount) => wrapHTML(
+  'welcome-msg': (_org, _proj, _date, _amount) => wrapHTML(
     'WELCOME TO THE TEAM!',
     'Thank you for choosing ATMA SOLUTIONS as your technology partner. We are excited to help you bring your ideas to life.',
     `<div class="grid-2">
@@ -159,7 +159,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     </div>`
   ),
 
-  'kickoff-call': (org, proj, date, amount) => wrapHTML(
+  'kickoff-call': (_org, _proj, date, _amount) => wrapHTML(
     'LET\'S CONNECT!',
     'We use Google Meet for our online meetings to collaborate, discuss, and move your project forward efficiently.',
     `<div class="grid-2">
@@ -223,7 +223,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     true
   ),
 
-  'thankyou-msg': (org, proj, date, amount, currency) => wrapHTML(
+  'thankyou-msg': (org, _proj, _date, _amount, _currency) => wrapHTML(
     'THANK YOU!',
     'We truly appreciate you.',
     `<div style="text-align: center; margin-bottom: 30px;">
@@ -244,13 +244,13 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     </div>`
   ),
 
-  'mutual-nda': (org, proj, date, amount, currency) => wrapHTML('MUTUAL NDA', 'Non-Disclosure Agreement', `
+  'mutual-nda': (org, proj, date, _amount, _currency) => wrapHTML('MUTUAL NDA', 'Non-Disclosure Agreement', `
     <div class="text-box"><strong>Effective Date:</strong> ${date}<br><strong>Between:</strong> ${org} ("Disclosing Party") and ATMA SOLUTIONS ("Receiving Party")<br><strong>Project Name:</strong> ${proj}</div>
     <div class="section-title">1. Purpose</div><p>The parties intend to explore a potential business relationship in connection with ${proj}.</p>
     <div class="section-title">2. Confidential Information</div><p>"Confidential Information" means any data or information that is proprietary to the Disclosing Party and not generally known to the public.</p>
     <div class="section-title">3. Obligations</div><p>The Receiving Party shall hold and maintain the Confidential Information in strictest confidence for the sole and exclusive benefit of the Disclosing Party.</p>
   `),
-  'msa': (org, proj, date, amount, currency) => wrapHTML('MASTER SERVICE AGREEMENT', 'General Terms & Conditions', `
+  'msa': (org, proj, date, _amount, _currency) => wrapHTML('MASTER SERVICE AGREEMENT', 'General Terms & Conditions', `
     <div class="text-box"><strong>Effective Date:</strong> ${date}<br><strong>Between:</strong> ATMA SOLUTIONS ("Provider") and ${org} ("Client")</div>
     <div class="section-title">1. Services</div><p>Provider will perform the services described in the statements of work ("SOWs") executed by the parties.</p>
     <div class="section-title">2. Payment</div><p>Client shall pay Provider the fees set forth in each SOW. Payments are due within 15 days of invoice date.</p>
@@ -262,7 +262,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     </div>`
   ),
 
-  'offer-letter': (org, proj, date, amount, currency) => wrapHTML('OFFER LETTER', 'Employment Offer', `
+  'offer-letter': (org, proj, date, _amount, _currency) => wrapHTML('OFFER LETTER', 'Employment Offer', `
     <div class="text-box"><strong>Date:</strong> ${date}<br><strong>To:</strong> ${org}<br><strong>Role:</strong> ${proj}</div>
     <p>Dear ${org},</p>
     <p>We are thrilled to offer you the position of ${proj} at ATMA SOLUTIONS. Your skills and experience will be an ideal fit for our team.</p>
@@ -279,7 +279,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     </div>`
   ),
 
-  'hr-policies': (org, proj, date, amount, currency) => wrapHTML('HR POLICIES', 'Employee Handbook & Guidelines', `
+  'hr-policies': (_org, _proj, date, _amount, _currency) => wrapHTML('HR POLICIES', 'Employee Handbook & Guidelines', `
     <div class="text-box"><strong>Company:</strong> ATMA SOLUTIONS<br><strong>Last Updated:</strong> ${date}</div>
     <div class="section-title">1. Code of Conduct</div><p>We expect all employees to conduct themselves professionally, respectfully, and ethically at all times.</p>
     <div class="section-title">2. Work Hours</div><p>Standard working hours are 9 AM to 6 PM, Monday to Friday. We support flexible arrangements when applicable.</p>
@@ -287,7 +287,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     <div class="section-title">4. Diversity & Inclusion</div><p>ATMA SOLUTIONS is an equal opportunity employer committed to fostering an inclusive environment.</p>
   `),
 
-  'terms-of-service': (org, proj, date, amount, currency) => wrapHTML('TERMS OF SERVICE', 'Website & Platform Usage', `
+  'terms-of-service': (_org, _proj, date, _amount, _currency) => wrapHTML('TERMS OF SERVICE', 'Website & Platform Usage', `
     <div class="text-box"><strong>Company:</strong> ATMA SOLUTIONS<br><strong>Effective Date:</strong> ${date}</div>
     <div class="section-title">1. Acceptance</div><p>By using our services, you agree to these terms.</p>
     <div class="section-title">2. User Responsibilities</div><p>You must provide accurate information and are responsible for safeguarding your account credentials.</p>
@@ -295,7 +295,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     <div class="section-title">4. Termination</div><p>We reserve the right to suspend or terminate access for violations of these terms.</p>
   `),
 
-  'privacy-policy': (org, proj, date, amount, currency) => wrapHTML('PRIVACY POLICY', 'Data Collection & Usage', `
+  'privacy-policy': (_org, _proj, date, _amount, _currency) => wrapHTML('PRIVACY POLICY', 'Data Collection & Usage', `
     <div class="text-box"><strong>Company:</strong> ATMA SOLUTIONS<br><strong>Effective Date:</strong> ${date}</div>
     <div class="section-title">1. Data We Collect</div><p>We collect personal information such as name, email address, and usage data to improve our services.</p>
     <div class="section-title">2. How We Use Data</div><p>Your data is used to provide, maintain, and improve our platform, and to communicate with you.</p>
@@ -303,7 +303,7 @@ const templates: Record<string, (org: string, proj: string, date: string, amount
     <div class="section-title">4. Your Rights</div><p>You have the right to access, correct, or request deletion of your personal data.</p>
   `),
 
-  'legal-compliance': (org, proj, date, amount, currency) => wrapHTML('LEGAL COMPLIANCE', 'Regulatory Guidelines', `
+  'legal-compliance': (org, _proj, date, _amount, _currency) => wrapHTML('LEGAL COMPLIANCE', 'Regulatory Guidelines', `
     <div class="text-box"><strong>Company:</strong> ATMA SOLUTIONS<br><strong>Prepared for:</strong> ${org}<br><strong>Date:</strong> ${date}</div>
     <div class="section-title">1. Data Protection</div><p>We adhere to applicable data protection laws, ensuring secure handling of sensitive information.</p>
     <div class="section-title">2. Anti-Bribery</div><p>ATMA SOLUTIONS maintains a strict zero-tolerance policy towards bribery and corruption.</p>

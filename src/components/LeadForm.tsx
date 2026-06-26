@@ -1,25 +1,22 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function LeadForm() {
-  const [utm, setUtm] = useState({ source: '', medium: '', campaign: '' });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    const qs = new URLSearchParams(window.location.search);
-    setUtm({
-      source: qs.get('utm_source') ?? '',
-      medium: qs.get('utm_medium') ?? '',
-      campaign: qs.get('utm_campaign') ?? '',
-    });
-  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     const data = new FormData(e.currentTarget);
+    const qs = new URLSearchParams(window.location.search);
+    const utm = {
+      source: qs.get('utm_source') ?? '',
+      medium: qs.get('utm_medium') ?? '',
+      campaign: qs.get('utm_campaign') ?? '',
+    };
+
     const payload = {
       email: data.get('email'),
       name: data.get('name'),
