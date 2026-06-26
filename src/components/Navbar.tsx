@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import { Menu, X, ChevronDown, PenLine, FileText, BookOpen } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
@@ -26,24 +27,37 @@ export default function Navbar() {
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
   const t = useTranslations("Navigation");
+  const locale = useLocale();
+
+  const isDev = process.env.NODE_ENV === "development";
+
+  const getSubdomainUrl = (subdomain: string, internalPath: string) => {
+    if (isDev) return `/${locale}${internalPath}`;
+    return `https://${subdomain}/${locale}`;
+  };
+
+  const getMainUrl = (path: string) => {
+    if (isDev) return `/${locale}${path}`;
+    return `https://atma-ai.co.in/${locale}${path === '/' ? '' : path}`;
+  };
 
   const navLinks = [
-    { name: t("home"), href: "/" },
-    { name: t("about"), href: "/about" },
-    { name: t("services"), href: "/services" },
-    { name: t("research"), href: "/research" },
-    { name: t("portfolio"), href: "/portfolio" },
+    { name: t("home"), href: getMainUrl("/"), activePath: "/" },
+    { name: t("about"), href: getMainUrl("/about"), activePath: "/about" },
+    { name: t("services"), href: getMainUrl("/services"), activePath: "/services" },
+    { name: t("research"), href: getMainUrl("/research"), activePath: "/research" },
+    { name: t("portfolio"), href: getMainUrl("/portfolio"), activePath: "/portfolio" },
   ];
 
   const insightsLinks = [
-    { name: "Blog", href: "/blog", icon: PenLine, color: "text-accent" },
-    { name: "Articles", href: "/articles", icon: FileText, color: "text-[#F59E0B]" },
-    { name: "Whitepapers", href: "/whitepapers", icon: BookOpen, color: "text-[#10B981]" },
+    { name: "Blog", href: getSubdomainUrl("blog.atma-ai.co.in", "/blog"), activePath: "/blog", icon: PenLine, color: "text-accent" },
+    { name: "Articles", href: getSubdomainUrl("articles.atma-ai.co.in", "/articles"), activePath: "/articles", icon: FileText, color: "text-[#F59E0B]" },
+    { name: "Whitepapers", href: getSubdomainUrl("whitepaper.atma-ai.co.in", "/whitepapers"), activePath: "/whitepapers", icon: BookOpen, color: "text-[#10B981]" },
   ];
 
   const isInsightsActive = ["/blog", "/articles", "/whitepapers"].some(p => pathname.startsWith(p));
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav
@@ -86,11 +100,11 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link 
+              <a 
                 key={link.name} 
                 href={link.href}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg group ${
-                  isActive(link.href)
+                  isActive(link.activePath)
                     ? "text-accent"
                     : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                 }`}
@@ -99,10 +113,10 @@ export default function Navbar() {
                 {/* Active/Hover Indicator */}
                 <span 
                   className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full transition-all duration-300 ${
-                    isActive(link.href) ? "w-[20px] bg-accent" : "w-0 bg-foreground/30 group-hover:w-[20px]"
+                    isActive(link.activePath) ? "w-[20px] bg-accent" : "w-0 bg-foreground/30 group-hover:w-[20px]"
                   }`} 
                 />
-              </Link>
+              </a>
             ))}
             {/* Insights Dropdown */}
             <div className="relative" ref={insightsRef} onMouseEnter={() => setInsightsOpen(true)} onMouseLeave={() => setInsightsOpen(false)}>
@@ -128,18 +142,18 @@ export default function Navbar() {
               >
                 <div className="bg-primary-dark/95 backdrop-blur-xl rounded-xl border border-border shadow-xl shadow-black/20 p-2 min-w-[200px]">
                   {insightsLinks.map((item) => (
-                    <Link
+                    <a
                       key={item.name}
                       href={item.href}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                        pathname.startsWith(item.href)
+                        pathname.startsWith(item.activePath)
                           ? `${item.color} bg-foreground/5`
                           : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                       }`}
                     >
                       <item.icon className={`h-4 w-4 ${item.color}`} />
                       {item.name}
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -194,7 +208,7 @@ export default function Navbar() {
       >
         <div className="px-4 py-6 space-y-2">
           {navLinks.map((link, i) => (
-            <Link
+            <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
@@ -202,19 +216,19 @@ export default function Navbar() {
               className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
                 isOpen ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               } ${
-                isActive(link.href)
+                isActive(link.activePath)
                   ? "text-accent bg-accent/10 border border-accent/20"
                   : "text-foreground/80 hover:text-accent hover:bg-foreground/5 border border-transparent"
               }`}
             >
               {link.name}
-            </Link>
+            </a>
           ))}
           {/* Mobile Insights Section */}
           <div className="h-px w-full bg-border my-2" />
           <p className="px-4 pt-2 pb-1 text-[10px] tracking-[0.2em] text-muted uppercase font-mono">Insights</p>
           {insightsLinks.map((item, i) => (
-            <Link
+            <a
               key={item.name}
               href={item.href}
               onClick={() => setIsOpen(false)}
@@ -222,14 +236,14 @@ export default function Navbar() {
               className={`flex items-center gap-3 px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
                 isOpen ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               } ${
-                pathname.startsWith(item.href)
+                pathname.startsWith(item.activePath)
                   ? `${item.color} bg-foreground/5 border border-foreground/10`
                   : "text-foreground/80 hover:text-foreground hover:bg-foreground/5 border border-transparent"
               }`}
             >
               <item.icon className={`h-4 w-4 ${item.color}`} />
               {item.name}
-            </Link>
+            </a>
           ))}
           <div className="h-px w-full bg-border my-2" />
           <Link

@@ -2,9 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useLocale } from "next-intl";
 import { Mail, MapPin, ArrowUpRight, ArrowUp } from "lucide-react";
 
 export default function Footer() {
+  const locale = useLocale();
+  const isDev = process.env.NODE_ENV === "development";
+
+  const getSubdomainUrl = (subdomain: string, internalPath: string) => {
+    if (isDev) return `/${locale}${internalPath}`;
+    return `https://${subdomain}/${locale}`;
+  };
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -84,15 +92,15 @@ export default function Footer() {
             <p className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider mb-5">Knowledge Hub</p>
             <ul className="space-y-3">
               {[
-                { name: "Blog", href: "/blog" },
-                { name: "Articles", href: "/articles" },
-                { name: "Whitepapers", href: "/whitepapers" },
+                { name: "Blog", href: getSubdomainUrl("blog.atma-ai.co.in", "/blog") },
+                { name: "Articles", href: getSubdomainUrl("articles.atma-ai.co.in", "/articles") },
+                { name: "Whitepapers", href: getSubdomainUrl("whitepaper.atma-ai.co.in", "/whitepapers") },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">
+                  <a href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">
                     {item.name}
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
