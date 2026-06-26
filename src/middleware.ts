@@ -12,9 +12,19 @@ const subdomainMap: Record<string, string> = {
 // next-intl middleware for locale handling
 const intlMiddleware = createMiddleware(routing);
 
-export default function proxy(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   const hostname = request.headers.get("host") || "";
   const url = request.nextUrl.clone();
+
+  // Enforce HTTPS
+  const protocol = request.headers.get("x-forwarded-proto") || request.nextUrl.protocol;
+  if (protocol === "http" || protocol === "http:") {
+    // Only redirect in production environments (like Vercel) where host doesn't include localhost
+    if (!hostname.includes("localhost")) {
+      url.protocol = "https:";
+      return NextResponse.redirect(url, 301);
+    }
+  }
 
   // Extract subdomain: "blog.atma-ai.co.in" → "blog"
   let subdomain: string | null = null;
