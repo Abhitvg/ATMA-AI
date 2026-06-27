@@ -432,7 +432,7 @@ function CTASection() {
   return (
     <section className="py-28 relative overflow-hidden bg-noise optimize-render">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[600px] rounded-full bg-accent/10 blur-[200px] animate-pulse-glow" />
+        <div className="w-[800px] h-[800px] rounded-full radial-orb animate-pulse-glow" />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">

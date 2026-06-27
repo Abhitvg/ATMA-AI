@@ -14,14 +14,14 @@ export default function Hero() {
       {/* 3D Network Background — deferred, desktop only */}
       <DeferredNetworkBackground />
 
-      {/* CSS-only floating orbs */}
-      <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] rounded-full bg-accent/8 blur-[160px] animate-float" />
+      {/* CSS-only floating orbs (Optimized with radial gradients instead of heavy blurs) */}
+      <div className="absolute top-[10%] left-[5%] w-[800px] h-[800px] rounded-full radial-orb animate-float" />
       <div
-        className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[180px] animate-float"
+        className="absolute bottom-[5%] right-[10%] w-[900px] h-[900px] rounded-full radial-orb-blue animate-float"
         style={{ animationDelay: "2s" }}
       />
       <div
-        className="absolute top-[50%] left-[50%] w-[300px] h-[300px] rounded-full bg-purple-500/5 blur-[120px] animate-float"
+        className="absolute top-[50%] left-[50%] w-[500px] h-[500px] rounded-full radial-orb-purple animate-float"
         style={{ animationDelay: "4s" }}
       />
 
@@ -41,7 +41,7 @@ export default function Hero() {
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.1] mb-8 text-primary-light">
               Engineering Intelligence for{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-blue-400 to-accent animate-gradient text-glow">
+              <span className="text-accent lg:text-transparent lg:bg-clip-text lg:bg-gradient-to-r from-accent via-blue-400 to-accent lg:animate-gradient text-glow">
                 Enterprise Scale
               </span>
             </h1>

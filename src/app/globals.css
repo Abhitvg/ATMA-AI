@@ -215,6 +215,18 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
 }
 
+/* ======= HIGH-PERFORMANCE ORBS (Replaces heavy blurs) ======= */
+
+.radial-orb {
+  background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 60%);
+}
+.radial-orb-blue {
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+}
+.radial-orb-purple {
+  background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+}
+
 /* ======= GRID BACKGROUND ======= */
 
 .bg-grid {
