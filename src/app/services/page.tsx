@@ -150,7 +150,7 @@ function ServiceCard({ service, index }: { service: ServiceItem; index: number }
         </ul>
         {service.href && (
           <div className="mt-auto pt-4 border-t border-border/50">
-            <Link href={`/en/services/${service.href}`} className="inline-flex items-center gap-2 text-primary-light hover:text-primary transition-colors text-sm font-semibold group/link">
+            <Link href={`/services/${service.href}`} className="inline-flex items-center gap-2 text-primary-light hover:text-primary transition-colors text-sm font-semibold group/link">
               Explore Enterprise LLM Services <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -189,7 +189,7 @@ export default function Services() {
                           "itemOffered": {
                             "@type": "Service",
                             "name": "Custom LLM Deployment",
-                            "url": "https://atma-ai.co.in/en/services/enterprise-llm-deployment"
+                            "url": "https://atma-ai.co.in/services/enterprise-llm-deployment"
                           }
                         }
                       ]

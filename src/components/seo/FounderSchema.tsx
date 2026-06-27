@@ -32,7 +32,7 @@ export default function FounderSchema({
   image,
   worksFor = { name: "ATMA Consultancy Services", url: "https://atma-ai.co.in" },
 }: FounderSchemaProps) {
-  const founderUrl = `https://atma-ai.co.in/en/founders/${slug}`;
+  const founderUrl = `https://atma-ai.co.in/founders/${slug}`;
 
   const personSchema = {
     "@context": "https://schema.org",
@@ -106,7 +106,7 @@ export default function FounderSchema({
           "@type": "ListItem",
           position: 2,
           name: "About",
-          item: "https://atma-ai.co.in/en/about",
+          item: "https://atma-ai.co.in/about",
         },
         {
           "@type": "ListItem",

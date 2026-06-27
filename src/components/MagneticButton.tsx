@@ -1,18 +1,17 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState, type ReactNode, type MouseEvent } from "react";
 
 export default function MagneticButton({
   children,
   className = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const bounds = useRef<{ width: number; height: number; left: number; top: number } | null>(null);
+  const bounds = useRef<DOMRect | null>(null);
 
   const handleMouseEnter = () => {
     if (ref.current) {
@@ -20,7 +19,7 @@ export default function MagneticButton({
     }
   };
 
-  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouse = (e: MouseEvent<HTMLDivElement>) => {
     if (!bounds.current) return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = bounds.current;
@@ -34,19 +33,19 @@ export default function MagneticButton({
     bounds.current = null;
   };
 
-  const { x, y } = position;
-
   return (
-    <motion.div
+    <div
       className={`relative inline-block ${className}`}
       ref={ref}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      animate={{ x, y }}
-      transition={{ type: "spring", stiffness: 350, damping: 15, mass: 0.5 }}
+      style={{
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        transition: "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

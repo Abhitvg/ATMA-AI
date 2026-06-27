@@ -21,8 +21,8 @@ export default function ArticleSchema({
   slug,
   imageUrl = "https://atma-ai.co.in/logos/atma-logo.svg",
 }: ArticleSchemaProps) {
-  const articleUrl = `https://atma-ai.co.in/en/research/${slug}`;
-  const authorUrl = `https://atma-ai.co.in/en/founders/${authorSlug}`;
+  const articleUrl = `https://atma-ai.co.in/research/${slug}`;
+  const authorUrl = `https://atma-ai.co.in/founders/${authorSlug}`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -64,7 +64,7 @@ export default function ArticleSchema({
     isPartOf: {
       "@type": "Blog",
       name: "ATMA Research Publications",
-      url: "https://atma-ai.co.in/en/research",
+      url: "https://atma-ai.co.in/research",
     },
     about: [
       { "@type": "Thing", name: "Neuro-Symbolic AI" },
@@ -100,7 +100,7 @@ export default function ArticleSchema({
         "@type": "ListItem",
         position: 2,
         name: "Research",
-        item: "https://atma-ai.co.in/en/research",
+        item: "https://atma-ai.co.in/research",
       },
       {
         "@type": "ListItem",

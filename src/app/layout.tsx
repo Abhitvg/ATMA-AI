@@ -4,7 +4,6 @@ import { Inter, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import ScrollProgress from "@/components/ScrollProgress";
-import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,7 +16,7 @@ const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["600", "700", "800"],
 });
 
 export const viewport: Viewport = {
@@ -89,10 +88,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     alternates: {
-      languages: {
-        'en': 'https://atma-ai.co.in',
-        'hi': 'https://atma-ai.co.in/hi',
-      },
+      canonical: 'https://atma-ai.co.in',
     },
     category: "technology",
     manifest: "/manifest.json",
@@ -118,6 +114,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -233,25 +231,6 @@ export default function RootLayout({
                 "query-input": "required name=search_term_string",
               },
             }),
-          }}
-        />
-        {/* Matomo tracking code */}
-        <Script
-          id="matomo"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              var _paq = window._paq = window._paq || [];
-              _paq.push(['trackPageView']);
-              _paq.push(['enableLinkTracking']);
-              (function() {
-                var u="//matomo.yourdomain.com/"; // UPDATE THIS with your Matomo domain when deployed
-                _paq.push(['setTrackerUrl', u+'matomo.php']);
-                _paq.push(['setSiteId', '1']); // UPDATE THIS with your site ID
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-              })();
-            `,
           }}
         />
       </head>

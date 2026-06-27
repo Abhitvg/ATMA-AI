@@ -26,16 +26,16 @@ export default function AdminLayout({
             </div>
             
             <nav className="flex flex-wrap gap-2">
-              <Link href="/en/admin" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
+              <Link href="/admin" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
                 Dashboard
               </Link>
-              <Link href="/en/admin/leads" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
+              <Link href="/admin/leads" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
                 Leads
               </Link>
-              <Link href="/en/admin/assets" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
+              <Link href="/admin/assets" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
                 Assets
               </Link>
-              <Link href="/en/admin/documents" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
+              <Link href="/admin/documents" className="px-4 py-2 bg-surface hover:bg-accent/10 rounded-lg text-sm font-medium transition-colors border border-white/10 hover:border-accent/30 text-white">
                 Documents
               </Link>
             </nav>

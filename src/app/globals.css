@@ -413,3 +413,8 @@ section {
   }
 }
 
+/* Scroll Progress Bar (CSS scroll-driven animation) */
+@keyframes scroll-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}

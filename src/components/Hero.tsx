@@ -1,136 +1,128 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Zap, Shield } from "lucide-react";
-import dynamic from "next/dynamic";
+import { DeferredNetworkBackground, StatCounter } from "./HeroClientIslands";
 
-const NetworkBackground = dynamic(() => import("@/components/NetworkBackground").then(mod => mod.NetworkBackground), {
-  ssr: false,
-});
-
-function StatCounter({ target, suffix = "", isFloat = false }: { target: number, suffix?: string, isFloat?: boolean }) {
-  const [count, setCount] = useState(0);
-  
-  useEffect(() => {
-    let startTime: number;
-    const duration = 2000;
-    
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const progress = Math.min((time - startTime) / duration, 1);
-      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setCount(target * ease);
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-    
-    requestAnimationFrame(animate);
-  }, [target]);
-  
-  const displayValue = isFloat ? count.toFixed(1) : Math.floor(count);
-  return <>{displayValue}{suffix}</>;
-}
+const stats = [
+  { target: 50, suffix: "+", isFloat: false, label: "Projects Delivered" },
+  { target: 99.9, suffix: "%", isFloat: true, label: "Uptime SLA" },
+  { target: 4, suffix: "", isFloat: false, label: "IIT/JNU Founders" },
+];
 
 export default function Hero() {
-
-  const stats = [
-    { target: 50, suffix: "+", isFloat: false, label: "Projects Delivered" },
-    { target: 99.9, suffix: "%", isFloat: true, label: "Uptime SLA" },
-    { target: 4, suffix: "", isFloat: false, label: "IIT/JNU Founders" },
-  ];
-
   return (
     <div className="relative overflow-hidden bg-primary-dark min-h-screen flex items-center bg-noise shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]">
-      {/* 3D Network Background */}
-      <NetworkBackground />
+      {/* 3D Network Background — deferred, desktop only */}
+      <DeferredNetworkBackground />
 
-      {/* CSS-only floating orbs (no JS animation) */}
+      {/* CSS-only floating orbs */}
       <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] rounded-full bg-accent/8 blur-[160px] animate-float" />
-      <div className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[180px] animate-float" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-[50%] left-[50%] w-[300px] h-[300px] rounded-full bg-purple-500/5 blur-[120px] animate-float" style={{ animationDelay: "4s" }} />
+      <div
+        className="absolute bottom-[5%] right-[10%] w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[180px] animate-float"
+        style={{ animationDelay: "2s" }}
+      />
+      <div
+        className="absolute top-[50%] left-[50%] w-[300px] h-[300px] rounded-full bg-purple-500/5 blur-[120px] animate-float"
+        style={{ animationDelay: "4s" }}
+      />
 
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-grid opacity-50" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-32 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Left content — CSS animation only */}
-            <div>
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>Next-Gen Enterprise Architecture</span>
-              </div>
-              
-              {/* Headline */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.1] mb-8 text-primary-light">
-                Engineering Intelligence for{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-blue-400 to-accent animate-gradient text-glow">
-                  Enterprise Scale
-                </span>
-              </h1>
-              
-              {/* Sub-headline */}
-              <p className="text-lg md:text-xl text-muted leading-relaxed max-w-xl mb-10">
-                Founded by IIT Delhi & JNU alumni, we deploy secure LLM infrastructure, neuro-symbolic AI, and robust data pipelines for global businesses.
-              </p>
-              
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-16">
-                <Link 
-                  href="/services" 
-                  className="group inline-flex justify-center items-center gap-2 bg-accent text-primary-dark px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-[1.03] active:scale-[0.98]"
-                >
-                  Explore Services
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-                
-                <Link 
-                  href="/research" 
-                  className="inline-flex justify-center items-center gap-2 border border-foreground/15 text-foreground/90 px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:border-accent/40 hover:text-accent hover:bg-accent/5"
-                >
-                  View Research
-                </Link>
-              </div>
+          {/* Left content */}
+          <div>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>Next-Gen Enterprise Architecture</span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.1] mb-8 text-primary-light">
+              Engineering Intelligence for{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-blue-400 to-accent animate-gradient text-glow">
+                Enterprise Scale
+              </span>
+            </h1>
+
+            {/* Sub-headline */}
+            <p className="text-lg md:text-xl text-muted leading-relaxed max-w-xl mb-10">
+              Founded by IIT Delhi &amp; JNU alumni, we deploy secure LLM
+              infrastructure, neuro-symbolic AI, and robust data pipelines for
+              global businesses.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-16">
+              <Link
+                href="/services"
+                className="group inline-flex justify-center items-center gap-2 bg-accent text-primary-dark px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-[1.03] active:scale-[0.98]"
+              >
+                Explore Services
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/research"
+                className="inline-flex justify-center items-center gap-2 border border-foreground/15 text-foreground/90 px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:border-accent/40 hover:text-accent hover:bg-accent/5"
+              >
+                View Research
+              </Link>
+            </div>
 
             {/* Stats strip */}
             <div className="flex gap-8 md:gap-12">
               {stats.map((stat, i) => (
                 <div key={i} className="relative">
                   <p className="text-3xl md:text-4xl font-bold font-heading text-accent text-glow">
-                    <StatCounter target={stat.target} suffix={stat.suffix} isFloat={stat.isFloat} />
+                    <StatCounter
+                      target={stat.target}
+                      suffix={stat.suffix}
+                      isFloat={stat.isFloat}
+                    />
                   </p>
-                  <p className="text-xs md:text-sm text-muted mt-1 tracking-wide">{stat.label}</p>
+                  <p className="text-xs md:text-sm text-muted mt-1 tracking-wide">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right — Terminal mockup (CSS only, no framer-motion) */}
+          {/* Right — Terminal mockup */}
           <div className="hidden lg:block relative hero-terminal">
             <div className="relative h-[480px] w-full rounded-2xl glass-card overflow-hidden glow-accent gradient-border-hover">
               <TerminalCode />
             </div>
-            
+
             {/* Floating badges */}
-            <div className="absolute -top-4 -right-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float" style={{ animationDuration: "4s" }}>
+            <div
+              className="absolute -top-4 -right-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float"
+              style={{ animationDuration: "4s" }}
+            >
               <Zap className="h-5 w-5 text-yellow-400" />
               <div>
-                <p className="text-xs font-semibold text-foreground">Lightning Fast</p>
+                <p className="text-xs font-semibold text-foreground">
+                  Lightning Fast
+                </p>
                 <p className="text-[10px] text-muted">Sub-100ms Response</p>
               </div>
             </div>
 
-            <div className="absolute -bottom-4 -left-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float" style={{ animationDuration: "5s", animationDelay: "1s" }}>
+            <div
+              className="absolute -bottom-4 -left-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float"
+              style={{ animationDuration: "5s", animationDelay: "1s" }}
+            >
               <Shield className="h-5 w-5 text-green-400" />
               <div>
-                <p className="text-xs font-semibold text-foreground">Zero Trust</p>
+                <p className="text-xs font-semibold text-foreground">
+                  Zero Trust
+                </p>
                 <p className="text-[10px] text-muted">Enterprise Security</p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -140,7 +132,7 @@ export default function Hero() {
   );
 }
 
-/* Lightweight terminal — CSS animation only, no framer-motion */
+/* Lightweight terminal — CSS animation only */
 function TerminalCode() {
   return (
     <div className="relative h-full w-full bg-[#060F1C]/80 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,229,255,0.02)_2px,rgba(0,229,255,0.02)_4px)]">
@@ -149,7 +141,9 @@ function TerminalCode() {
         <div className="w-3 h-3 rounded-full bg-red-400/80 shadow-[0_0_5px_rgba(248,113,113,0.5)]" />
         <div className="w-3 h-3 rounded-full bg-yellow-400/80 shadow-[0_0_5px_rgba(250,204,21,0.5)]" />
         <div className="w-3 h-3 rounded-full bg-green-400/80 shadow-[0_0_5px_rgba(74,222,128,0.5)]" />
-        <span className="ml-4 text-xs font-mono text-muted/60">atma_deploy.ts</span>
+        <span className="ml-4 text-xs font-mono text-muted/60">
+          atma_deploy.ts
+        </span>
       </div>
 
       {/* Code Content — pure CSS stagger */}
@@ -165,28 +159,40 @@ function TerminalCode() {
           <span className="text-foreground/40">{"({"}</span>
         </div>
 
-        <div className="terminal-line ml-6 mt-1" style={{ animationDelay: "0.7s" }}>
+        <div
+          className="terminal-line ml-6 mt-1"
+          style={{ animationDelay: "0.7s" }}
+        >
           <span className="text-blue-300">model</span>
           <span className="text-foreground/40">: </span>
           <span className="text-accent">&quot;enterprise_llm&quot;</span>
           <span className="text-foreground/40">,</span>
         </div>
 
-        <div className="terminal-line ml-6 mt-1" style={{ animationDelay: "1.1s" }}>
+        <div
+          className="terminal-line ml-6 mt-1"
+          style={{ animationDelay: "1.1s" }}
+        >
           <span className="text-blue-300">scale</span>
           <span className="text-foreground/40">: </span>
           <span className="text-accent">&quot;auto&quot;</span>
           <span className="text-foreground/40">,</span>
         </div>
 
-        <div className="terminal-line ml-6 mt-1" style={{ animationDelay: "1.5s" }}>
+        <div
+          className="terminal-line ml-6 mt-1"
+          style={{ animationDelay: "1.5s" }}
+        >
           <span className="text-blue-300">security</span>
           <span className="text-foreground/40">: </span>
           <span className="text-accent">&quot;zero_trust&quot;</span>
           <span className="text-foreground/40">,</span>
         </div>
 
-        <div className="terminal-line ml-6 mt-1" style={{ animationDelay: "1.9s" }}>
+        <div
+          className="terminal-line ml-6 mt-1"
+          style={{ animationDelay: "1.9s" }}
+        >
           <span className="text-blue-300">infrastructure</span>
           <span className="text-foreground/40">: </span>
           <span className="text-accent">&quot;cloud_native&quot;</span>
@@ -203,7 +209,9 @@ function TerminalCode() {
 
         <div className="terminal-line mt-2" style={{ animationDelay: "3.2s" }}>
           <span className="text-green-400">✓</span>{" "}
-          <span className="text-green-400/80">Neural pipeline initialized</span>
+          <span className="text-green-400/80">
+            Neural pipeline initialized
+          </span>
         </div>
 
         <div className="terminal-line mt-1" style={{ animationDelay: "3.6s" }}>
@@ -213,7 +221,9 @@ function TerminalCode() {
 
         <div className="terminal-line mt-1" style={{ animationDelay: "4.0s" }}>
           <span className="text-green-400">✓</span>{" "}
-          <span className="text-green-400/80">System live — 99.99% uptime</span>
+          <span className="text-green-400/80">
+            System live — 99.99% uptime
+          </span>
         </div>
 
         {/* Blinking cursor */}

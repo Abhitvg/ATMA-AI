@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -7,9 +5,7 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import MagneticButton from "@/components/MagneticButton";
-import dynamic from "next/dynamic";
-
-const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
+import ClientShell from "@/components/ClientShell";
 import {
   Brain,
   Server,
@@ -20,7 +16,6 @@ import {
   GraduationCap,
   ArrowRight,
   ExternalLink,
-
   Globe,
   Users,
   Lightbulb,
@@ -33,39 +28,45 @@ const services = [
   {
     icon: Brain,
     title: "AI & GenAI Solutions",
-    description: "Custom LLM deployment, RAG pipelines, and autonomous agents built for your enterprise data.",
+    description:
+      "Custom LLM deployment, RAG pipelines, and autonomous agents built for your enterprise data.",
     color: "from-cyan-400 to-blue-500",
     href: "services",
   },
   {
     icon: BarChart3,
     title: "Data Science & Analytics",
-    description: "Transform raw data into strategic foresight with predictive models and real-time dashboards.",
+    description:
+      "Transform raw data into strategic foresight with predictive models and real-time dashboards.",
     color: "from-purple-400 to-pink-500",
     href: "services/predictive-analytics",
   },
   {
     icon: Server,
     title: "Enterprise Architecture",
-    description: "High-performance, scalable systems designed for millions of users and zero downtime.",
+    description:
+      "High-performance, scalable systems designed for millions of users and zero downtime.",
     color: "from-green-400 to-emerald-500",
   },
   {
     icon: Cloud,
     title: "Cloud Infrastructure",
-    description: "Cloud-native migrations and DevOps pipelines that cut costs and accelerate deployment.",
+    description:
+      "Cloud-native migrations and DevOps pipelines that cut costs and accelerate deployment.",
     color: "from-orange-400 to-red-500",
   },
   {
     icon: Code2,
     title: "Full-Stack Development",
-    description: "End-to-end web and mobile applications using modern frameworks like Next.js, React, and Node.",
+    description:
+      "End-to-end web and mobile applications using modern frameworks like Next.js, React, and Node.",
     color: "from-blue-400 to-indigo-500",
   },
   {
     icon: Shield,
     title: "Cybersecurity Consulting",
-    description: "Zero-trust architecture, penetration testing, and compliance-first security implementations.",
+    description:
+      "Zero-trust architecture, penetration testing, and compliance-first security implementations.",
     color: "from-yellow-400 to-amber-500",
   },
 ];
@@ -106,56 +107,48 @@ const portfolio = [
     title: "India Eurasia Research Forum",
     category: "Institutional Platform",
     url: "https://indiaeurasia.org/",
-    type: "web",
     logo: "/logos/ierf.webp",
   },
   {
     title: "IPO Mehta Mural",
     category: "Cultural Showcase",
     url: "https://ipomehta-mural.com/",
-    type: "web",
     logo: "/logos/israel-embassy.webp",
   },
   {
     title: "JNU Alumni Association",
     category: "Institutional Network",
     url: "https://www.jnualumniassociation.com/",
-    type: "web",
     logo: "/logos/jnu-alumni.webp",
   },
   {
     title: "Doon Silk",
     category: "E-Commerce",
     url: "https://doonsilk.com/",
-    type: "web",
     logo: "/logos/doonsilk.webp",
   },
   {
     title: "UKCDP",
     category: "Enterprise Platform",
     url: "https://www.ukcdp.com/",
-    type: "web",
     logo: "/logos/ukcdp.webp",
   },
   {
     title: "Himalayan Goat Meat",
     category: "E-Commerce Store",
     url: "https://shop.himalayangoatmeat.com/",
-    type: "web",
     logo: "/logos/himalayan-goat.webp",
   },
   {
     title: "NCERT Digital Platform",
     category: "EdTech / Education",
     url: "https://ncert-ruby.vercel.app/explore",
-    type: "web",
     logo: "/logos/ncert.svg",
   },
   {
     title: "Uttarakhand Cooperative Society",
     category: "Civic Tech Platform",
     url: "https://uk-coop-main.vercel.app/",
-    type: "web",
     logo: "/logos/uttarakhand.webp",
   },
 ];
@@ -164,23 +157,38 @@ const values = [
   {
     icon: GraduationCap,
     title: "Academic Rigor",
-    description: "Rooted in IIT and JNU research methodology. We understand the math behind the models.",
+    description:
+      "Rooted in IIT and JNU research methodology. We understand the math behind the models.",
   },
   {
     icon: Target,
     title: "Precision Engineering",
-    description: "Every system we build is tested, benchmarked, and optimized for peak performance.",
+    description:
+      "Every system we build is tested, benchmarked, and optimized for peak performance.",
   },
   {
     icon: Lightbulb,
     title: "Innovation First",
-    description: "We stay ahead of the curve — deploying cutting-edge tech before it becomes mainstream.",
+    description:
+      "We stay ahead of the curve — deploying cutting-edge tech before it becomes mainstream.",
   },
   {
     icon: Users,
     title: "Client Partnership",
-    description: "We don't just deliver projects. We become your long-term technology partners.",
+    description:
+      "We don't just deliver projects. We become your long-term technology partners.",
   },
+];
+
+const clientLogos = [
+  { src: "/logos/ierf.webp", alt: "India Eurasia Research Forum" },
+  { src: "/logos/israel-embassy.webp", alt: "Embassy of Israel" },
+  { src: "/logos/jnu-alumni.webp", alt: "JNU Alumni Association" },
+  { src: "/logos/ukcdp.webp", alt: "UKCDP" },
+  { src: "/logos/himalayan-goat.webp", alt: "Himalayan Goat Meat" },
+  { src: "/logos/doonsilk.webp", alt: "Doon Silk" },
+  { src: "/logos/ncert.svg", alt: "NCERT" },
+  { src: "/logos/uttarakhand.webp", alt: "Uttarakhand Government" },
 ];
 
 /* ====== COMPONENTS ====== */
@@ -191,12 +199,20 @@ function ServicesSection() {
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">What We Do</p>
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+            What We Do
+          </p>
           <h2 className="text-fluid-h2 font-bold font-heading mb-5 text-primary-light">
-            ATMA-AI: Your Partner in <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">AI Consulting</span>
+            ATMA-AI: Your Partner in{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
+              AI Consulting
+            </span>
           </h2>
           <p className="text-fluid-p text-muted leading-relaxed">
-            ATMA-AI is an elite AI consulting firm delivering end-to-end solutions. From custom LLM deployment and predictive analytics to enterprise architecture — our services cover the full spectrum of enterprise technology.
+            ATMA-AI is an elite AI consulting firm delivering end-to-end
+            solutions. From custom LLM deployment and predictive analytics to
+            enterprise architecture — our services cover the full spectrum of
+            enterprise technology.
           </p>
         </AnimatedSection>
 
@@ -204,23 +220,28 @@ function ServicesSection() {
           {services.map((service, i) => {
             const cardContent = (
               <div className="group relative glass-card rounded-2xl p-8 tilt-card gradient-border-hover hover:-translate-y-2 h-full cursor-pointer overflow-hidden">
-                {/* Gradient accent on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-6 shadow-lg group-hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all duration-300`}>
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                />
+
+                <div
+                  className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-6 shadow-lg group-hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all duration-300`}
+                >
                   <service.icon className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-xl font-bold font-heading text-primary-light mb-3 group-hover:text-accent transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-muted text-sm leading-relaxed">{service.description}</p>
+                <p className="text-muted text-sm leading-relaxed">
+                  {service.description}
+                </p>
               </div>
             );
 
             return (
               <AnimatedSection key={i} delay={i * 0.08} variant="slide-up">
                 {service.href ? (
-                  <Link href={`/en/${service.href}`} className="block h-full">
+                  <Link href={`/${service.href}`} className="block h-full">
                     {cardContent}
                   </Link>
                 ) : (
@@ -239,17 +260,22 @@ function FoundersSection() {
   return (
     <section className="py-28 relative bg-primary-deeper">
       <div className="absolute inset-0 bg-grid opacity-20" />
-      {/* Top gradient line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Leadership</p>
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+            Leadership
+          </p>
           <h2 className="text-fluid-h2 font-bold font-heading mb-5 text-primary-light">
-            Built by India&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Best Minds</span>
+            Built by India&apos;s{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
+              Best Minds
+            </span>
           </h2>
           <p className="text-fluid-p text-muted leading-relaxed">
-            Our founding team brings elite academic training from IIT and JNU, combined with deep industry experience.
+            Our founding team brings elite academic training from IIT and JNU,
+            combined with deep industry experience.
           </p>
         </AnimatedSection>
 
@@ -257,21 +283,27 @@ function FoundersSection() {
           {founders.map((founder, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
               <div className="group relative glass-card rounded-2xl p-8 text-center transition-all duration-500 tilt-card gradient-border-hover hover:-translate-y-2">
-                {/* Photo */}
                 <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-2 border-accent/30 group-hover:border-accent/80 group-hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all duration-500 relative">
                   <Image
                     src={founder.image}
                     alt={founder.name}
                     fill
                     sizes="96px"
-                    className={`group-hover:scale-110 transition-transform duration-500 ${founder.name === 'Kumar Pratyay' ? 'object-contain p-3 opacity-60' : 'object-cover object-top'}`}
+                    loading="lazy"
+                    className={`group-hover:scale-110 transition-transform duration-500 ${
+                      founder.name === "Kumar Pratyay"
+                        ? "object-contain p-3 opacity-60"
+                        : "object-cover object-top"
+                    }`}
                   />
                 </div>
                 <h3 className="text-xl font-bold font-heading text-primary-light mb-1 relative inline-block">
                   {founder.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-500" />
                 </h3>
-                <p className="text-accent text-sm font-medium mt-2 mb-3">{founder.role}</p>
+                <p className="text-accent text-sm font-medium mt-2 mb-3">
+                  {founder.role}
+                </p>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium mb-4">
                   <GraduationCap className="h-3 w-3" />
                   {founder.institution}
@@ -291,12 +323,18 @@ function PortfolioSection() {
     <section className="py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Portfolio</p>
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+            Portfolio
+          </p>
           <h2 className="text-fluid-h2 font-bold font-heading mb-5 text-primary-light">
-            Proven <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Track Record</span>
+            Proven{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
+              Track Record
+            </span>
           </h2>
           <p className="text-fluid-p text-muted leading-relaxed">
-            Enterprise sites, e-commerce platforms, institutional networks, and open-source civic tech.
+            Enterprise sites, e-commerce platforms, institutional networks, and
+            open-source civic tech.
           </p>
         </AnimatedSection>
 
@@ -309,14 +347,19 @@ function PortfolioSection() {
                 rel="noopener noreferrer"
                 className="group block glass-card rounded-2xl overflow-hidden tilt-card gradient-border-hover hover:-translate-y-2"
               >
-                {/* Color bar */}
                 <div className="h-1 w-full bg-gradient-to-r from-accent to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-10 h-10 rounded-lg bg-white/90 flex items-center justify-center overflow-hidden p-1">
                       {item.logo ? (
-                        <Image src={item.logo} alt={item.title} width={32} height={32} className="object-contain w-full h-full" />
+                        <Image
+                          src={item.logo}
+                          alt={item.title}
+                          width={32}
+                          height={32}
+                          loading="lazy"
+                          className="object-contain w-full h-full"
+                        />
                       ) : (
                         <Globe className="h-5 w-5 text-primary-dark" />
                       )}
@@ -370,8 +413,12 @@ function ValuesSection() {
                 <div className="inline-flex p-4 rounded-2xl bg-accent/10 border border-accent/20 mb-5 group-hover:bg-accent/20 transition-colors duration-300 shadow-[0_0_0_rgba(0,229,255,0)] group-hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]">
                   <value.icon className="h-7 w-7 text-accent group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-bold font-heading text-primary-light mb-2">{value.title}</h3>
-                <p className="text-muted text-sm leading-relaxed relative z-10">{value.description}</p>
+                <h3 className="text-lg font-bold font-heading text-primary-light mb-2">
+                  {value.title}
+                </h3>
+                <p className="text-muted text-sm leading-relaxed relative z-10">
+                  {value.description}
+                </p>
               </div>
             </AnimatedSection>
           ))}
@@ -384,7 +431,6 @@ function ValuesSection() {
 function CTASection() {
   return (
     <section className="py-28 relative overflow-hidden bg-noise optimize-render">
-      {/* Background glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[600px] h-[600px] rounded-full bg-accent/10 blur-[200px] animate-pulse-glow" />
       </div>
@@ -398,7 +444,8 @@ function CTASection() {
             </span>
           </h2>
           <p className="text-fluid-p text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
-            Let&apos;s discuss how ATMA can engineer the perfect technology solution for your enterprise.
+            Let&apos;s discuss how ATMA can engineer the perfect technology
+            solution for your enterprise.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <MagneticButton>
@@ -425,17 +472,6 @@ function CTASection() {
   );
 }
 
-const clientLogos = [
-  { src: "/logos/ierf.webp", alt: "India Eurasia Research Forum" },
-  { src: "/logos/israel-embassy.webp", alt: "Embassy of Israel" },
-  { src: "/logos/jnu-alumni.webp", alt: "JNU Alumni Association" },
-  { src: "/logos/ukcdp.webp", alt: "UKCDP" },
-  { src: "/logos/himalayan-goat.webp", alt: "Himalayan Goat Meat" },
-  { src: "/logos/doonsilk.webp", alt: "Doon Silk" },
-  { src: "/logos/ncert.svg", alt: "NCERT" },
-  { src: "/logos/uttarakhand.webp", alt: "Uttarakhand Government" },
-];
-
 function TrustedBySection() {
   const marqueeLogos = [...clientLogos, ...clientLogos, ...clientLogos];
   return (
@@ -451,10 +487,9 @@ function TrustedBySection() {
 
       <AnimatedSection>
         <div className="relative w-full overflow-hidden flex items-center group">
-          {/* Gradient masks for smooth fade at edges */}
           <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-primary-deeper to-transparent z-10" />
           <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-primary-deeper to-transparent z-10" />
-          
+
           <div className="animate-marquee flex gap-8 md:gap-12 pl-8">
             {marqueeLogos.map((logo, i) => (
               <div
@@ -466,6 +501,7 @@ function TrustedBySection() {
                   alt={logo.alt}
                   width={80}
                   height={80}
+                  loading="lazy"
                   className="object-contain w-full h-full"
                 />
               </div>
@@ -481,10 +517,10 @@ function TrustedBySection() {
 
 /* ====== HOME PAGE ====== */
 
-export default function Home() {
+export default function ClientPage() {
   return (
     <>
-      <CustomCursor />
+      <ClientShell />
       <Navbar />
       <main className="flex-grow">
         <Hero />
