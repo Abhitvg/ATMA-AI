@@ -84,7 +84,7 @@ export default function AITechPartnershipsPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href={`/${locale}/contact`}
+              href={`/contact`}
               className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-[#00E5FF] text-primary-deeper px-8 py-4 rounded-full font-bold transition-all w-full sm:w-auto"
             >
               Consult an Architect <ArrowRight className="w-5 h-5" />
@@ -119,7 +119,7 @@ export default function AITechPartnershipsPage() {
                   Read our in-depth research guide: <strong className="text-foreground/90">&quot;How to Find a Long-Term AI Technology Partner for Cloud-Native Infrastructure and Cybersecurity Implementation.&quot;</strong> Learn the specific technical questions you must ask before signing an enterprise contract.
                 </p>
                 <Link
-                  href={`/${locale}/research/finding-long-term-ai-technology-partner`}
+                  href={`/research/finding-long-term-ai-technology-partner`}
                   className="inline-flex items-center gap-2 text-accent font-semibold hover:text-[#00E5FF] transition-colors group"
                 >
                   Read the Full Guide <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

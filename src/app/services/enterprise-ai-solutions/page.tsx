@@ -88,13 +88,13 @@ export default function EnterpriseAISolutionsPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href={`/${locale}/contact`}
+              href={`/contact`}
               className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-[#00E5FF] text-primary-deeper px-8 py-4 rounded-full font-bold transition-all w-full sm:w-auto"
             >
               Consult an Architect <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
-              href={`/${locale}/research/deploying-custom-llm-rag-pipelines-enterprise`}
+              href={`/research/deploying-custom-llm-rag-pipelines-enterprise`}
               className="inline-flex items-center justify-center gap-2 bg-surface hover:bg-surface-light border border-border text-primary-light px-8 py-4 rounded-full font-bold transition-all w-full sm:w-auto"
             >
               <BookOpen className="w-5 h-5" /> Read the Enterprise Guide
@@ -113,7 +113,7 @@ export default function EnterpriseAISolutionsPage() {
                 </div>
                 <h3 className="text-xl font-bold font-heading text-primary-light mb-4">{feature.title}</h3>
                 <p className="text-muted leading-relaxed mb-6 flex-grow">{feature.description}</p>
-                <Link href={`/${locale}${feature.href}`} className="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:text-[#00E5FF] transition-colors">
+                <Link href={`${feature.href}`} className="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:text-[#00E5FF] transition-colors">
                   Explore Service <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -132,7 +132,7 @@ export default function EnterpriseAISolutionsPage() {
                   Read our comprehensive research guide: <strong className="text-foreground/90">&quot;How do I deploy a custom LLM with RAG pipelines into production for my enterprise?&quot;</strong> We dive deep into data vectorization, zero-trust security, and hybrid search architectures.
                 </p>
                 <Link
-                  href={`/${locale}/research/deploying-custom-llm-rag-pipelines-enterprise`}
+                  href={`/research/deploying-custom-llm-rag-pipelines-enterprise`}
                   className="inline-flex items-center gap-2 text-accent font-semibold hover:text-[#00E5FF] transition-colors group"
                 >
                   Read the Full Guide <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -1,8 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getContentPosts } from '@/lib/mdx';
 
-const locales = ['en', 'hi'];
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
@@ -22,19 +20,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Generate static route entries
-  const staticEntries = routes.flatMap(({ path, priority, changeFrequency }) => {
-    const alternates: { languages: Record<string, string> } = { languages: {} };
-    locales.forEach((lang) => {
-      alternates.languages[lang] = `https://atma-ai.co.in/${lang}${path}`;
-    });
-
-    return locales.map((locale) => ({
-      url: `https://atma-ai.co.in/${locale}${path}`,
+  const staticEntries = routes.map(({ path, priority, changeFrequency }) => {
+    return {
+      url: `https://atma-ai.co.in${path}`,
       lastModified: new Date(),
       changeFrequency,
       priority,
-      alternates,
-    }));
+    };
   });
 
   // Generate dynamic content entries
@@ -49,19 +41,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     await Promise.all(
       contentSections.map(async ({ section, basePath }) => {
         const posts = await getContentPosts(section);
-        return posts.flatMap((post) => {
-          const alternates: { languages: Record<string, string> } = { languages: {} };
-          locales.forEach((lang) => {
-            alternates.languages[lang] = `https://atma-ai.co.in/${lang}${basePath}/${post.slug}`;
-          });
-
-          return locales.map((locale) => ({
-            url: `https://atma-ai.co.in/${locale}${basePath}/${post.slug}`,
+        return posts.map((post) => {
+          return {
+            url: `https://atma-ai.co.in${basePath}/${post.slug}`,
             lastModified: new Date(post.date),
             changeFrequency: 'monthly' as const,
             priority: 0.7,
-            alternates,
-          }));
+          };
         });
       })
     )

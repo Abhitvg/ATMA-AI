@@ -108,7 +108,7 @@ export default function RagPipelineDevelopmentPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href={`/${locale}/contact`}
+              href={`/contact`}
               className="inline-flex items-center justify-center gap-2 bg-[#CCFF00] text-primary-dark hover:bg-[#b3ff00] px-8 py-4 rounded-full font-bold transition-all w-full sm:w-auto"
             >
               Start Your RAG Project <ArrowRight className="w-5 h-5" />
