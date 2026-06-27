@@ -3,10 +3,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import ScrollProgress from "@/components/ScrollProgress";
-import "../globals.css";
+import Script from "next/script";
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,18 +26,16 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-import { getTranslations } from "next-intl/server";
-
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'SEO' });
+export async function generateMetadata(): Promise<Metadata> {
+  const title = "ATMA Consultancy Services | Enterprise LLM Deployment";
+  const description = "Top-tier AI consultancy delivering custom enterprise LLM deployment, secure cloud architecture, and neuro-symbolic AI. Based in New Delhi, India.";
 
   return {
     title: {
-      default: t('title'),
+      default: title,
       template: "%s | ATMA Consultancy & Research",
     },
-    description: t('description'),
+    description: description,
     keywords: [
       "ATMA Consultancy",
       "ATMA AI",
@@ -60,11 +57,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     publisher: "ATMA Consultancy Services",
     openGraph: {
       type: "website",
-      locale: locale === 'hi' ? 'hi_IN' : 'en_IN',
+      locale: "en_IN",
       url: "https://atma-ai.co.in",
       siteName: "ATMA Consultancy & Research",
-      title: t('title'),
-      description: t('description'),
+      title: title,
+      description: description,
       images: [
         {
           url: "/logos/atma-logo.png",
@@ -76,8 +73,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: {
       card: "summary_large_image",
-      title: t('title'),
-      description: t('description'),
+      title: title,
+      description: description,
       images: ["/logos/atma-logo.png"],
     },
     robots: {
@@ -109,19 +106,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = await params;
-  const messages = await getMessages();
-
   return (
     <html
-      lang={locale}
+      lang="en"
       className={`${inter.variable} ${outfit.variable} h-full antialiased`}
       suppressHydrationWarning
     >
@@ -244,7 +236,9 @@ export default async function RootLayout({
           }}
         />
         {/* Matomo tracking code */}
-        <script
+        <Script
+          id="matomo"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               var _paq = window._paq = window._paq || [];
@@ -262,19 +256,17 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground overflow-x-hidden">
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ScrollProgress />
-            {children}
-            <Analytics />
-            <SpeedInsights />
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ScrollProgress />
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,23 +1,24 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
 import ClientAbout from "./ClientAbout";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'SEO' });
+export async function generateMetadata() {
+  const title = "About ATMA Consultancy | Enterprise LLM & Neuro-Symbolic AI";
+  const description = "Founded by IIT Delhi & JNU alumni, ATMA Consultancy Services is an elite AI strategy firm in New Delhi specializing in custom LLM deployment, enterprise architecture, and advanced ML pipelines.";
 
   return {
-    title: "About ATMA-AI | AI Consultancy in New Delhi, India",
-    description: "Learn about ATMA Consultancy Services. We are a long-term AI technology partner specializing in custom LLM deployment, cloud-native infrastructure, and zero-trust cybersecurity implementation.",
+    title: title,
+    description: description,
     openGraph: {
-      title: "About ATMA-AI | AI Consultancy in New Delhi, India",
-      description: "Learn about ATMA Consultancy Services. We are a long-term AI technology partner specializing in custom LLM deployment, cloud-native infrastructure, and zero-trust cybersecurity implementation.",
+      title: title,
+      description: description,
+      images: ["/logos/atma-logo.png"],
+    },
+    alternates: {
+      canonical: 'https://atma-ai.co.in/about',
     },
   };
 }
 
-export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+export default function AboutPage() {
 
   return (
     <>

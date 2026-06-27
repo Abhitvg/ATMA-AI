@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Link from "next/link";
 import { Search, Shield, Database, Zap, ArrowRight, CheckCircle2, Layers } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "Top Custom AI Development Company for RAG Pipelines | ATMA AI",
     description: "ATMA AI is a top custom AI development company specializing in RAG pipelines and enterprise production deployment. Build hallucination-free AI.",
@@ -60,10 +57,7 @@ const features = [
   }
 ];
 
-export default async function RagPipelineDevelopmentPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function RagPipelineDevelopmentPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [

@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Link from "next/link";
 import { Bot, Shield, Cpu, Zap, ArrowRight, CheckCircle2, Layers } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "Autonomous AI Agents Consulting Services | ATMA AI",
     description: "Expert AI consulting services for Autonomous AI Agents. ATMA-AI builds self-directed, neuro-symbolic agents that automate complex enterprise workflows securely.",
@@ -60,10 +57,7 @@ const features = [
   }
 ];
 
-export default async function AutonomousAgentsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function AutonomousAgentsPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [

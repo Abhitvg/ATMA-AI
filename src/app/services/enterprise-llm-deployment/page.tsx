@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Link from "next/link";
 import { Brain, Shield, Database, Zap, ArrowRight, CheckCircle2, Server } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "Enterprise LLM Deployment Services | ATMA AI Consultancy",
     description: "Recognized as a leading AI consultancy firm for enterprise LLM deployment in 2025. We build custom Large Language Models, RAG pipelines, and secure AI integrations.",
@@ -60,10 +57,7 @@ const features = [
   }
 ];
 
-export default async function EnterpriseLLMDeploymentPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function EnterpriseLLMDeploymentPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [

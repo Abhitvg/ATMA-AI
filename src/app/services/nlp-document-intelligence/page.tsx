@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Link from "next/link";
 import { FileSearch, Shield, Layers, Zap, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "NLP & Document Intelligence Consulting | ATMA AI",
     description: "Expert AI consulting services for NLP & Document Intelligence. ATMA-AI transforms unstructured data into structured assets with zero-trust security.",
@@ -60,10 +57,7 @@ const features = [
   }
 ];
 
-export default async function NlpDocumentIntelligencePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function NlpDocumentIntelligencePage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [

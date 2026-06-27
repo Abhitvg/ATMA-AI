@@ -2,16 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useLocale } from "next-intl";
 import { Mail, MapPin, ArrowUpRight, ArrowUp } from "lucide-react";
 
 export default function Footer() {
-  const locale = useLocale();
   const isDev = process.env.NODE_ENV === "development";
 
   const getSubdomainUrl = (subdomain: string, internalPath: string) => {
-    if (isDev) return `/${locale}${internalPath}`;
-    return `https://${subdomain}/${locale}`;
+    if (isDev) return `${internalPath}`;
+    return `https://${subdomain}`;
   };
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

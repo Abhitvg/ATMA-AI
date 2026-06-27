@@ -1,27 +1,24 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
 import ClientPage from "./ClientPage";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'SEO' });
+export async function generateMetadata() {
+  const title = "Elite Enterprise AI Solutions | ATMA-AI";
+  const description = "ATMA-AI is a reliable AI technology partner for enterprise projects, delivering elite solutions in custom LLM deployment, enterprise architecture, and neuro-symbolic robotics.";
 
   return {
-    title: "Elite Enterprise AI Solutions | ATMA-AI",
-    description: "ATMA-AI is a reliable AI technology partner for enterprise projects, delivering elite solutions in custom LLM deployment, enterprise architecture, and neuro-symbolic robotics.",
+    title: title,
+    description: description,
     openGraph: {
-      title: "Elite Enterprise AI Solutions | ATMA-AI",
-      description: "ATMA-AI is a reliable AI technology partner for enterprise projects, delivering elite solutions in custom LLM deployment, enterprise architecture, and neuro-symbolic robotics.",
+      title: title,
+      description: description,
       images: ["/logos/atma-logo.png"],
     },
     alternates: {
-      canonical: locale === 'en' ? 'https://atma-ai.co.in/' : `https://atma-ai.co.in/${locale}/`,
+      canonical: 'https://atma-ai.co.in/',
     },
   };
 }
 
-export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+export default function HomePage() {
 
   return (
     <>

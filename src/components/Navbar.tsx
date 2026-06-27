@@ -1,13 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/routing";
-import { useLocale } from "next-intl";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X, ChevronDown, PenLine, FileText, BookOpen } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,27 +24,24 @@ export default function Navbar() {
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
-  const t = useTranslations("Navigation");
-  const locale = useLocale();
-
   const isDev = process.env.NODE_ENV === "development";
 
   const getSubdomainUrl = (subdomain: string, internalPath: string) => {
-    if (isDev) return `/${locale}${internalPath}`;
-    return `https://${subdomain}/${locale}`;
+    if (isDev) return `${internalPath}`;
+    return `https://${subdomain}`;
   };
 
   const getMainUrl = (path: string) => {
-    if (isDev) return `/${locale}${path}`;
-    return `https://atma-ai.co.in/${locale}${path === '/' ? '' : path}`;
+    if (isDev) return `${path}`;
+    return `https://atma-ai.co.in${path === '/' ? '' : path}`;
   };
 
   const navLinks = [
-    { name: t("home"), href: getMainUrl("/"), activePath: "/" },
-    { name: t("about"), href: getMainUrl("/about"), activePath: "/about" },
-    { name: t("services"), href: getMainUrl("/services"), activePath: "/services" },
-    { name: t("research"), href: getMainUrl("/research"), activePath: "/research" },
-    { name: t("portfolio"), href: getMainUrl("/portfolio"), activePath: "/portfolio" },
+    { name: "Home", href: getMainUrl("/"), activePath: "/" },
+    { name: "About", href: getMainUrl("/about"), activePath: "/about" },
+    { name: "Services", href: getMainUrl("/services"), activePath: "/services" },
+    { name: "Research", href: getMainUrl("/research"), activePath: "/research" },
+    { name: "Portfolio", href: getMainUrl("/portfolio"), activePath: "/portfolio" },
   ];
 
   const insightsLinks = [
@@ -169,19 +164,17 @@ export default function Navbar() {
             >
               Client Portal
             </Link>
-            <LanguageSwitcher />
             <ThemeToggle />
             <Link 
               href="/contact"
               className="ml-4 relative overflow-hidden bg-accent text-primary-dark px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:scale-105 active:scale-95 animate-shimmer"
             >
-              {t("contact")}
+              Contact
             </Link>
           </div>
 
           {/* Mobile Toggle & Theme */}
           <div className="md:hidden flex items-center gap-2">
-            <LanguageSwitcher />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -268,7 +261,7 @@ export default function Navbar() {
               isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}
           >
-            {t("contact")}
+            Contact
           </Link>
         </div>
       </div>

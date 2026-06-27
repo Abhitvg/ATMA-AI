@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Link from "next/link";
 import { LineChart, BarChart3, Database, Shield, ArrowRight, Activity, TrendingUp } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "Predictive Analytics Consulting | ATMA AI",
     description: "Expert AI consulting for Predictive Analytics and Data Science. Turn raw data into strategic foresight with ATMA-AI's scalable machine learning solutions.",
@@ -60,10 +57,7 @@ const features = [
   }
 ];
 
-export default async function PredictiveAnalyticsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function PredictiveAnalyticsPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [

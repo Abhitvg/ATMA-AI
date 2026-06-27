@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Link from "next/link";
 import { Brain, Shield, Database, ArrowRight, Server, BookOpen } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "Enterprise AI Solutions | ATMA AI Consultancy",
     description: "Explore ATMA-AI's comprehensive Enterprise AI Solutions. We architect secure, highly reliable custom LLMs and RAG pipelines for production environments.",
@@ -45,10 +42,7 @@ const features = [
   }
 ];
 
-export default async function EnterpriseAISolutionsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function EnterpriseAISolutionsPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [

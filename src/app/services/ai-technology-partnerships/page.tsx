@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Link from "next/link";
 import { Shield, ArrowRight, Lock, Workflow, Cloud, BookOpen } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "AI Technology Partnerships | Cloud-Native & Cybersecurity",
     description: "Looking for a long-term AI technology partner? We architect scalable cloud-native infrastructure and zero-trust cybersecurity for enterprise AI implementations.",
@@ -41,10 +38,7 @@ const pillars = [
   }
 ];
 
-export default async function AITechPartnershipsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function AITechPartnershipsPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [

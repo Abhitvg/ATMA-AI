@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
 import { ArrowRight, Sparkles, Zap, Shield } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -33,7 +32,6 @@ function StatCounter({ target, suffix = "", isFloat = false }: { target: number,
 }
 
 export default function Hero() {
-  const t = useTranslations("Hero");
 
   const stats = [
     { target: 50, suffix: "+", isFloat: false, label: "Projects Delivered" },
@@ -62,20 +60,20 @@ export default function Hero() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
                 <Sparkles className="h-3.5 w-3.5" />
-                <span>{t("badge")}</span>
+                <span>Next-Gen Enterprise Architecture</span>
               </div>
               
               {/* Headline */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.1] mb-8 text-primary-light">
-                {t("title")}{" "}
+                Engineering Intelligence for{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-blue-400 to-accent animate-gradient text-glow">
-                  {t("titleGradient")}
+                  Enterprise Scale
                 </span>
               </h1>
               
               {/* Sub-headline */}
               <p className="text-lg md:text-xl text-muted leading-relaxed max-w-xl mb-10">
-                {t("subtitle")}
+                Founded by IIT Delhi & JNU alumni, we deploy secure LLM infrastructure, neuro-symbolic AI, and robust data pipelines for global businesses.
               </p>
               
               {/* CTAs */}
@@ -84,7 +82,7 @@ export default function Hero() {
                   href="/services" 
                   className="group inline-flex justify-center items-center gap-2 bg-accent text-primary-dark px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-[1.03] active:scale-[0.98]"
                 >
-                  {t("primaryCTA")}
+                  Explore Services
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>
                 
@@ -92,7 +90,7 @@ export default function Hero() {
                   href="/research" 
                   className="inline-flex justify-center items-center gap-2 border border-foreground/15 text-foreground/90 px-8 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:border-accent/40 hover:text-accent hover:bg-accent/5"
                 >
-                  {t("secondaryCTA")}
+                  View Research
                 </Link>
               </div>
 

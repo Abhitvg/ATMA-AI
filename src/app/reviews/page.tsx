@@ -1,4 +1,3 @@
-import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,8 +5,6 @@ import Image from "next/image";
 import { Star, ShieldCheck, TrendingUp, Building2, Quote, ArrowRight } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-
   return {
     title: "ATMA-AI Reviews & Enterprise Success Stories",
     description: "Read ATMA-AI reviews, client testimonials, and enterprise success stories. See why we are the most reliable AI technology partner for enterprise projects.",
@@ -69,10 +66,7 @@ const caseStudies = [
   }
 ];
 
-export default async function ReviewsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default function ReviewsPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
