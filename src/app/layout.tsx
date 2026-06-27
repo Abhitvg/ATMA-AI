@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = "ATMA Consultancy Services | Enterprise LLM Deployment";
-  const description = "Top-tier AI consultancy delivering custom enterprise LLM deployment, secure cloud architecture, and neuro-symbolic AI. Based in New Delhi, India.";
+  const title = "Scale Enterprise Autonomous AI Agents Securely | ATMA-AI";
+  const description = "Deploy secure enterprise autonomous AI agents that drive real ROI. Overcome data debt with custom neural pipelines and zero-trust AI governance from ATMA-AI.";
 
   return {
     title: {
@@ -36,15 +36,17 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: description,
     keywords: [
+      "Enterprise Autonomous AI Agents",
+      "Agentic AI",
+      "Neural Pipelines",
+      "Zero Trust AI",
+      "Digital Labor",
       "ATMA Consultancy",
       "ATMA AI",
       "AI consultancy India",
       "Abhishek Singh consultant",
-      "Avadhesh Kumar IIT Delhi",
-      "Chirag Beniwal JNU",
       "LLM deployment India",
       "enterprise architecture India",
-      "edge AI India",
       "neuro-symbolic AI",
     ],
     authors: [
@@ -230,6 +232,41 @@ export default function RootLayout({
                 target: "https://atma-ai.co.in/?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What are Enterprise Autonomous AI Agents?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Unlike simple chatbots, Enterprise Autonomous AI Agents act as digital labor. They reason through complex tasks, securely interact with enterprise APIs (like SAP or Salesforce), and execute long-running workflows without continuous human prompting."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Why is Zero Trust AI important for enterprise deployments?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Zero Trust AI ensures that sensitive enterprise data is never leaked to public models. By deploying single-tenant infrastructure, custom LLMs, and strict Role-Based Access Controls (RBAC), enterprises can automate securely."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does a Neural Pipeline resolve enterprise data debt?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A Neural Pipeline cleans and structures siloed enterprise data using Retrieval-Augmented Generation (RAG). This ensures that AI agents make decisions based on accurate, real-time business context rather than outdated training data."
+                  }
+                }
+              ]
             }),
           }}
         />

@@ -98,20 +98,20 @@ export default function Hero() {
 
             {/* Floating badges */}
             <div
-              className="absolute -top-4 -right-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float"
+              className="absolute -top-4 -right-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float z-20"
               style={{ animationDuration: "4s" }}
             >
               <Zap className="h-5 w-5 text-yellow-400" />
               <div>
-                <p className="text-xs font-semibold text-foreground">
+                <p className="text-xs font-semibold text-foreground whitespace-nowrap">
                   Lightning Fast
                 </p>
-                <p className="text-[10px] text-muted">Sub-100ms Response</p>
+                <p className="text-[10px] text-muted whitespace-nowrap">Sub-100ms Response</p>
               </div>
             </div>
 
             <div
-              className="absolute -bottom-4 -left-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float"
+              className="absolute -bottom-4 -left-4 glass-card rounded-xl px-4 py-3 flex items-center gap-3 animate-float z-20"
               style={{ animationDuration: "5s", animationDelay: "1s" }}
             >
               <Shield className="h-5 w-5 text-green-400" />
