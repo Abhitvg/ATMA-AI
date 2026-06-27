@@ -21,6 +21,13 @@ export default function middleware(request: NextRequest) {
     }
   }
 
+  // Redirect legacy locale paths (/en, /hi) to their non-locale equivalents
+  if (url.pathname.startsWith("/en") || url.pathname.startsWith("/hi")) {
+    const newPathname = url.pathname.replace(/^\/(en|hi)(\/|$)/, "/");
+    url.pathname = newPathname;
+    return NextResponse.redirect(url, 301);
+  }
+
   // Extract subdomain: "blog.atma-ai.co.in" → "blog"
   let subdomain: string | null = null;
 
