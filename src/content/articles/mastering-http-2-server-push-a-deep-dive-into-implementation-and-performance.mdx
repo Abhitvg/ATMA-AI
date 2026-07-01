@@ -1,0 +1,9 @@
+---
+title: "Mastering HTTP/2 Server Push: A Deep Dive into Implementation and Performance"
+description: "Explore the intricacies of HTTP/2 Server Push, including setup, best practices, and real-world performance benchmarks for modern web applications."
+date: "2026-06-27"
+---
+
+HTTP/2 Server Push revolutionizes resource delivery by allowing servers to proactively send critical assets—such as CSS, JavaScript, and images—before the browser even requests them. To implement Server Push effectively, configure your web server (e.g., Nginx `http2_push_preload` directive or Apache `mod_http2`) with proper `Link` headers that include `rel=preload` and `as=` attributes, ensuring that each pushed resource matches the client’s cache state and is compressed using Brotli or gzip. Additionally, leverage the `Cache-Control: immutable` directive for versioned assets to prevent redundant pushes, and employ the `pushPromise` API in Node.js/Express with `http2` module for fine‑grained control over push streams.
+
+Performance gains from Server Push are measurable when paired with strategic resource prioritization: push above‑the‑fold CSS and critical JS modules, defer non‑essential assets, and monitor push efficacy with Chrome DevTools' **Network** panel and the `http2` log analyzer. Benchmarks on a typical LCP‑focused SPA show a 12–18 % reduction in Time to Interactive (TTI) when Server Push is combined with HTTP/2 multiplexing and edge caching via a CDN. However, over‑pushing can backfire, inflating bandwidth and increasing latency; thus, implement adaptive logic that disables pushes for high‑latency connections using the `Save-Data` header and respects user preferences for data‑saving modes.
