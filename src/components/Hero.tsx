@@ -14,21 +14,21 @@ export default function Hero() {
       {/* 3D Network Background — deferred, desktop only */}
       <DeferredNetworkBackground />
 
-      {/* CSS-only floating orbs (Optimized with radial gradients instead of heavy blurs) */}
-      <div className="absolute top-[10%] left-[5%] w-[800px] h-[800px] rounded-full radial-orb animate-float" />
+      {/* CSS-only floating orbs (Optimized with radial gradients instead of heavy blurs) — hidden on mobile */}
+      <div className="hidden md:block absolute top-[10%] left-[5%] w-[800px] h-[800px] rounded-full radial-orb animate-float" />
       <div
-        className="absolute bottom-[5%] right-[10%] w-[900px] h-[900px] rounded-full radial-orb-blue animate-float"
+        className="hidden md:block absolute bottom-[5%] right-[10%] w-[900px] h-[900px] rounded-full radial-orb-blue animate-float"
         style={{ animationDelay: "2s" }}
       />
       <div
-        className="absolute top-[50%] left-[50%] w-[500px] h-[500px] rounded-full radial-orb-purple animate-float"
+        className="hidden md:block absolute top-[50%] left-[50%] w-[500px] h-[500px] rounded-full radial-orb-purple animate-float"
         style={{ animationDelay: "4s" }}
       />
 
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-grid opacity-50" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-32 pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-24 md:pt-32 pb-16 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left content */}
           <div>
@@ -39,7 +39,7 @@ export default function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.1] mb-8 text-primary-light">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.1] mb-6 md:mb-8 text-primary-light">
               Engineering Intelligence for{" "}
               <span className="text-accent lg:text-transparent lg:bg-clip-text lg:bg-gradient-to-r from-accent via-blue-400 to-accent lg:animate-gradient text-glow">
                 Enterprise Scale
@@ -47,7 +47,7 @@ export default function Hero() {
             </h1>
 
             {/* Sub-headline */}
-            <p className="text-lg md:text-xl text-muted leading-relaxed max-w-xl mb-10">
+            <p className="text-base md:text-xl text-muted leading-relaxed max-w-xl mb-8 md:mb-10">
               Founded by IIT Delhi &amp; JNU alumni, we deploy secure LLM
               infrastructure, neuro-symbolic AI, and robust data pipelines for
               global businesses.
@@ -72,7 +72,7 @@ export default function Hero() {
             </div>
 
             {/* Stats strip */}
-            <div className="flex gap-8 md:gap-12">
+            <div className="grid grid-cols-3 gap-4 md:flex md:gap-12">
               {stats.map((stat, i) => (
                 <div key={i} className="relative">
                   <p className="text-3xl md:text-4xl font-bold font-heading text-accent text-glow">

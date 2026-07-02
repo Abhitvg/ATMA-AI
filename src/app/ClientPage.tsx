@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import MagneticButton from "@/components/MagneticButton";
 import ClientShell from "@/components/ClientShell";
+import { getArticlePosts } from "@/lib/mdx";
 import {
   Brain,
   Server,
@@ -20,6 +21,8 @@ import {
   Users,
   Lightbulb,
   Target,
+  Calendar,
+  Clock,
 } from "lucide-react";
 
 /* ====== DATA ====== */
@@ -515,9 +518,106 @@ function TrustedBySection() {
   );
 }
 
+/* ====== LATEST INSIGHTS ====== */
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'short', day: 'numeric'
+  });
+}
+
+async function LatestInsightsSection() {
+  const posts = await getArticlePosts();
+  const latestPosts = posts.slice(0, 3);
+
+  if (latestPosts.length === 0) return null;
+
+  return (
+    <section className="py-28 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+            Latest Insights
+          </p>
+          <h2 className="text-fluid-h2 font-bold font-heading mb-5 text-primary-light">
+            Technical{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
+              Deep-Dives
+            </span>
+          </h2>
+          <p className="text-fluid-p text-muted leading-relaxed">
+            Insights from our engineering team on AI architecture, LLM deployment,
+            and enterprise technology.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {latestPosts.map((post, i) => (
+            <AnimatedSection key={post.slug} delay={i * 0.1} variant="slide-up">
+              <Link
+                href={`/articles/${post.slug}`}
+                className="block group glass-card rounded-2xl p-6 md:p-8 hover:border-accent/30 transition-all duration-500 h-full relative overflow-hidden gradient-border-hover"
+              >
+                <div className="relative z-10">
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {post.tags.slice(0, 2).map((tag: string) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded-md bg-accent/10 text-[10px] font-mono tracking-wider text-accent"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <h3 className="text-lg font-bold font-heading text-primary-light mb-3 group-hover:text-accent transition-colors leading-tight line-clamp-2">
+                    {post.title}
+                  </h3>
+
+                  <p className="text-muted text-sm line-clamp-2 mb-4 leading-relaxed">
+                    {post.summary}
+                  </p>
+
+                  <div className="flex items-center gap-3 text-xs text-muted/60 font-mono mb-3">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {formatDate(post.date)}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {post.readingTime}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center text-accent text-sm font-medium">
+                    Read Article
+                    <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        <AnimatedSection className="text-center mt-10">
+          <Link
+            href="/articles"
+            className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:gap-3 transition-all duration-300"
+          >
+            View All Articles
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
 /* ====== HOME PAGE ====== */
 
-export default function ClientPage() {
+export default async function ClientPage() {
   return (
     <>
       <ClientShell />
@@ -528,6 +628,7 @@ export default function ClientPage() {
         <FoundersSection />
         <PortfolioSection />
         <TrustedBySection />
+        <LatestInsightsSection />
         <ValuesSection />
         <CTASection />
       </main>

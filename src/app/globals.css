@@ -298,6 +298,59 @@ h1, h2, h3, h4, h5, h6 {
   .bg-noise::before {
     display: none;
   }
+
+  /* Disable heavy backdrop-filter on mobile — biggest GPU paint savings */
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--glass-bg);
+  }
+
+  .glass-card-light {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* Hide large floating orbs — cause paint jank on mobile GPUs */
+  .radial-orb,
+  .radial-orb-blue,
+  .radial-orb-purple {
+    display: none;
+  }
+
+  /* Reduce animate-float complexity on mobile */
+  .animate-float {
+    animation: none;
+  }
+
+  /* Faster section reveal on mobile */
+  .animated-section {
+    transition-duration: 0.4s;
+    transform: translateY(16px);
+  }
+
+  /* Reduce hero min-height for faster LCP */
+  .hero-terminal {
+    animation: none;
+  }
+
+  /* Smaller content-visibility budget for mobile */
+  section {
+    contain-intrinsic-size: auto 400px;
+  }
+}
+
+/* Touch optimization — removes 300ms tap delay */
+a, button, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Minimum tap target for mobile accessibility */
+@media (pointer: coarse) {
+  a, button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 /* Shimmer Animation */

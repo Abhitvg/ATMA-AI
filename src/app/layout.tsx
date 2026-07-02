@@ -9,13 +9,13 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "optional",
+  display: "swap",
 });
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
-  display: "optional",
+  display: "swap",
   weight: ["600", "700", "800"],
 });
 
@@ -118,6 +118,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -130,6 +132,11 @@ export default function RootLayout({
               url: "https://atma-ai.co.in",
               logo: "https://atma-ai.co.in/logos/atma-logo.svg",
               image: "https://atma-ai.co.in/logos/atma-logo.svg",
+              dateModified: new Date().toISOString(),
+              speakable: {
+                "@type": "SpeakableSpecification",
+                cssSelector: [".text-fluid-h2", ".text-fluid-p"]
+              },
               description:
                 "Elite AI and IT consultancy founded by IIT Delhi & JNU alumni. Specializing in custom LLM deployment, enterprise architecture, neuro-symbolic AI research, and edge robotics. Based in Saket, New Delhi.",
               address: {
@@ -202,7 +209,33 @@ export default function RootLayout({
                 "E-Commerce",
                 "Full Stack Development",
                 "Cybersecurity",
+                "Digital Labor",
+                "AI Governance",
+                "RAG Pipelines",
+                "Vector Databases",
+                "Multi-Agent Orchestration",
+                "LLM Cost Optimization"
               ],
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "AI Consulting Services",
+                itemListElement: [
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Enterprise LLM Deployment"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "AI Agent Orchestration"
+                    }
+                  }
+                ]
+              },
               areaServed: {
                 "@type": "Country",
                 name: "India",

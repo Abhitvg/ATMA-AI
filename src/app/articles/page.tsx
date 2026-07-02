@@ -5,6 +5,12 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { getArticlePosts } from "@/lib/mdx";
 import { ArrowRight, FileText, Calendar, Clock, User } from "lucide-react";
 
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'short', day: 'numeric'
+  });
+}
+
 export default async function ArticlesPage() {
   const posts = await getArticlePosts();
 
@@ -60,7 +66,7 @@ export default async function ArticlesPage() {
                 </div>
               </AnimatedSection>
             ) : (
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {posts.map((post, i) => (
                   <AnimatedSection key={post.slug} delay={i * 0.1}>
                     <Link
@@ -95,7 +101,7 @@ export default async function ArticlesPage() {
                         <div className="flex items-center gap-4 text-xs text-muted/60 font-mono mb-4">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
-                            {post.date}
+                            {formatDate(post.date)}
                           </span>
                           <span className="flex items-center gap-1">
                             <User className="h-3 w-3" />
