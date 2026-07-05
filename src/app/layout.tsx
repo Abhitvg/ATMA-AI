@@ -101,6 +101,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "geo.placename": "New Delhi",
       "geo.position": "28.5245;77.2108",
       ICBM: "28.5245, 77.2108",
+      "google-adsense-account": "ca-pub-5024596573466584",
     },
   };
 }
