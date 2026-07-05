@@ -1,6 +1,7 @@
 import { getArticlePostBySlug, getArticlePosts } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import AdUnit from "@/components/AdUnit";
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -153,8 +154,11 @@ export default async function ArticlePost({
             </div>
 
             <article className="prose prose-invert prose-lg max-w-none prose-headings:font-heading prose-a:text-[#F59E0B] hover:prose-a:text-[#D97706] prose-img:rounded-xl">
-              <MDXRemote source={post.content} />
+              <MDXRemote source={post.content} components={{ AdUnit }} />
             </article>
+
+            {/* Default Ad Unit placed automatically at the end of the article */}
+            <AdUnit />
 
             {/* ── Author Bio Card ── */}
             {authorInfo && (
