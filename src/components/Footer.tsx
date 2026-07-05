@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, ArrowUpRight, ArrowUp } from "lucide-react";
+import DisplayAd from "@/components/DisplayAd";
 
 export default function Footer() {
   const isDev = process.env.NODE_ENV === "development";
@@ -127,6 +128,11 @@ export default function Footer() {
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
+        </div>
+
+        {/* Global Display Ad */}
+        <div className="w-full max-w-4xl mx-auto mb-8">
+          <DisplayAd />
         </div>
 
         {/* Bottom bar */}
