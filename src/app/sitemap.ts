@@ -42,9 +42,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       contentSections.map(async ({ section, basePath }) => {
         const posts = await getContentPosts(section);
         return posts.map((post) => {
+          const parsedDate = new Date(post.date);
+          const isValidDate = !isNaN(parsedDate.getTime());
+          
           return {
             url: `https://atma-ai.co.in${basePath}/${post.slug}`,
-            lastModified: new Date(post.date),
+            lastModified: isValidDate ? parsedDate : new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.7,
           };
