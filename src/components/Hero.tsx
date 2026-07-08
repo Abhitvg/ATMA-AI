@@ -41,7 +41,7 @@ export default function Hero() {
             {/* Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-heading leading-[1.1] mb-6 md:mb-8 text-primary-light">
               Engineering Intelligence for{" "}
-              <span className="text-accent lg:text-transparent lg:bg-clip-text lg:bg-gradient-to-r from-accent via-blue-400 to-accent lg:animate-gradient text-glow">
+              <span className="text-accent lg:text-transparent lg:bg-clip-text lg:bg-gradient-to-r from-accent via-blue-400 to-accent lg:animate-gradient lg:text-glow">
                 Enterprise Scale
               </span>
             </h1>
@@ -75,7 +75,7 @@ export default function Hero() {
             <div className="grid grid-cols-3 gap-4 md:flex md:gap-12">
               {stats.map((stat, i) => (
                 <div key={i} className="relative">
-                  <p className="text-3xl md:text-4xl font-bold font-heading text-accent text-glow">
+                  <p className="text-3xl md:text-4xl font-bold font-heading text-accent lg:text-glow">
                     <StatCounter
                       target={stat.target}
                       suffix={stat.suffix}
