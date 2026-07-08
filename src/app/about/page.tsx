@@ -1,7 +1,7 @@
 import ClientAbout from "./ClientAbout";
 
 export async function generateMetadata() {
-  const title = "About ATMA Consultancy | Enterprise LLM & Neuro-Symbolic AI";
+  const title = "About ATMA Consultancy | Enterprise LLM & Neuro-Symbolic AI in Delhi";
   const description = "Founded by IIT Delhi & JNU alumni, ATMA Consultancy Services is an elite AI strategy firm in New Delhi specializing in custom LLM deployment, enterprise architecture, and advanced ML pipelines.";
 
   return {
@@ -48,9 +48,35 @@ export default function AboutPage() {
                 longitude: 77.2108
               },
               founders: [
-                { "@type": "Person", name: "Abhishek Singh", jobTitle: "Co-Founder & CEO" },
-                { "@type": "Person", name: "Avadhesh Kumar", jobTitle: "Co-Founder & CTO" },
-                { "@type": "Person", name: "Chirag Beniwal", jobTitle: "Co-Founder & CMO" }
+                { 
+                  "@type": "Person", 
+                  name: "Abhishek Singh", 
+                  jobTitle: "Co-Founder & CEO",
+                  sameAs: ["https://www.linkedin.com/in/abhisheksingh22141"]
+                },
+                { 
+                  "@type": "Person", 
+                  name: "Avadhesh Kumar", 
+                  jobTitle: "Co-Founder & CTO",
+                  sameAs: ["https://www.linkedin.com/in/avadhak"]
+                },
+                { 
+                  "@type": "Person", 
+                  name: "Chirag Beniwal", 
+                  jobTitle: "Co-Founder & CMO",
+                  sameAs: ["https://www.linkedin.com/in/chirag-beniwal-08691a1b4"]
+                }
+              ],
+              sameAs: [
+                "https://www.linkedin.com/company/atma-research-consultancy",
+                "https://www.instagram.com/atma.tvg"
+              ],
+              knowsAbout: [
+                "Enterprise LLM Deployment",
+                "Neuro-Symbolic AI",
+                "Multi-Agent Orchestration",
+                "Edge Robotics",
+                "Zero Trust AI Architecture"
               ]
             }
           })

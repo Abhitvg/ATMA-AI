@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
-import { GraduationCap, Code2, Lightbulb, Target, BookOpen, Trophy } from "lucide-react";
+import { GraduationCap, Code2, Lightbulb, Target, BookOpen, Trophy, ArrowRight } from "lucide-react";
 
 const founders = [
   {
@@ -182,7 +183,7 @@ export default function About() {
                     <div className="relative h-72 overflow-hidden">
                       <Image
                         src={founder.image}
-                        alt={founder.name}
+                        alt={`${founder.name} - ${founder.role} at ATMA Consultancy`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         priority={i === 0}
@@ -249,6 +250,30 @@ export default function About() {
                 </AnimatedSection>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 relative overflow-hidden bg-primary-dark">
+          <div className="absolute inset-0 bg-grid opacity-20" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+          
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <AnimatedSection>
+              <h2 className="text-4xl md:text-5xl font-bold font-heading text-primary-light mb-6">
+                Ready to Transform Your Enterprise?
+              </h2>
+              <p className="text-xl text-muted mb-10 max-w-2xl mx-auto">
+                Partner with India&apos;s leading AI consultancy to deploy secure, custom Large Language Models and scale your business with agentic AI.
+              </p>
+              <Link 
+                href="/contact" 
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-primary-dark bg-accent hover:bg-accent-light rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(var(--accent-rgb),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent-rgb),0.5)] transform hover:-translate-y-1"
+              >
+                Start a Conversation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </AnimatedSection>
           </div>
         </section>
       </main>
