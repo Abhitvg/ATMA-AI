@@ -118,6 +118,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script src="https://quge5.com/88/tag.min.js" data-zone="257648" async data-cfasync="false"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
