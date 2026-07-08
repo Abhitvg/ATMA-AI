@@ -269,7 +269,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(28px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .animated-section.is-visible {
@@ -332,11 +331,6 @@ h1, h2, h3, h4, h5, h6 {
   /* Reduce hero min-height for faster LCP */
   .hero-terminal {
     animation: none;
-  }
-
-  /* Smaller content-visibility budget for mobile */
-  section {
-    contain-intrinsic-size: auto 400px;
   }
 }
 
@@ -455,12 +449,6 @@ a, button, [role="button"], input, select, textarea {
 }
 
 /* ======= PERFORMANCE ======= */
-
-/* Lazy-render off-screen sections */
-section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
