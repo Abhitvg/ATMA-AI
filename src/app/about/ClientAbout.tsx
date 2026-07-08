@@ -117,7 +117,7 @@ export default function About() {
           <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <AnimatedSection>
+            <div className="animate-float" style={{ animationDuration: '8s' }}>
               <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">About ATMA</p>
               <h1 className="text-5xl md:text-6xl font-bold font-heading text-primary-light mb-6 max-w-3xl leading-tight">
                 World-Class Engineering Begins with{" "}
@@ -126,7 +126,7 @@ export default function About() {
               <p className="text-xl text-muted max-w-2xl leading-relaxed">
                 Born from a shared vision at India&apos;s premier institutes, ATMA bridges the gap between cutting-edge research and enterprise-grade execution.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
         </section>
 
