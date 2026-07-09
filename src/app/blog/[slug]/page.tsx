@@ -18,6 +18,7 @@ const authors: Record<string, { role: string; bio: string }> = {
   "Naman Sharma": { role: "ETO, Eastern Pacific Shipping", bio: "Maritime technology officer bringing cross-industry perspective on IoT, automation, and AI-driven operations." },
   "Sujeet Mishra": { role: "SDE 2, Sophos", bio: "Security-focused software engineer specializing in cybersecurity, threat detection, and secure system design." },
   "Dinesh Dhandhal": { role: "Senior Industry Expert", bio: "Seasoned technology leader with extensive experience in enterprise digital transformation and AI strategy." },
+  "ATMA AI Architecture Team": { role: "Engineering & Architecture", bio: "The core engineering team at ATMA AI, specializing in scalable agentic workflows, edge AI, and enterprise LLM deployment." },
 };
 
 function formatDate(dateStr: string) {
