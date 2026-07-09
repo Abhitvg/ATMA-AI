@@ -19,9 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.meta.title} | ATMA AI Research`,
     description: post.meta.summary,
+    keywords: post.meta.keywords,
     openGraph: {
       title: post.meta.title,
       description: post.meta.summary,
+    keywords: post.meta.keywords,
       type: "article",
       publishedTime: post.meta.date,
       authors: [post.meta.author],

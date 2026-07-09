@@ -1,7 +1,10 @@
 ---
 title: "RAG at Scale: Turning Unstructured Data into Enterprise Action"
-description: "A practical guide to deploying Retrieval-Augmented Generation across multi‑cloud environments with security, latency, and cost in mind."
-date: "2026-07-02"
+date: "2025-10-20"
+author: "ATMA AI Architecture Team"
+summary: "An in-depth enterprise guide to modern AI architecture and LLM implementations by ATMA AI."
+tags: ["Generative AI", "LLM", "Enterprise AI"]
+keywords: ["Digital Transformation", "LLM", "Agentic Workflows", "Scale", "Enterprise", "Enterprise AI", "ATMA AI", "AI Consulting", "Unstructured", "Action", "Data", "Turning", "Artificial Intelligence", "Generative AI", "into"]
 ---
 
 Enterprises sit on petabytes of unstructured assets—contracts, support tickets, design docs—yet most knowledge workers still rely on keyword search. Retrieval‑Augmented Generation (RAG) bridges that gap by coupling a dense vector store with a generative model, letting you ask natural‑language questions and receive answers grounded in your own data. The first step is to shard the index across edge locations that mirror your traffic patterns. Using a vector database that supports multi‑region replication (e.g., Milvus or Pinecone), you can keep latency under 50 ms for 95 % of queries while automatically handling failover. Pair each shard with a lightweight inference container (ONNX‑runtime or TensorRT) that runs a distilled LLM; this eliminates the round‑trip to a central GPU farm and gives you predictable cost per request.

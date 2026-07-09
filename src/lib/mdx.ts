@@ -33,6 +33,7 @@ export async function getContentPosts(section: ContentSection) {
         summary: data.summary,
         readingTime: readingTime(content).text,
         tags: data.tags || [],
+        keywords: data.keywords || [],
       };
     });
 
@@ -65,6 +66,7 @@ export async function getContentPostBySlug(section: ContentSection, slug: string
       summary: data.summary,
       readingTime: readingTime(content).text,
       tags: data.tags || [],
+      keywords: data.keywords || [],
     },
     content,
     headings,

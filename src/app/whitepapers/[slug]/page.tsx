@@ -19,9 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.meta.title} | ATMA Whitepapers`,
     description: post.meta.summary,
+    keywords: post.meta.keywords,
     openGraph: {
       title: post.meta.title,
       description: post.meta.summary,
+    keywords: post.meta.keywords,
       type: "article",
       publishedTime: post.meta.date,
       authors: [post.meta.author],
@@ -55,6 +57,7 @@ export default async function WhitepaperPost({
             "@type": "ScholarlyArticle",
             headline: post.meta.title,
             description: post.meta.summary,
+    keywords: post.meta.keywords,
             author: {
               "@type": "Person",
               name: post.meta.author,

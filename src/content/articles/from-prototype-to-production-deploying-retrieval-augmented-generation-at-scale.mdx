@@ -1,7 +1,10 @@
 ---
 title: "From Prototype to Production: Deploying Retrieval‑Augmented Generation at Scale"
-description: "A step‑by‑step guide for enterprise leaders on turning RAG research into secure, high‑throughput services that deliver real business value."
-date: "2026-07-02"
+date: "2025-05-22"
+author: "ATMA AI Architecture Team"
+summary: "An in-depth enterprise guide to modern AI architecture and LLM implementations by ATMA AI."
+tags: ["Generative AI", "LLM", "Enterprise AI"]
+keywords: ["Digital Transformation", "LLM", "Agentic Workflows", "Production", "Generation", "Scale", "Enterprise AI", "Deploying", "ATMA AI", "AI Consulting", "RetrievalAugmented", "Artificial Intelligence", "Prototype", "Generative AI", "From"]
 ---
 
 Enterprises that have spent months fine‑tuning a Retrieval‑Augmented Generation (RAG) model inside a notebook often stumble when they try to push it to production. The first hurdle isn’t model accuracy—it’s wiring the data pipeline so that latency stays under the 200 ms threshold required for real‑time decision making. Start by decoupling the vector store from the inference layer using an event‑driven microservice architecture: a thin API gateway receives the user query, emits a `search.request` event to a Kafka topic, and a dedicated search worker pulls the top‑k embeddings from a managed vector DB (e.g., Pinecone or Milvus) with region‑aware routing. The worker then returns the retrieved passages to the gateway, which streams them to the LLM via a gRPC bridge that supports token‑wise streaming. This pattern keeps the critical path short, lets you horizontally scale each component independently, and makes it trivial to swap out the vector store without touching the LLM service.

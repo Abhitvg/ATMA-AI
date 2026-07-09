@@ -1,7 +1,10 @@
 ---
 title: "Mastering Incremental Static Regeneration in Next.js 14: A Deep Technical Guide"
-description: "Explore advanced techniques for implementing Incremental Static Regeneration (ISR) in Next.js 14, covering revalidation strategies, on-demand rendering, and performance optimization."
-date: "2026-03-30"
+date: "2025-07-11"
+author: "ATMA AI Architecture Team"
+summary: "An in-depth enterprise guide to modern AI architecture and LLM implementations by ATMA AI."
+tags: ["Generative AI", "LLM", "Enterprise AI"]
+keywords: ["Digital Transformation", "LLM", "Agentic Workflows", "Regeneration", "Enterprise AI", "Guide", "ATMA AI", "AI Consulting", "Incremental", "Deep", "Static", "Technical", "Mastering", "Artificial Intelligence", "Generative AI", "Nextjs"]
 ---
 
 Incremental Static Regeneration (ISR) redefines the static‑generation paradigm in Next.js 14 by allowing pages to be **re‑validated** on a per‑request basis while preserving the speed of pre‑rendered HTML. By configuring `export const revalidate = <seconds>` in a page's module, you instruct the serverless runtime to regenerate the HTML in the background after the specified interval, delivering fresh content without a cold build. For dynamic data sources—such as headless CMSs, GraphQL endpoints, or real‑time APIs—pair ISR with **On‑Demand Revalidation** (`POST /api/revalidate`) to trigger immediate updates after content mutations, eliminating stale data latency. Use `unstable_cache` or the new `cache` API to memoize expensive fetches across regeneration cycles, and combine it with `revalidatePath` for granular route invalidation, ensuring only the affected paths are rebuilt while the rest of the site remains untouched.

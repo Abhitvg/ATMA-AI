@@ -1,7 +1,10 @@
 ---
 title: "Mastering HTTP/2 Server Push: A Deep Dive into Implementation and Performance"
-description: "Explore the intricacies of HTTP/2 Server Push, including setup, best practices, and real-world performance benchmarks for modern web applications."
-date: "2026-04-12"
+date: "2025-07-01"
+author: "ATMA AI Architecture Team"
+summary: "An in-depth enterprise guide to modern AI architecture and LLM implementations by ATMA AI."
+tags: ["Generative AI", "LLM", "Enterprise AI"]
+keywords: ["Digital Transformation", "LLM", "Agentic Workflows", "Push", "Server", "Enterprise AI", "HTTP2", "ATMA AI", "AI Consulting", "Performance", "Deep", "into", "Mastering", "Artificial Intelligence", "Implementation", "Generative AI", "Dive"]
 ---
 
 HTTP/2 Server Push revolutionizes resource delivery by allowing servers to proactively send critical assets—such as CSS, JavaScript, and images—before the browser even requests them. To implement Server Push effectively, configure your web server (e.g., Nginx `http2_push_preload` directive or Apache `mod_http2`) with proper `Link` headers that include `rel=preload` and `as=` attributes, ensuring that each pushed resource matches the client’s cache state and is compressed using Brotli or gzip. Additionally, leverage the `Cache-Control: immutable` directive for versioned assets to prevent redundant pushes, and employ the `pushPromise` API in Node.js/Express with `http2` module for fine‑grained control over push streams.
