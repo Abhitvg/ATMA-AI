@@ -138,7 +138,7 @@ export default function Portfolio() {
         {/* Page Header */}
         <section className="pt-32 pb-20 relative bg-primary-dark bg-noise shadow-[inset_0_0_120px_rgba(0,0,0,0.8)]">
           <div className="absolute inset-0 bg-grid opacity-30" />
-          <div className="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[160px] animate-pulse-glow" />
+          <div className="hidden md:block absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[160px] animate-pulse-glow" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <AnimatedSection>
@@ -326,7 +326,7 @@ export default function Portfolio() {
         {/* CTA */}
         <section className="py-24 relative">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[500px] h-[500px] rounded-full bg-accent/5 blur-[200px]" />
+            <div className="hidden md:block w-[500px] h-[500px] rounded-full bg-accent/5 blur-[200px]" />
           </div>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <AnimatedSection>

@@ -235,7 +235,7 @@ export default function Services() {
         {/* Page Header */}
         <section className="pt-32 pb-20 relative bg-primary-dark bg-noise shadow-[inset_0_0_120px_rgba(0,0,0,0.8)]">
           <div className="absolute inset-0 bg-grid opacity-30" />
-          <div className="absolute top-[30%] right-[10%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
+          <div className="hidden md:block absolute top-[30%] right-[10%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <AnimatedSection>
@@ -355,7 +355,7 @@ export default function Services() {
         <section className="py-24 bg-primary-deeper relative">
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[500px] h-[500px] rounded-full bg-accent/5 blur-[200px]" />
+            <div className="hidden md:block w-[500px] h-[500px] rounded-full bg-accent/5 blur-[200px]" />
           </div>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <AnimatedSection>

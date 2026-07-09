@@ -150,8 +150,8 @@ export default async function Research() {
         {/* ── HERO ── */}
         <section className="pt-32 pb-24 relative bg-primary-dark overflow-hidden min-h-[85vh] flex items-center bg-noise shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]">
           <div className="absolute inset-0 bg-grid opacity-40" />
-          <div className="absolute top-[20%] left-[10%] w-[600px] h-[600px] rounded-full bg-[#CCFF00]/5 blur-[200px] animate-pulse-glow" />
-          <div className="absolute bottom-[10%] right-[15%] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[180px] animate-pulse-glow" />
+          <div className="hidden md:block absolute top-[20%] left-[10%] w-[600px] h-[600px] rounded-full bg-[#CCFF00]/5 blur-[200px] animate-pulse-glow" />
+          <div className="hidden md:block absolute bottom-[10%] right-[15%] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[180px] animate-pulse-glow" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <AnimatedSection>
@@ -468,7 +468,7 @@ export default async function Research() {
         <section className="py-24 bg-primary-deeper relative">
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#CCFF00]/30 to-transparent" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[500px] h-[500px] rounded-full bg-[#CCFF00]/5 blur-[200px]" />
+            <div className="hidden md:block w-[500px] h-[500px] rounded-full bg-[#CCFF00]/5 blur-[200px]" />
           </div>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <AnimatedSection>

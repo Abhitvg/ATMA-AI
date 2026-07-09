@@ -111,7 +111,7 @@ export default function AITechPartnershipsPage() {
         {/* Deep Dive Guide Callout */}
         <section className="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mb-20">
           <div className="glass-card rounded-3xl p-8 md:p-12 border border-accent/30 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-3xl rounded-full -mr-20 -mt-20"></div>
+            <div className="hidden md:block absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-3xl rounded-full -mr-20 -mt-20"></div>
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
               <div className="w-full md:w-2/3">
                 <h2 className="text-2xl md:text-3xl font-bold font-heading text-primary-light mb-4">How do you evaluate an AI Partner?</h2>

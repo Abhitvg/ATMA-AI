@@ -9,7 +9,7 @@ export default function CookiesPolicy() {
       <main className="flex-grow">
         <section className="pt-32 pb-20 relative bg-primary-dark bg-noise shadow-[inset_0_0_120px_rgba(0,0,0,0.8)]">
           <div className="absolute inset-0 bg-grid opacity-30" />
-          <div className="absolute top-[30%] right-[5%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
+          <div className="hidden md:block absolute top-[30%] right-[5%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <AnimatedSection>
               <h1 className="text-5xl md:text-6xl font-bold font-heading text-primary-light mb-6 leading-tight">

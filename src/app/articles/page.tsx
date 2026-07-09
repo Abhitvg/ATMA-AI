@@ -21,8 +21,8 @@ export default async function ArticlesPage() {
         {/* ── HERO ── */}
         <section className="pt-32 pb-24 relative bg-primary-dark overflow-hidden min-h-[60vh] flex items-center bg-noise">
           <div className="absolute inset-0 bg-grid opacity-40" />
-          <div className="absolute top-[20%] right-[15%] w-[500px] h-[500px] rounded-full bg-[#F59E0B]/5 blur-[200px] animate-pulse-glow" />
-          <div className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[180px] animate-pulse-glow" />
+          <div className="hidden md:block absolute top-[20%] right-[15%] w-[500px] h-[500px] rounded-full bg-[#F59E0B]/5 blur-[200px] animate-pulse-glow" />
+          <div className="hidden md:block absolute bottom-[10%] left-[10%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[180px] animate-pulse-glow" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <AnimatedSection>

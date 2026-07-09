@@ -114,7 +114,7 @@ export default function About() {
         {/* Page Header */}
         <section className="pt-32 pb-20 relative bg-primary-dark bg-noise shadow-[inset_0_0_120px_rgba(0,0,0,0.8)]">
           <div className="absolute inset-0 bg-grid opacity-30" />
-          <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
+          <div className="hidden md:block absolute top-[20%] left-[10%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[150px] animate-pulse-glow" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="animate-float" style={{ animationDuration: '8s' }}>
@@ -256,7 +256,7 @@ export default function About() {
         {/* CTA Section */}
         <section className="py-24 relative overflow-hidden bg-primary-dark">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+          <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
           
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <AnimatedSection>
