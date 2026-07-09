@@ -244,7 +244,7 @@ function ServicesSection() {
             return (
               <AnimatedSection key={i} delay={i * 0.08} variant="slide-up">
                 {service.href ? (
-                  <Link href={`/${service.href}`} className="block h-full">
+                  <Link prefetch={false} href={`/${service.href}`} className="block h-full">
                     {cardContent}
                   </Link>
                 ) : (
@@ -380,14 +380,14 @@ function PortfolioSection() {
         </div>
 
         <AnimatedSection className="text-center mt-12 flex items-center justify-center gap-6">
-          <Link
+          <Link prefetch={false}
             href="/portfolio"
             className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:gap-3 transition-all duration-300"
           >
             View All Case Studies
             <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link
+          <Link prefetch={false}
             href="/reviews"
             className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:gap-3 transition-all duration-300"
           >
@@ -452,7 +452,7 @@ function CTASection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <MagneticButton>
-              <Link
+              <Link prefetch={false}
                 href="/contact"
                 className="group inline-flex justify-center items-center gap-2 bg-accent text-primary-dark px-10 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 hover:scale-[1.03]"
               >
@@ -461,7 +461,7 @@ function CTASection() {
               </Link>
             </MagneticButton>
             <MagneticButton>
-              <Link
+              <Link prefetch={false}
                 href="/services"
                 className="inline-flex justify-center items-center gap-2 border border-foreground/15 text-foreground/90 px-10 py-4 rounded-xl font-bold text-base transition-all duration-300 hover:border-accent/40 hover:text-accent"
               >
@@ -554,7 +554,7 @@ async function LatestInsightsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {latestPosts.map((post, i) => (
             <AnimatedSection key={post.slug} delay={i * 0.1} variant="slide-up">
-              <Link
+              <Link prefetch={false}
                 href={`/articles/${post.slug}`}
                 className="block group glass-card rounded-2xl p-6 md:p-8 hover:border-accent/30 transition-all duration-500 h-full relative overflow-hidden gradient-border-hover"
               >
@@ -602,7 +602,7 @@ async function LatestInsightsSection() {
         </div>
 
         <AnimatedSection className="text-center mt-10">
-          <Link
+          <Link prefetch={false}
             href="/articles"
             className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:gap-3 transition-all duration-300"
           >

@@ -65,7 +65,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-3 group">
+          <Link href="/" prefetch={false} className="flex-shrink-0 flex items-center gap-3 group">
             <div className="relative w-9 h-9">
               {/* Dark mode logo */}
               <Image
@@ -156,6 +156,7 @@ export default function Navbar() {
             <div className="w-px h-5 bg-border mx-2" />
             <Link 
               href="/portal"
+              prefetch={false}
               className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg group ${
                 isActive("/portal")
                   ? "text-accent"
@@ -167,6 +168,7 @@ export default function Navbar() {
             <ThemeToggle />
             <Link 
               href="/contact"
+              prefetch={false}
               className="ml-4 relative overflow-hidden bg-accent text-primary-dark px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:scale-105 active:scale-95 animate-shimmer"
             >
               Contact
@@ -241,6 +243,7 @@ export default function Navbar() {
           <div className="h-px w-full bg-border my-2" />
           <Link
             href="/portal"
+            prefetch={false}
             onClick={() => setIsOpen(false)}
             style={{ transitionDelay: isOpen ? `${navLinks.length * 50}ms` : '0ms' }}
             className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform ${
@@ -255,6 +258,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/contact"
+            prefetch={false}
             onClick={() => setIsOpen(false)}
             style={{ transitionDelay: isOpen ? `${navLinks.length * 50}ms` : '0ms' }}
             className={`block mt-6 px-4 py-3 text-base font-semibold text-primary-dark bg-accent rounded-lg text-center transition-all duration-300 transform ${

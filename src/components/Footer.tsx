@@ -57,7 +57,7 @@ export default function Footer() {
                 { name: "E-Commerce Solutions", href: "/services" },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">
+                  <Link prefetch={false} href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">
                     {item.name}
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
@@ -77,7 +77,7 @@ export default function Footer() {
                 { name: "Contact", href: "/contact" },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">
+                  <Link prefetch={false} href={item.href} className="group text-sm text-muted hover:text-foreground transition-colors duration-300 flex items-center gap-1">
                     {item.name}
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
@@ -120,7 +120,7 @@ export default function Footer() {
             </ul>
 
             {/* CTA in footer */}
-            <Link
+            <Link prefetch={false}
               href="/contact"
               className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-lg bg-accent/10 border border-accent/20 text-accent text-sm font-medium hover:bg-accent/20 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]"
             >
@@ -146,9 +146,9 @@ export default function Footer() {
           </button>
           <p className="text-xs text-muted">&copy; {new Date().getFullYear()} ATMA Consultancy Services. All rights reserved.</p>
           <div className="flex gap-6 text-xs text-muted">
-            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
-            <Link href="/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
+            <Link prefetch={false} href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link prefetch={false} href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link prefetch={false} href="/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
           </div>
         </div>
       </div>

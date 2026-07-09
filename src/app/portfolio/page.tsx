@@ -5,11 +5,11 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
-import Portfolio3D from "@/components/Portfolio3D";
 import Image from "next/image";
 import { ExternalLink, Globe, ArrowUpRight, Grid3x3, Box } from "lucide-react";
 import dynamic from "next/dynamic";
 
+const Portfolio3D = dynamic(() => import("@/components/Portfolio3D"), { ssr: false });
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 
 const projects = [
